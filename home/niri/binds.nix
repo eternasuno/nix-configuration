@@ -25,8 +25,7 @@
       "Mod+Print".action.screenshot-window = { write-to-disk = true; };
       "Print".action.screenshot = { show-pointer = false; };
 
-      "Mod+Q".action.quit = { skip-confirmation = false; };
-      "Mod+W".action = close-window;
+      "Mod+Q".action = close-window;
 
       "Mod+Ctrl+S".action = switch-preset-column-width;
 
@@ -67,5 +66,6 @@
       "Mod+Shift+Alt+K".action = move-column-to-monitor-up;
 
       "Mod+T".action = spawn "${pkgs.foot}/bin/foot";
+      "Mod+B".action = spawn "${pkgs.librewolf}/bin/librewolf";
     };
 }

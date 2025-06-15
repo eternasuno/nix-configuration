@@ -59,8 +59,8 @@
         };
         shadow = { enable = true; };
         preset-column-widths = [
-          { proportion = 0.33; }
-          { proportion = 0.66; }
+          { proportion = 0.333; }
+          { proportion = 0.666; }
           { proportion = 1.0; }
         ];
         default-column-width = { proportion = 0.66; };

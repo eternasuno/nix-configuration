@@ -1,254 +1,142 @@
-{ pkgs, lib, host, config, ... }:
-with lib; {
+{ pkgs, ... }: {
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar;
-    settings = [{
-      layer = "top";
-      position = "top";
-      # modules-center = [ "hyprland/workspaces" ];
-      modules-left = [
-        "custom/startmenu"
-        "custom/arrow6"
-        "pulseaudio"
-        "cpu"
-        "memory"
-        "idle_inhibitor"
-        "custom/arrow7"
-        # "hyprland/window"
-      ];
-      modules-right = [
-        "custom/arrow4"
-        "custom/hyprbindings"
-        "custom/arrow3"
-        "custom/notification"
-        "custom/arrow3"
-        "custom/exit"
-        "battery"
-        "custom/arrow2"
-        "tray"
-        "custom/arrow1"
-        "clock"
-      ];
+    package = pkgs.waybar.override { niriSupport = true; };
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+        modules-left = [ "niri/workspaces" ];
+        modules-center = [ "clock" ];
+        modules-right = [ "tray" "pulseaudio" "network" "battery" "cpu" "memory" ];
 
-      # "hyprland/workspaces" = {
-      #   format = "{name}";
-      #   format-icons = {
-      #     default = " ";
-      #     active = " ";
-      #     urgent = " ";
-      #   };
-      #   on-scroll-up = "hyprctl dispatch workspace e+1";
-      #   on-scroll-down = "hyprctl dispatch workspace e-1";
-      # };
-      "clock" = {
-        format = " {:L%H:%M}";
-        tooltip = true;
-        tooltip-format = ''
-          <big>{:%A, %d.%B %Y }</big>
-          <tt><small>{calendar}</small></tt>'';
-      };
-      # "hyprland/window" = {
-      #   max-length = 22;
-      #   separate-outputs = false;
-      #   rewrite = { "" = " 🙈 No Windows? "; };
-      # };
-      "memory" = {
-        interval = 5;
-        format = " {}%";
-        tooltip = true;
-      };
-      "cpu" = {
-        interval = 5;
-        format = " {usage:2}%";
-        tooltip = true;
-      };
-      "disk" = {
-        format = " {free}";
-        tooltip = true;
-      };
-      "network" = {
-        format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
-        format-ethernet = " {bandwidthDownOctets}";
-        format-wifi = "{icon} {signalStrength}%";
-        format-disconnected = "󰤮";
-        tooltip = false;
-      };
-      "tray" = { spacing = 12; };
-      "pulseaudio" = {
-        format = "{icon} {volume}% {format_source}";
-        format-bluetooth = "{volume}% {icon} {format_source}";
-        format-bluetooth-muted = " {icon} {format_source}";
-        format-muted = " {format_source}";
-        format-source = " {volume}%";
-        format-source-muted = "";
-        format-icons = {
-          headphone = "";
-          hands-free = "";
-          headset = "";
-          phone = "";
-          portable = "";
-          car = "";
-          default = [ "" "" "" ];
+        "niri/workspaces" = {
+          all-outputs = true;
+          sort-by = "id";
+          format = "{name}";
         };
-        on-click = "sleep 0.1 && pavucontrol";
-      };
-      "custom/exit" = {
-        tooltip = false;
-        format = "";
-        on-click = "sleep 0.1 && wlogout";
-      };
-      "custom/startmenu" = {
-        tooltip = false;
-        format = "";
-        on-click = "sleep 0.1 && rofi-launcher";
-      };
-      "custom/hyprbindings" = {
-        tooltip = false;
-        format = "󱕴";
-        on-click = "sleep 0.1 && list-keybinds";
-      };
-      "idle_inhibitor" = {
-        format = "{icon}";
-        format-icons = {
-          activated = "";
-          deactivated = "";
+
+        "clock" = {
+          format = "{%b %d %a %H:%M}";
+          format-alt = "{:%Y-%m-%d %H:%M:%S}";
+          tooltip-format = "<big>{:%Y年%B}</big>\n<tt><small>{calendar}</small></tt>";
         };
-        tooltip = "true";
-      };
-      "custom/notification" = {
-        tooltip = false;
-        format = "{icon} {}";
-        format-icons = {
-          notification = "<span foreground='red'><sup></sup></span>";
-          none = "";
-          dnd-notification = "<span foreground='red'><sup></sup></span>";
-          dnd-none = "";
-          inhibited-notification =
-            "<span foreground='red'><sup></sup></span>";
-          inhibited-none = "";
-          dnd-inhibited-notification =
-            "<span foreground='red'><sup></sup></span>";
-          dnd-inhibited-none = "";
+
+        "tray" = {
+          icon-size = 18;
+          spacing = 10;
         };
-        return-type = "json";
-        exec-if = "which swaync-client";
-        exec = "swaync-client -swb";
-        on-click = "sleep 0.1 && task-waybar";
-        escape = true;
-      };
-      "battery" = {
-        states = {
-          warning = 30;
-          critical = 15;
+
+        "pulseaudio" = {
+          format = "{volume}% {icon}";
+          format-muted = "Muted ";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+          };
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
-        format = "{icon} {capacity}%";
-        format-charging = "󰂄 {capacity}%";
-        format-plugged = "󱘖 {capacity}%";
-        format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-        on-click = "";
-        tooltip = false;
+
+        "network" = {
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
+          format-disconnected = "Disconnected ⚠";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+        };
+        
+        "battery" = {
+          states = {
+            good = 95;
+            warning = 30;
+            critical = 15;
+          };
+          format = "{capacity}% {icon}";
+          format-charging = "{capacity}% 󰂄";
+          format-plugged = "{capacity}% 󱘖";
+          format-alt = "{time} {icon}";
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        };
+        
+        "cpu" = {
+          interval = 5;
+          format = " {usage:2}%";
+          tooltip = "CPU Usage";
+        };
+
+        "memory" = {
+          interval = 5;
+          format = " {}%";
+          tooltip = "Memory Usage";
+        };
+
       };
-      "custom/arrow1" = { format = ""; };
-      "custom/arrow2" = { format = ""; };
-      "custom/arrow3" = { format = ""; };
-      "custom/arrow4" = { format = ""; };
-      "custom/arrow5" = { format = ""; };
-      "custom/arrow6" = { format = ""; };
-      "custom/arrow7" = { format = ""; };
-    }];
-    style = concatStrings [''
+    };
+
+    style = ''
       * {
-        font-family: JetBrainsMono Nerd Font Mono;
-        font-size: 14px;
-        border-radius: 0px;
         border: none;
-        min-height: 0px;
+        border-radius: 0;
+        font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
+        font-size: 14px;
+        min-height: 0;
       }
+
       window#waybar {
         background: #${config.lib.stylix.colors.base00};
         color: #${config.lib.stylix.colors.base05};
       }
+      
       #workspaces button {
         padding: 0px 5px;
         background: transparent;
         color: #${config.lib.stylix.colors.base04};
       }
-      #workspaces button.active {
-        color: #${config.lib.stylix.colors.base08};
-      }
+
       #workspaces button:hover {
         color: #${config.lib.stylix.colors.base08};
       }
-      tooltip {
-        background: #${config.lib.stylix.colors.base00};
-        border: 1px solid #${config.lib.stylix.colors.base05};
-        border-radius: 12px;
+      
+      #workspaces button.active {
+        color: #${config.lib.stylix.colors.base08};
       }
-      tooltip label {
-        color: #${config.lib.stylix.colors.base05};
-      }
-      #window {
-        padding: 0px 10px;
-      }
-      #pulseaudio, #cpu, #memory, #idle_inhibitor {
-        padding: 0px 10px;
+
+      #clock, #battery, #cpu, #memory, #pulseaudio, #network, #tray {
+        padding: 0 10px;
+        margin: 0 2px;
         background: #${config.lib.stylix.colors.base04};
         color: #${config.lib.stylix.colors.base00};
       }
-      #custom-startmenu {
-        color: #${config.lib.stylix.colors.base02};
-        padding: 0px 14px;
-        font-size: 20px;
-        background: #${config.lib.stylix.colors.base0B};
+      
+      #battery.warning {
+        color: #f1fa8c; /* 黄色 */
       }
-      #custom-hyprbindings, #network, #battery,
-      #custom-notification, #custom-exit {
-        background: #${config.lib.stylix.colors.base0F};
-        color: #${config.lib.stylix.colors.base00};
-        padding: 0px 10px;
+      #battery.critical {
+        color: #ff5555; /* 红色 */
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
       }
-      #tray {
-        background: #${config.lib.stylix.colors.base02};
-        color: #${config.lib.stylix.colors.base00};
-        padding: 0px 10px;
+      
+      @keyframes blink {
+          to {
+              background-color: #ff5555;
+              color: #f8f8f2;
+          }
       }
-      #clock {
-        font-weight: bold;
-        padding: 0px 10px;
-        color: #${config.lib.stylix.colors.base00};
-        background: #${config.lib.stylix.colors.base0E};
-      }
-      #custom-arrow1 {
-        font-size: 24px;
-        color: #${config.lib.stylix.colors.base0E};
-        background: #${config.lib.stylix.colors.base02};
-      }
-      #custom-arrow2 {
-        font-size: 24px;
-        color: #${config.lib.stylix.colors.base02};
-        background: #${config.lib.stylix.colors.base0F};
-      }
-      #custom-arrow3 {
-        font-size: 24px;
-        color: #${config.lib.stylix.colors.base00};
-        background: #${config.lib.stylix.colors.base0F};
-      }
-      #custom-arrow4 {
-        font-size: 24px;
-        color: #${config.lib.stylix.colors.base0F};
-        background: transparent;
-      }
-      #custom-arrow6 {
-        font-size: 24px;
-        color: #${config.lib.stylix.colors.base0B};
-        background: #${config.lib.stylix.colors.base04};
-      }
-      #custom-arrow7 {
-        font-size: 24px;
-        color: #${config.lib.stylix.colors.base04};
-        background: transparent;
-      }
-    ''];
+    '';
   };
+
+  home.packages = with pkgs; [
+    networkmanagerapplet
+    pavucontrol
+  ];
 }

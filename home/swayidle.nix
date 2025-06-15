@@ -1,17 +1,21 @@
-_: {
-  programs.swayidle = {
+{ pkgs, ... }: let
+  lock = "${pkgs.hyprlock}/bin/hyprlock"
+in {
+  services.swayidle = {
     enable = true;
-    systemdTarget = "sway-session.target";
+    systemdTarget = "graphical-session.target";
     timeouts = [
       {
         timeout = 300;
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        command = lock;
       }
       {
         timeout = 600;
         command = "systemctl suspend-then-hibernate";
       }
     ];
-    beforeSleep = "${pkgs.swaylock}/bin/swaylock -f";
+    events = [
+       { event = "before-sleep"; command = lock; }
+    ];
   };
 }
