@@ -14,7 +14,7 @@ in {
         ../../home/nushell.nix
         ../../home/stylix.nix
         ../../home/swayidle.nix
-        ../../home/swaylock.nix
+        ../../home/hyprlock.nix
         ../../home/waybar.nix
         ../../home/wlogout
         ../../home/xdg.nix

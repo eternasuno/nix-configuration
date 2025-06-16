@@ -18,4 +18,9 @@ _: {
     };
     tumbler.enable = true; # Image/video preview
   };
+  
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
 }

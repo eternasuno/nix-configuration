@@ -16,14 +16,14 @@
       spawn-at-startup = [
         { command = [ "swww-daemon" ]; }
         { command = [ "${pkgs.waybar}/bin/waybar" ]; }
-        { command = [ "${pkgs.swaylock}/bin/swaylock" ]; }
+        { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
         { command = [ "wl-paste" "--watch" "cliphist" "store" ]; }
       ];
       input = {
         keyboard.xkb.layout = "us";
         touchpad = {
           accel-profile = "adaptive";
-          accel-speed = 0.5;
+          accel-speed = 0.25;
           click-method = "clickfinger";
           disabled-on-external-mouse = true;
           dwt = true;
@@ -59,11 +59,11 @@
         };
         shadow = { enable = true; };
         preset-column-widths = [
-          { proportion = 0.333; }
-          { proportion = 0.666; }
+          { proportion = 0.35; }
+          { proportion = 0.65; }
           { proportion = 1.0; }
         ];
-        default-column-width = { proportion = 0.66; };
+        default-column-width = { proportion = 0.65; };
 
         gaps = 6;
         struts = {

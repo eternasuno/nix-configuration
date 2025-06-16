@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.override { niriSupport = true; };
@@ -18,8 +18,7 @@
         };
 
         "clock" = {
-          format = "{%b %d %a %H:%M}";
-          format-alt = "{:%Y-%m-%d %H:%M:%S}";
+          format = "{:L%m-%d %a %H:%M}";
           tooltip-format = "<big>{:%Y年%B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
@@ -110,8 +109,8 @@
       #clock, #battery, #cpu, #memory, #pulseaudio, #network, #tray {
         padding: 0 10px;
         margin: 0 2px;
-        background: #${config.lib.stylix.colors.base04};
-        color: #${config.lib.stylix.colors.base00};
+        background: #${config.lib.stylix.colors.base00};
+        color: #${config.lib.stylix.colors.base05};
       }
       
       #battery.warning {

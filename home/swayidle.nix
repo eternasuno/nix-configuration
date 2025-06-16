@@ -1,5 +1,5 @@
 { pkgs, ... }: let
-  lock = "${pkgs.hyprlock}/bin/hyprlock"
+  lock = "${pkgs.hyprlock}/bin/hyprlock";
 in {
   services.swayidle = {
     enable = true;

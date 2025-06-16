@@ -4,7 +4,7 @@
       enable = true;
       desktop = "${config.home.homeDirectory}/Desktop";
       documents = "${config.home.homeDirectory}/Documents";
-      downloads = "${config.home.homeDirectory}/Downloads";
+      download = "${config.home.homeDirectory}/Download";
       music = "${config.home.homeDirectory}/Music";
       pictures = "${config.home.homeDirectory}/Pictures";
       publicShare = "${config.home.homeDirectory}/Public";

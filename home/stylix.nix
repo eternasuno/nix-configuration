@@ -33,7 +33,7 @@
       };
     };
     targets = {
-      rofi.enable = false;
+      librewolf.enable = false;
       waybar.enable = false;
     };
   };

@@ -7,14 +7,18 @@ _: {
         hide_cursor = true;
       };
       auth = {
-        fingerprint:enabled = true;
+        "fingerprint:enabled" = true;
       };
       background = {
         blur_passes = 3;
         blur_size = 8;
       };
+      input-field = {
+        valign = "bottom";
+	position = "0%, 10%";
+	outline_thickness = 1;
+      };
       label = {
-        monitor = "";
         text = ''
           cmd[update:1000] echo "<span font-weight='light' >$(date +'%H %M %S')</span>"
         '';
