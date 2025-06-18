@@ -18,7 +18,7 @@ in {
         ../../home/waybar.nix
         ../../home/wlogout
         ../../home/xdg.nix
-        ../../home/eww.nix
+        ../../home/eww
       ];
       home = {
         homeDirectory = "/home/${username}";
