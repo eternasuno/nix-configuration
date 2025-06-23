@@ -14,7 +14,7 @@
         margin-right= 200;
           modules-left= ["niri/workspaces"];
           modules-center= ["clock"];
-          modules-right= [ "tray","backlight", "pulseaudio", "battery"];
+          modules-right= [ "tray" "backlight" "pulseaudio" "battery"];
           sway/scratchpad= {
             format= "󱂬 {count}";
           };
@@ -23,7 +23,7 @@
           };
           backlight= {
           format= "{percent}%";
-          format-icons= ["", "", "", "", "", "", "", "", ""];
+          format-icons= ["" "" "" "" "" "" "" "" ""];
         };
           "niri/workspaces"= {
             format= "{index}";
@@ -62,7 +62,7 @@
           battery= {
             format= "{capacity}%";
             format-charging= "{capacity}% ";
-            format-icons= ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"];
+            format-icons= ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
             interval= 1;
           };
       };
