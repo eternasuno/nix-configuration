@@ -15,7 +15,7 @@
           modules-left= ["niri/workspaces"];
           modules-center= ["clock"];
           modules-right= [ "tray" "backlight" "pulseaudio" "battery"];
-          sway/scratchpad= {
+          "sway/scratchpad"= {
             format= "󱂬 {count}";
           };
           pulseaudio= {
