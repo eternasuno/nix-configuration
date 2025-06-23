@@ -33,7 +33,7 @@
             format-stopped= "";
             status-icons= {
               paused= "⏸";
-              playing= "󰐊"
+              playing= "󰐊";
             };
             interval= "0.1";
           };
