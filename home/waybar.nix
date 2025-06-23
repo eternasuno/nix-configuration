@@ -42,7 +42,7 @@
               interval= 1,
               tooltip-format= "{:%A %d %B %Y}"
           },
-          "tray": {
+          "tray"= {
             spacing= 12
           },
           "gamemode"= {
