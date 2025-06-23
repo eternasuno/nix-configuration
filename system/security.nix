@@ -23,7 +23,7 @@ _: {
       };
       sudo = {
         enable = true;
-	fprintAuth = true;
+	      fprintAuth = true;
       };
       login.fprintAuth = true;
     };

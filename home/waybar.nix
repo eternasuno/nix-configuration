@@ -4,138 +4,148 @@
     package = pkgs.waybar.override { niriSupport = true; };
     settings = {
       mainBar = {
-        layer = "top";
-        position = "top";
-        height = 30;
-        modules-left = [ "niri/workspaces" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "tray" "pulseaudio" "network" "battery" "cpu" "memory" ];
-
-        "niri/workspaces" = {
-          all-outputs = true;
-          sort-by = "id";
-          format = "{name}";
-        };
-
-        "clock" = {
-          format = "{:L%m-%d %a %H:%M}";
-          tooltip-format = "<big>{:%Y年%B}</big>\n<tt><small>{calendar}</small></tt>";
-        };
-
-        "tray" = {
-          icon-size = 18;
-          spacing = 10;
-        };
-
-        "pulseaudio" = {
-          format = "{volume}% {icon}";
-          format-muted = "Muted ";
-          format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["" "" ""];
-          };
-          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
-        };
-
-        "network" = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
-          format-disconnected = "Disconnected ⚠";
-          tooltip-format = "{ifname} via {gwaddr} ";
-          on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
-        };
-        
-        "battery" = {
-          states = {
-            good = 95;
-            warning = 30;
-            critical = 15;
-          };
-          format = "{capacity}% {icon}";
-          format-charging = "{capacity}% 󰂄";
-          format-plugged = "{capacity}% 󱘖";
-          format-alt = "{time} {icon}";
-          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-        };
-        
-        "cpu" = {
-          interval = 5;
-          format = " {usage:2}%";
-          tooltip = "CPU Usage";
-        };
-
-        "memory" = {
-          interval = 5;
-          format = " {}%";
-          tooltip = "Memory Usage";
-        };
-
+        "layer": "top",
+        "position": "top",
+        "height": 0,
+        "spacing": 0,
+        "margin-top": 12,
+        "margin-bottom": 5,
+        "margin-left": 200,
+        "margin-right": 200,
+          "modules-left": ["niri/workspaces"],
+          "modules-center": ["clock"],
+          "modules-right": [ "tray","backlight", "pulseaudio", "battery"],
+          "sway/scratchpad": {
+            "format": "󱂬 {count}"
+          },
+          "pulseaudio": {
+            "format": "{volume}%"
+          },
+          "backlight": {
+          "format": "{percent}%",
+          "format-icons": ["", "", "", "", "", "", "", "", ""],
+        },
+          "niri/workspaces": {
+            "format": "{index}"
+          },
+          "mpris": {
+            "format": "{status_icon} {artist} - {title}",
+            "format-stopped": "",
+            "status-icons": {
+              "paused": "⏸",
+              "playing": "󰐊"
+            },
+            "interval": "0.1"
+          },
+          "clock": {
+            "format": "{:%I:%M %p}",
+              "interval": 1,
+              "tooltip-format": "{:%A %d %B %Y}"
+          },
+          "tray": {
+            "spacing": 12
+          },
+          "gamemode": {
+              "glyph": "   ",
+              "format": "{glyph}",
+              "use-icon": false,
+              "icon-spacing": 16
+          },
+          "memory": {
+              "format": "  {percentage}%",
+              "interval": 1
+          },
+          "cpu": {
+              "format": "  {usage}%",
+              "interval": 1
+          },
+          "battery": {
+            "format": "{capacity}%",
+            "format-charging": "{capacity}% ",
+            "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "interval": 1
+          }
       };
     };
 
     style = ''
       * {
-        border: none;
-        border-radius: 0;
-        font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
-        font-size: 14px;
-        min-height: 0;
+        font-size: 15px;
       }
 
       window#waybar {
-        background: #${config.lib.stylix.colors.base00};
-        color: #${config.lib.stylix.colors.base05};
+        border-bottom: 1px solid #181825;
+        border-radius: 10px;
       }
-      
-      #workspaces button {
-        padding: 0px 5px;
+
+      #clock,
+      #tray,
+      #battery,
+      #cpu,
+      #window,
+      #memory,
+      #network,
+      #scratchpad,
+      #temperature,
+      #pulseaudio,
+      #backlight {
         background: transparent;
-        color: #${config.lib.stylix.colors.base04};
+        padding: 0px 0px;
+        border-radius: 6px;
+        margin: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 14px;
+      }
+
+      #workspaces {
+        margin-left: 5px;
+      }
+
+      #workspaces button {
+        padding: 0 5px;
+        margin-right: 1px;
+        border-radius: 4px;
       }
 
       #workspaces button:hover {
-        color: #${config.lib.stylix.colors.base08};
-      }
-      
-      #workspaces button.active {
-        color: #${config.lib.stylix.colors.base08};
+        background-color: rgba(50, 50, 50, 0.5);
+        color: #ffffff;
       }
 
-      #clock, #battery, #cpu, #memory, #pulseaudio, #network, #tray {
-        padding: 0 10px;
-        margin: 0 2px;
-        background: #${config.lib.stylix.colors.base00};
-        color: #${config.lib.stylix.colors.base05};
+      #workspaces button.active {
+        background: #5e81ac;
       }
-      
-      #battery.warning {
-        color: #f1fa8c; /* 黄色 */
+
+      #workspaces button.urgent {
+        background-color: #fb4934;
+        animation: urgentBlink 1s linear infinite alternate;
       }
-      #battery.critical {
-        color: #ff5555; /* 红色 */
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+
+      #clock{
+        font-size: 16px;
       }
-      
-      @keyframes blink {
-          to {
-              background-color: #ff5555;
-              color: #f8f8f2;
-          }
+
+      #tray {
+        padding: 0px 4px;
+      }
+
+      #backlight {
+        color: #8fbcbb;
+      }
+      #pulseaudio {
+        color: #88c0d0;
+      }
+
+      #battery {
+        color: #81a1c1;
+      }
+
+      .modules-left,
+      .modules-right,
+      .modules-center {
+        padding: 4px 0px;
       }
     '';
   };
-
-  home.packages = with pkgs; [
-    networkmanagerapplet
-    pavucontrol
-  ];
 }

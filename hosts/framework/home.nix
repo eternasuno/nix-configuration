@@ -9,15 +9,17 @@ in {
     users.${username} = {
       imports = [
         ../../home/foot.nix
+        ../../home/hyprlock.nix
         ../../home/librewolf.nix
         ../../home/niri
         ../../home/nushell.nix
+        ../../home/packages.nix
         ../../home/stylix.nix
         ../../home/swayidle.nix
-        ../../home/hyprlock.nix
         ../../home/waybar.nix
         ../../home/wlogout
         ../../home/xdg.nix
+        ../../home/tofi.nix
       ];
       home = {
         homeDirectory = "/home/${username}";

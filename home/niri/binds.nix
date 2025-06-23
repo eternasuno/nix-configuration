@@ -67,5 +67,6 @@
 
       "Mod+T".action = spawn "${pkgs.foot}/bin/foot";
       "Mod+B".action = spawn "${pkgs.librewolf}/bin/librewolf";
+      "Mod+SPACE".action = spawn "${pkgs.tofi}/bin/tofi-drun --drun-launch=true || pkill tofi-drun";
     };
 }
