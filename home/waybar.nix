@@ -4,67 +4,67 @@
     package = pkgs.waybar.override { niriSupport = true; };
     settings = {
       mainBar = {
-        layer= "top",
-        position= "top",
-        height= 0,
-        spacing= 0,
-        margin-top= 12,
-        margin-bottom= 5,
-        margin-left= 200,
-        margin-right= 200,
-          modules-left= ["niri/workspaces"],
-          modules-center= ["clock"],
-          modules-right= [ "tray","backlight", "pulseaudio", "battery"],
+        layer= "top";
+        position= "top";
+        height= 0;
+        spacing= 0;
+        margin-top= 12;
+        margin-bottom= 5;
+        margin-left= 200;
+        margin-right= 200;
+          modules-left= ["niri/workspaces"];
+          modules-center= ["clock"];
+          modules-right= [ "tray","backlight", "pulseaudio", "battery"];
           sway/scratchpad= {
-            format= "󱂬 {count}"
-          },
+            format= "󱂬 {count}";
+          };
           pulseaudio= {
-            format= "{volume}%"
-          },
+            format= "{volume}%";
+          };
           backlight= {
-          format= "{percent}%",
-          format-icons= ["", "", "", "", "", "", "", "", ""],
-        },
+          format= "{percent}%";
+          format-icons= ["", "", "", "", "", "", "", "", ""];
+        };
           "niri/workspaces"= {
-            format= "{index}"
-          },
+            format= "{index}";
+          };
           "mpris"= {
-            format= "{status_icon} {artist} - {title}",
-            format-stopped= "",
+            format= "{status_icon} {artist} - {title}";
+            format-stopped= "";
             status-icons= {
-              paused= "⏸",
+              paused= "⏸";
               playing= "󰐊"
-            },
-            interval= "0.1"
-          },
+            };
+            interval= "0.1";
+          };
           clock= {
-            format= "{:%I:%M %p}",
-              interval= 1,
-              tooltip-format= "{:%A %d %B %Y}"
-          },
+            format= "{:%I:%M %p}";
+              interval= 1;
+              tooltip-format= "{:%A %d %B %Y}";
+          };
           "tray"= {
-            spacing= 12
-          },
+            spacing= 12;
+          };
           "gamemode"= {
-              glyph= "   ",
-              format= "{glyph}",
-              use-icon= false,
-              icon-spacing= 16
-          },
+              glyph= "   ";
+              format= "{glyph}";
+              use-icon= false;
+              icon-spacing= 16;
+          };
           memory= {
-              format= "  {percentage}%",
-              interval= 1
-          },
+              format= "  {percentage}%";
+              interval= 1;
+          };
           cpu= {
-              format= "  {usage}%",
-              interval= 1
-          },
+              format= "  {usage}%";
+              interval= 1;
+          };
           battery= {
-            format= "{capacity}%",
-            format-charging= "{capacity}% ",
-            format-icons= ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-            interval= 1
-          }
+            format= "{capacity}%";
+            format-charging= "{capacity}% ";
+            format-icons= ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"];
+            interval= 1;
+          };
       };
     };
 
@@ -78,16 +78,16 @@
         border-radius: 10px;
       }
 
-      #clock,
-      #tray,
-      #battery,
-      #cpu,
-      #window,
-      #memory,
-      #network,
-      #scratchpad,
-      #temperature,
-      #pulseaudio,
+      #clock;
+      #tray;
+      #battery;
+      #cpu;
+      #window;
+      #memory;
+      #network;
+      #scratchpad;
+      #temperature;
+      #pulseaudio;
       #backlight {
         background: transparent;
         padding: 0px 0px;
@@ -141,8 +141,8 @@
         color: #81a1c1;
       }
 
-      .modules-left,
-      .modules-right,
+      .modules-left;
+      .modules-right;
       .modules-center {
         padding: 4px 0px;
       }
