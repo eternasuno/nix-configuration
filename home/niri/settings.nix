@@ -21,7 +21,7 @@
       };
       spawn-at-startup = [
         { command = [ "swww-daemon" ]; }
-        { command = [ "${pkgs.quickshell}/bin/qs" ]; }
+        # { command = [ "${pkgs.quickshell}/bin/qs" ]; }
         { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
         {
           command = [

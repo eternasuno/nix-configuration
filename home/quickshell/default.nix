@@ -1,6 +1,6 @@
 _: {
   home.file.".config/quickshell" = {
-    source = ./kurukurubar;
+    source = ./config;
     recursive = true;
   };
 }
