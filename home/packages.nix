@@ -7,6 +7,7 @@
     playerctl 
     seatd 
     swww 
-    wl-clipboard 
+    wl-clipboard
+    quickshell
   ];
 }

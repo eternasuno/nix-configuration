@@ -16,10 +16,9 @@ in {
         ../../home/packages.nix
         ../../home/stylix.nix
         ../../home/swayidle.nix
-        ../../home/waybar.nix
         ../../home/wlogout
         ../../home/xdg.nix
-        ../../home/tofi.nix
+        ../../home/quickshell
       ];
       home = {
         homeDirectory = "/home/${username}";

@@ -15,7 +15,7 @@
       };
       spawn-at-startup = [
         { command = [ "swww-daemon" ]; }
-        { command = [ "${pkgs.waybar}/bin/waybar" ]; }
+        { command = [ "${pkgs.quickshell}/bin/qs" ]; }
         { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
         { command = [ "wl-paste" "--watch" "cliphist" "store" ]; }
       ];
