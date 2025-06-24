@@ -1,6 +1,16 @@
-{ config, inputs, pkgs, ... }: {
-  imports =
-    [ ./settings.nix ./binds.nix ./rules.nix inputs.niri.homeModules.niri ];
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./settings.nix
+    ./binds.nix
+    ./rules.nix
+    inputs.niri.homeModules.niri
+  ];
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 }

@@ -1,4 +1,10 @@
-{ pkgs, config, inputs, ... }: {
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+{
   imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
   boot = {
@@ -13,7 +19,9 @@
     consoleLogLevel = 3;
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     initrd.systemd.enable = true;
-    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
     kernelParams = [
       "quiet"
       "systemd.show_status=auto"

@@ -1,9 +1,12 @@
 { inputs, vars, ... }:
-let inherit (vars) username version;
-in {
+let
+  inherit (vars) username version;
+in
+{
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
+    useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs vars; };
     users.${username} = {
@@ -14,11 +17,11 @@ in {
         ../../home/niri
         ../../home/nushell.nix
         ../../home/packages.nix
+        ../../home/quickshell
         ../../home/stylix.nix
         ../../home/swayidle.nix
         ../../home/wlogout
         ../../home/xdg.nix
-        ../../home/quickshell
       ];
       home = {
         homeDirectory = "/home/${username}";

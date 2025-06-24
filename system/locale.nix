@@ -1,6 +1,8 @@
 { pkgs, vars, ... }:
-let inherit (vars) timeZone keyboardLayout;
-in {
+let
+  inherit (vars) timeZone keyboardLayout;
+in
+{
   console.keyMap = "${keyboardLayout}";
   time.timeZone = timeZone;
   i18n = {
@@ -21,7 +23,12 @@ in {
       enable = true;
       fcitx5 = {
         waylandFrontend = true;
-        addons = with pkgs; [ rime-data fcitx5-rime fcitx5-gtk fcitx5-mozc ];
+        addons = with pkgs; [
+          rime-data
+          fcitx5-rime
+          fcitx5-gtk
+          fcitx5-mozc
+        ];
       };
     };
   };

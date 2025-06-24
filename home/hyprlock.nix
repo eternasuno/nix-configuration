@@ -15,8 +15,8 @@ _: {
       };
       input-field = {
         valign = "bottom";
-	position = "0%, 10%";
-	outline_thickness = 1;
+        position = "0%, 10%";
+        outline_thickness = 1;
       };
       label = {
         text = ''

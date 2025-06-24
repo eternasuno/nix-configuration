@@ -1,6 +1,8 @@
-{ pkgs, ... }: let
+{ pkgs, ... }:
+let
   lock = "${pkgs.hyprlock}/bin/hyprlock";
-in {
+in
+{
   services.swayidle = {
     enable = true;
     systemdTarget = "graphical-session.target";
@@ -15,7 +17,10 @@ in {
       }
     ];
     events = [
-       { event = "before-sleep"; command = lock; }
+      {
+        event = "before-sleep";
+        command = lock;
+      }
     ];
   };
 }

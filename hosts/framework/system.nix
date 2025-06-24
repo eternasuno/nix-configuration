@@ -1,6 +1,13 @@
-{ inputs, pkgs, vars, ... }:
-let inherit (vars) version;
-in {
+{
+  inputs,
+  pkgs,
+  vars,
+  ...
+}:
+let
+  inherit (vars) version;
+in
+{
   imports = [
     ../../system/boot.nix
     ../../system/greetd.nix

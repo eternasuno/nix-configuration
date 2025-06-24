@@ -1,14 +1,15 @@
-{ config, pkgs, ... }: {
-  programs.niri.settings.binds = with config.lib.niri.actions;
+{ config, pkgs, ... }:
+{
+  programs.niri.settings.binds =
+    with config.lib.niri.actions;
     let
       set-volume = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@";
       brillo = spawn "${pkgs.brillo}/bin/brillo" "-q" "-u" "300000";
       playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
-    in {
-      "XF86AudioMute".action =
-        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-      "XF86AudioMicMute".action =
-        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+    in
+    {
+      "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+      "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
 
       "XF86AudioPlay".action = playerctl "play-pause";
       "XF86AudioStop".action = playerctl "pause";
@@ -21,9 +22,15 @@
       "XF86MonBrightnessUp".action = brillo "-A" "5";
       "XF86MonBrightnessDown".action = brillo "-U" "5";
 
-      "Mod+Alt+Print".action.screenshot-screen = { write-to-disk = true; };
-      "Mod+Print".action.screenshot-window = { write-to-disk = true; };
-      "Print".action.screenshot = { show-pointer = false; };
+      "Mod+Alt+Print".action.screenshot-screen = {
+        write-to-disk = true;
+      };
+      "Mod+Print".action.screenshot-window = {
+        write-to-disk = true;
+      };
+      "Print".action.screenshot = {
+        show-pointer = false;
+      };
 
       "Mod+Q".action = close-window;
 

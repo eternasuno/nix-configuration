@@ -9,8 +9,13 @@ let
     timeZone = "Asia/Tokyo";
     version = "25.05";
   };
-in nixpkgs.lib.nixosSystem {
+in
+nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   specialArgs = { inherit inputs vars; };
-  modules = [ ./hardware.nix ./home.nix ./system.nix ];
+  modules = [
+    ./hardware.nix
+    ./home.nix
+    ./system.nix
+  ];
 }

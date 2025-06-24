@@ -19,11 +19,11 @@ _: {
       greetd.enableGnomeKeyring = true;
       hyprlock = {
         enable = true;
-      	fprintAuth = true;
+        fprintAuth = true;
       };
       sudo = {
         enable = true;
-	      fprintAuth = true;
+        fprintAuth = true;
       };
       login.fprintAuth = true;
     };

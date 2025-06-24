@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   xdg = {
     userDirs = {
       enable = true;
@@ -19,7 +20,7 @@
         # "x-scheme-handler/https" = "firefox.desktop";
         # "application/pdf" = "org.gnome.Evince.desktop";
         # "image/jpeg" = "org.gnome.eog.desktop";
-        # "video/mp4" = "mpv.desktop"; 
+        # "video/mp4" = "mpv.desktop";
         # "inode/directory" = "org.gnome.Nautilus.desktop";
       };
     };

@@ -1,6 +1,8 @@
 { pkgs, vars, ... }:
-let inherit (vars) username;
-in {
+let
+  inherit (vars) username;
+in
+{
   services.greetd = {
     enable = true;
     vt = 3;

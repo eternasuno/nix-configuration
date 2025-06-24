@@ -1,14 +1,18 @@
 {
   description = "My nixos configuration.";
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs =
+    { nixpkgs, ... }@inputs:
     let
       inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs readDir;
       hosts = filterAttrs (_: type: type == "directory") (readDir ./hosts);
       toConfiguration = host: _: import ./hosts/${host} host inputs;
       nixosConfigurations = mapAttrs toConfiguration hosts;
-    in { inherit nixosConfigurations; };
+    in
+    {
+      inherit nixosConfigurations;
+    };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
