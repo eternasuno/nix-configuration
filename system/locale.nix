@@ -3,7 +3,7 @@ let
   inherit (vars) timeZone keyboardLayout;
 in
 {
-  console.keyMap = "${keyboardLayout}";
+  console.keyMap = keyboardLayout;
   time.timeZone = timeZone;
   i18n = {
     defaultLocale = "en_US.UTF-8";
