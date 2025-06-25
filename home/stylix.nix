@@ -19,12 +19,12 @@
         name = "JetBrainsMono Nerd Font";
       };
       sansSerif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.noto-fonts-cjk-sans;
+        name = "Noto Sans CJK";
       };
       serif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.noto-fonts-cjk-serif
+        name = "Noto Serif CJK";
       };
       sizes = {
         applications = 12;

@@ -45,4 +45,8 @@
     plymouth.enable = true;
     tmp.cleanOnBoot = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
 }

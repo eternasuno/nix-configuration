@@ -6,7 +6,6 @@
     networkmanagerapplet
     pavucontrol
     playerctl
-    quickshell
     seatd
     swww
     wl-clipboard

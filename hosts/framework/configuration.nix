@@ -11,12 +11,14 @@ in
 {
   imports = [
     ../../system/boot.nix
-    ../../system/cosmic.nix
+    ../../system/greetd.nix
+    ../../system/hardware.nix
     ../../system/locale.nix
     ../../system/network.nix
     ../../system/nix.nix
     ../../system/packages.nix
     ../../system/security.nix
+    ../../system/services.nix
     ../../system/user.nix
     home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.${model}
@@ -29,9 +31,15 @@ in
     users.${username} = {
       imports = [
         ../../home/foot.nix
+        ../../home/hyprlock.nix
         ../../home/librewolf.nix
-        ../../home/firefox
+        ../../home/niri
         ../../home/nushell.nix
+        ../../home/packages.nix
+        ../../home/sessionVariables.nix
+        ../../home/stylix.nix
+        ../../home/swayidle.nix
+        ../../home/waybar.nix
         ../../home/xdg.nix
       ];
       home = {
