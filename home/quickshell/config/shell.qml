@@ -1,33 +1,80 @@
-import QtQuick
 import Quickshell
-import Quickshell.Services.Greetd
-import Quickshell.Services.Pam
-import Quickshell.Wayland
+import Quickshell.Io
+import Quickshell.Services.Pipewire
+import Quickshell.Services.Notifications
+import QtQuick
+import QtCore
+import qs.Bar
+import qs.Bar.Modules
+import qs.Widgets
+import qs.Settings
+import qs.Helpers
 
-Shell {
-  id: root
-  width: Screen.width
-  height: Screen.height
+Scope {
+    id: root
 
-  property bool isLoginMode: Qt.application.arguments.indexOf("--login") !== -1
-  property bool isLockMode: Qt.application.arguments.indexOf("--lock") !== -1
+    property alias appLauncherPanel: appLauncherPanel
 
-  Component.onCompleted: {
-    if (isLoginMode) {
-      loader.source = "greeter/login.qml"
-    } else if (isLockMode) {
-      loader.source = "lockscreen/lockscreen.qml"
-    } else {
-      loader.source = "bar/bar.qml"
-      addComponent("launch/launch.qml")
-      addComponent("osd/osd.qml")
-      addComponent("notification/notification.qml")
+    function updateVolume(vol) {
+        volume = vol;
+        if (defaultAudioSink && defaultAudioSink.audio) {
+            defaultAudioSink.audio.volume = vol / 100;
+        }
     }
-  }
 
-  Loader { id: loader }
+    Component.onCompleted: {
+        Quickshell.shell = root;
+    }
 
-  function addComponent(path) {
-    Loader { source: path }
-  }
+    Bar {
+        id: bar
+        shell: root
+    }
+
+    Applauncher {
+        id: appLauncherPanel
+        visible: false
+    }
+
+    LockScreen {
+        id: lockScreen
+    }
+
+    NotificationServer {
+        id: notificationServer
+        onNotification: function (notification) {
+            console.log("Notification received:", notification.appName);
+            notification.tracked = true;
+            notificationPopup.addNotification(notification);
+        }
+    }
+
+    NotificationPopup {
+        id: notificationPopup
+        barVisible: bar.visible
+    }
+
+    property var defaultAudioSink: Pipewire.defaultAudioSink
+    property int volume: defaultAudioSink && defaultAudioSink.audio && defaultAudioSink.audio.volume ? Math.round(defaultAudioSink.audio.volume * 100) : 0
+
+    PwObjectTracker {
+        objects: [Pipewire.defaultAudioSink]
+    }
+
+    IPCHandlers {
+        appLauncherPanel: appLauncherPanel
+        lockScreen: lockScreen
+    }
+
+    Connections {
+        function onReloadCompleted() {
+            Quickshell.inhibitReloadPopup();
+        }
+
+        function onReloadFailed() {
+            Quickshell.inhibitReloadPopup();
+        }
+
+        target: Quickshell
+    }
 }

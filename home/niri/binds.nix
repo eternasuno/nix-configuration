@@ -73,7 +73,7 @@
       "Mod+Shift+Alt+K".action = move-column-to-monitor-up;
 
       "Mod+T".action = spawn "${pkgs.foot}/bin/foot";
-      "Mod+B".action = spawn "${pkgs.librewolf}/bin/librewolf";
+      "Mod+B".action = spawn "${pkgs.librewolf}/bin/firefox";
       "Mod+SPACE".action = spawn "${pkgs.tofi}/bin/tofi-drun --drun-launch=true || pkill tofi-drun";
     };
 }

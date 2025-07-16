@@ -11,6 +11,4 @@
     ./rules.nix
     inputs.niri.homeModules.niri
   ];
-
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 }

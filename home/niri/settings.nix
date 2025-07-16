@@ -19,19 +19,6 @@
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         SDL_VIDEODRIVER = "wayland";
       };
-      spawn-at-startup = [
-        { command = [ "swww-daemon" ]; }
-        # { command = [ "${pkgs.quickshell}/bin/qs" ]; }
-        { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
-        {
-          command = [
-            "wl-paste"
-            "--watch"
-            "cliphist"
-            "store"
-          ];
-        }
-      ];
       input = {
         keyboard.xkb.layout = "us";
         touchpad = {

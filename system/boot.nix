@@ -22,14 +22,16 @@
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
     };
-    kernelParams = [
-      "quiet"
-      "systemd.show_status=auto"
-      "rd.udev.log_level=3"
-      "plymouth.use-simpledrm"
-    ];
     kernelModules = [ "v4l2loopback" ];
     kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = [
+      "plymouth.use-simpledrm"
+      "quiet"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "splash"
+      "udev.log_priority=3"
+    ];
     lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
@@ -42,7 +44,15 @@
       };
       timeout = 0;
     };
-    plymouth.enable = true;
+    plymouth = {
+      enable = true;
+      theme = pkgs.lib.mkForce "glitch";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "glitch" ];
+        })
+      ];
+    };
     tmp.cleanOnBoot = true;
   };
 

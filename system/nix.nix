@@ -1,11 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
+let
+  inherit (vars) username;
+in
 {
   nix = {
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 3d";
-    };
     settings = {
       experimental-features = [
         "nix-command"
@@ -25,4 +23,18 @@
   nixpkgs = {
     config.allowUnfree = true;
   };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 3d --keep 3";
+    };
+    flake = "/home/${username}/.config/nixos";
+  };
+
+  environment.systemPackages = with pkgs; [
+    nix-output-monitor
+    nvd
+  ];
 }

@@ -19,28 +19,24 @@ in
     ../../system/packages.nix
     ../../system/security.nix
     ../../system/services.nix
+    ../../system/stylix.nix
     ../../system/user.nix
     home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.${model}
   ];
 
   home-manager = {
+    backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs vars; };
     users.${username} = {
       imports = [
+        ../../home/firefox
         ../../home/foot.nix
-        ../../home/hyprlock.nix
-        ../../home/librewolf.nix
         ../../home/niri
         ../../home/nushell.nix
-        ../../home/packages.nix
-        ../../home/sessionVariables.nix
-        ../../home/stylix.nix
-        ../../home/swayidle.nix
-        ../../home/waybar.nix
-        ../../home/xdg.nix
+        ../../home/quickshell
       ];
       home = {
         inherit username;

@@ -8,8 +8,6 @@ in
     users.${username} = {
       isNormalUser = true;
       extraGroups = [
-        "adbusers"
-        "libvirtd"
         "networkmanager"
         "video"
         "wheel"

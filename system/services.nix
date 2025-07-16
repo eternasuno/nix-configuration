@@ -1,22 +1,25 @@
 _: {
+  # Services to start
   services = {
-    blueman.enable = true; # Bluetooth Support
-    fprintd.enable = true;
     fwupd.enable = true;
-    gnome.gnome-keyring.enable = true;
-    gvfs.enable = true; # For Mounting USB & More
     libinput.enable = true; # Input Handling
-    logind = {
-      lidSwitch = "suspend-then-hibernate";
-      powerKey = "suspend-then-hibernate";
-      powerKeyLongPress = "poweroff";
-    };
+    fstrim.enable = true; # SSD Optimizer
+    gvfs.enable = true; # For Mounting USB & More
     openssh.enable = true; # Enable SSH
+    blueman.enable = true; # Bluetooth Support
+    tumbler.enable = true; # Image/video preview
+    gnome.gnome-keyring.enable = true; # Collection of components in GNOME that store secrets, passwords, keys, certificates and make them available to applications.
+
     smartd = {
       enable = true;
       autodetect = true;
     };
-    tumbler.enable = true; # Image/video preview
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
   };
 
   systemd.services.fprintd = {

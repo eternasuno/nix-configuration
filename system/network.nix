@@ -29,4 +29,5 @@ in
     };
   };
 
+  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
 }
