@@ -1,10 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -33,7 +27,7 @@
           tap = true;
         };
         focus-follows-mouse.enable = true;
-        warp-mouse-to-focus = true;
+        warp-mouse-to-focus.enable = true;
         workspace-auto-back-and-forth = true;
       };
       screenshot-path = "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
@@ -62,9 +56,9 @@
           enable = true;
         };
         preset-column-widths = [
-          { proportion = 0.35; }
-          { proportion = 0.65; }
-          { proportion = 1.0; }
+          {proportion = 0.35;}
+          {proportion = 0.65;}
+          {proportion = 1.0;}
         ];
         default-column-width = {
           proportion = 0.65;
@@ -90,7 +84,7 @@
         };
       };
 
-      animations.shaders.window-resize = ''
+      animations.window-resize.custom-shader = ''
         vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
           vec3 coords_next_geo = niri_curr_geo_to_next_geo * coords_curr_geo;
 
