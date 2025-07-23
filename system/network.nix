@@ -30,4 +30,8 @@ in
   };
 
   environment.systemPackages = with pkgs; [ networkmanagerapplet ];
+
+  programs = {
+    mtr.enable = true;
+  };
 }

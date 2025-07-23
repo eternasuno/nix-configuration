@@ -8,7 +8,6 @@ _: {
     openssh.enable = true; # Enable SSH
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
-    gnome.gnome-keyring.enable = true; # Collection of components in GNOME that store secrets, passwords, keys, certificates and make them available to applications.
 
     smartd = {
       enable = true;
@@ -20,10 +19,5 @@ _: {
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-  };
-
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "simple";
   };
 }

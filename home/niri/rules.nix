@@ -31,7 +31,7 @@
       }
       {
         matches = [
-          { app-id = "librewolf"; }
+          { app-id = "firefox"; }
         ];
         scroll-factor = 0.2;
         open-maximized = true;
@@ -39,7 +39,7 @@
       {
         matches = [
           {
-            app-id = "librewolf";
+            app-id = "firefox";
             title = "Picture-in-Picture";
           }
         ];

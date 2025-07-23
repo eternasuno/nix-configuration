@@ -11,12 +11,14 @@ in
 {
   imports = [
     ../../system/boot.nix
+    ../../system/fprint.nix
+    ../../system/gnome.nix
     ../../system/greetd.nix
     ../../system/hardware.nix
+    ../../system/lanzaboote.nix
     ../../system/locale.nix
     ../../system/network.nix
     ../../system/nix.nix
-    ../../system/packages.nix
     ../../system/security.nix
     ../../system/services.nix
     ../../system/stylix.nix
@@ -32,11 +34,19 @@ in
     extraSpecialArgs = { inherit inputs vars; };
     users.${username} = {
       imports = [
+        ../../home/bat.nix
+        ../../home/fcitx5.nix
         ../../home/firefox
         ../../home/foot.nix
+        ../../home/git.nix
         ../../home/niri
         ../../home/nushell.nix
         ../../home/quickshell
+        ../../home/starship.nix
+        ../../home/swaybg.nix
+        ../../home/vim.nix
+        ../../home/xdg.nix
+        ../../home/zoxide.nix
       ];
       home = {
         inherit username;

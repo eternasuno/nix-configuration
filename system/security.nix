@@ -17,15 +17,6 @@ _: {
     };
     pam.services = {
       greetd.enableGnomeKeyring = true;
-      hyprlock = {
-        enable = true;
-        fprintAuth = true;
-      };
-      sudo = {
-        enable = true;
-        fprintAuth = true;
-      };
-      login.fprintAuth = true;
     };
   };
 }
