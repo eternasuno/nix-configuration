@@ -13,6 +13,7 @@ import qs.Widgets.Sidebar
 import qs.Widgets.Sidebar.Panel
 import qs.Helpers
 import QtQuick.Controls
+import qs.Widgets.Notification
 
 Scope {
     id: rootScope
@@ -32,46 +33,12 @@ Scope {
                     id: panel
                     screen: modelData
                     color: "transparent"
-                    implicitHeight: barBackground.height + 24
+                    implicitHeight: barBackground.height
                     anchors.top: true
                     anchors.left: true
                     anchors.right: true
 
                     visible: true
-
-                    property string lastFocusedWindowTitle: ""
-                    property bool activeWindowVisible: false
-                    property string displayedWindowTitle: ""
-
-                    onLastFocusedWindowTitleChanged: {
-                        displayedWindowTitle = (lastFocusedWindowTitle === "(No active window)") ? "" : lastFocusedWindowTitle
-                    }
-
-                    Timer {
-                        id: hideTimer
-                        interval: 4000
-                        repeat: false
-                        onTriggered: panel.activeWindowVisible = false
-                    }
-
-                    Connections {
-                        target: Niri
-                        function onFocusedWindowTitleChanged() {
-                            var newTitle = Niri.focusedWindowTitle
-
-                            if (newTitle !== panel.lastFocusedWindowTitle) {
-                                panel.lastFocusedWindowTitle = newTitle
-
-                                if (newTitle === "(No active window)") {
-                                    panel.activeWindowVisible = false
-                                    hideTimer.stop()
-                                } else {
-                                    panel.activeWindowVisible = true
-                                    hideTimer.restart()
-                                }
-                            }
-                        }
-                    }
 
                     Rectangle {
                         id: barBackground
@@ -92,13 +59,15 @@ Scope {
                         SystemInfo {
                             anchors.verticalCenter: parent.verticalCenter
                         }
-                        
+
                         Media {
                             anchors.verticalCenter: parent.verticalCenter
                         }
                     }
 
-                    ActiveWindow {}
+                    ActiveWindow {
+                        screen: modelData
+                    }
 
                     Workspace {
                         id: workspace
@@ -113,6 +82,15 @@ Scope {
                         anchors.right: barBackground.right
                         anchors.rightMargin: 18
                         spacing: 12
+
+                        NotificationIcon {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        Battery {
+                            id: widgetsBattery
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
 
                         Brightness {
                             id: widgetsBrightness
@@ -138,6 +116,7 @@ Scope {
                         }
 
                         ClockWidget {
+                            screen: modelData
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
@@ -153,28 +132,110 @@ Scope {
                         }
                     }
 
+                    Background {}
+                    Overview {}
+                }
+
+                PanelWindow {
+                    id: topLeftPanel
+                    anchors.top: true
+                    anchors.left: true
+
+                    color: "transparent"
+                    screen: modelData
+                    margins.top: 36
+                    WlrLayershell.exclusionMode: ExclusionMode.Ignore
+                    visible: true
+                    WlrLayershell.layer: WlrLayer.Background
+                    aboveWindows: false
+                    WlrLayershell.namespace: "swww-daemon"
+                    implicitHeight: 24
+
                     Corners {
-                        id: topleftCorner
+                        id: topLeftCorner
                         position: "bottomleft"
                         size: 1.3
                         fillColor: (Theme.backgroundPrimary !== undefined && Theme.backgroundPrimary !== null) ? Theme.backgroundPrimary : "#222"
                         offsetX: -39
                         offsetY: 0
-                        anchors.top: barBackground.bottom
+                        anchors.top: parent.top
                     }
+                }
+
+                PanelWindow {
+                    id: topRightPanel
+                    anchors.top: true
+                    anchors.right: true
+                    color: "transparent"
+                    screen: modelData
+                    margins.top: 36
+                    WlrLayershell.exclusionMode: ExclusionMode.Ignore
+                    visible: true
+                    WlrLayershell.layer: WlrLayer.Background
+                    aboveWindows: false
+                    WlrLayershell.namespace: "swww-daemon"
+
+                    implicitHeight: 24
 
                     Corners {
-                        id: toprightCorner
+                        id: topRightCorner
                         position: "bottomright"
                         size: 1.3
                         fillColor: (Theme.backgroundPrimary !== undefined && Theme.backgroundPrimary !== null) ? Theme.backgroundPrimary : "#222"
                         offsetX: 39
                         offsetY: 0
-                        anchors.top: barBackground.bottom
+                        anchors.top: parent.top
                     }
+                }
 
-                    Background {}
-                    Overview {}
+                PanelWindow {
+                    id: bottomLeftPanel
+                    anchors.bottom: true
+                    anchors.left: true
+                    color: "transparent"
+                    screen: modelData
+                    WlrLayershell.exclusionMode: ExclusionMode.Ignore
+                    visible: true
+                    WlrLayershell.layer: WlrLayer.Background
+                    aboveWindows: false
+                    WlrLayershell.namespace: "swww-daemon"
+
+                    implicitHeight: 24
+
+                    Corners {
+                        id: bottomLeftCorner
+                        position: "topleft"
+                        size: 1.3
+                        fillColor: Theme.backgroundPrimary
+                        offsetX: -39
+                        offsetY: 0
+                        anchors.top: parent.top
+                    }
+                }
+
+                PanelWindow {
+                    id: bottomRightPanel
+                    anchors.bottom: true
+                    anchors.right: true
+                    color: "transparent"
+                    screen: modelData
+                    WlrLayershell.exclusionMode: ExclusionMode.Ignore
+                    visible: true
+                    WlrLayershell.layer: WlrLayer.Background
+                    aboveWindows: false
+                    WlrLayershell.namespace: "swww-daemon"
+
+                    implicitHeight: 24
+
+                    Corners {
+                        id: bottomRightCorner
+                        position: "topright"
+                        size: 1.3
+                        fillColor: Theme.backgroundPrimary
+                        offsetX: 39
+                        offsetY: 0
+                        anchors.top: parent.top
+                    }
                 }
             }
         }

@@ -7,6 +7,7 @@ import QtCore
 import qs.Bar
 import qs.Bar.Modules
 import qs.Widgets
+import qs.Widgets.Notification
 import qs.Settings
 import qs.Helpers
 
@@ -14,6 +15,8 @@ Scope {
     id: root
 
     property alias appLauncherPanel: appLauncherPanel
+    property var notificationHistoryWin: notificationHistoryWin
+    property bool pendingReload: false
 
     function updateVolume(vol) {
         volume = vol;
@@ -29,6 +32,7 @@ Scope {
     Bar {
         id: bar
         shell: root
+        property var notificationHistoryWin: notificationHistoryWin
     }
 
     Applauncher {
@@ -38,6 +42,12 @@ Scope {
 
     LockScreen {
         id: lockScreen
+        onLockedChanged: {
+            if (!locked && root.pendingReload) {
+                reloadTimer.restart();
+                root.pendingReload = false;
+            }
+        }
     }
 
     NotificationServer {
@@ -46,6 +56,15 @@ Scope {
             console.log("Notification received:", notification.appName);
             notification.tracked = true;
             notificationPopup.addNotification(notification);
+            if (notificationHistoryWin) {
+                notificationHistoryWin.addToHistory({
+                    id: notification.id,
+                    appName: notification.appName || "Notification",
+                    summary: notification.summary || "",
+                    body: notification.body || "",
+                    timestamp: Date.now()
+                });
+            }
         }
     }
 
@@ -54,8 +73,13 @@ Scope {
         barVisible: bar.visible
     }
 
+    // Notification History Window
+    NotificationHistory {
+        id: notificationHistoryWin
+    }
+
     property var defaultAudioSink: Pipewire.defaultAudioSink
-    property int volume: defaultAudioSink && defaultAudioSink.audio && defaultAudioSink.audio.volume ? Math.round(defaultAudioSink.audio.volume * 100) : 0
+    property int volume: defaultAudioSink && defaultAudioSink.audio && defaultAudioSink.audio.volume && !defaultAudioSink.audio.muted ? Math.round(defaultAudioSink.audio.volume * 100) : 0
 
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
@@ -76,5 +100,23 @@ Scope {
         }
 
         target: Quickshell
+    }
+
+    Timer {
+        id: reloadTimer
+        interval: 500 // ms
+        repeat: false
+        onTriggered: Quickshell.reload(true)
+    }
+
+    Connections {
+        target: Quickshell
+        function onScreensChanged() {
+            if (lockScreen.locked) {
+                pendingReload = true;
+            } else {
+                reloadTimer.restart();
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import qs.Settings
 import qs.Components
+import qs.Bar.Modules
 
 Item {
     id: volumeDisplay
@@ -14,13 +15,33 @@ Item {
 
     PillIndicator {
         id: pillIndicator
-        icon: volume === 0 ? "volume_off" : (volume < 30 ? "volume_down" : "volume_up")
+        icon: shell && shell.defaultAudioSink && shell.defaultAudioSink.audio && shell.defaultAudioSink.audio.muted ? "volume_off" : (volume === 0 ? "volume_off" : (volume < 30 ? "volume_down" : "volume_up"))
         text: volume + "%"
 
         pillColor: Theme.surfaceVariant
         iconCircleColor: Theme.accentPrimary
         iconTextColor: Theme.backgroundPrimary
         textColor: Theme.textPrimary
+        StyledTooltip {
+            id: volumeTooltip
+            text: "Volume: " + volume + "%\nScroll up/down to change volume"
+            tooltipVisible: !ioSelector.visible && volumeDisplay.containsMouse
+            targetItem: pillIndicator
+            delay: 200
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: {
+                if (ioSelector.visible) {
+                    ioSelector.dismiss();
+                } else {
+                    ioSelector.show();
+                }
+            }
+        }
     }
 
     Connections {
@@ -29,7 +50,7 @@ Item {
             if (shell && shell.volume !== volume) {
                 volume = shell.volume
                 pillIndicator.text = volume + "%"
-                pillIndicator.icon = volume === 0 ? "volume_off" : (volume < 30 ? "volume_down" : "volume_up")
+                pillIndicator.icon = shell && shell.defaultAudioSink && shell.defaultAudioSink.audio && shell.defaultAudioSink.audio.muted ? "volume_off" : (volume === 0 ? "volume_off" : (volume < 30 ? "volume_down" : "volume_up"))
                 pillIndicator.show()
             }
         }
@@ -47,6 +68,9 @@ Item {
         hoverEnabled: true
         acceptedButtons: Qt.NoButton // Accept wheel events only
         propagateComposedEvents: true
+        onEntered: volumeDisplay.containsMouse = true
+        onExited: volumeDisplay.containsMouse = false
+        cursorShape: Qt.PointingHandCursor
         onWheel:(wheel) => {
             if (!shell) return;
             let step = 5;
@@ -57,4 +81,11 @@ Item {
             }
         }
     }
+
+    AudioDeviceSelector {
+        id: ioSelector
+        onPanelClosed: ioSelector.dismiss()
+    }
+
+    property bool containsMouse: false
 }

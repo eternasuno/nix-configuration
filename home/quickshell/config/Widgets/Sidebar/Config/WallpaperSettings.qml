@@ -1,34 +1,14 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import qs.Settings
 
 Rectangle {
     id: wallpaperSettingsCard
     Layout.fillWidth: true
-    Layout.preferredHeight: 680
+    Layout.preferredHeight: 720
     color: Theme.surface
     radius: 18
-
-    // Property for binding
-    property string wallpaperFolder: ""
-    signal wallpaperFolderEdited(string folder)
-    property bool useSWWW: false
-    signal useSWWWChangedUpdated(bool useSWWW)
-    property bool randomWallpaper: false
-    signal randomWallpaperChangedUpdated(bool randomWallpaper)
-    property bool useWallpaperTheme: false
-    signal useWallpaperThemeChangedUpdated(bool useWallpaperTheme)
-    property int wallpaperInterval: 300
-    signal wallpaperIntervalChangedUpdated(int wallpaperInterval)
-    property string wallpaperResize: "crop"
-    signal wallpaperResizeChangedUpdated(string resize)
-    property int transitionFps: 60
-    signal transitionFpsChangedUpdated(int fps)
-    property string transitionType: "random"
-    signal transitionTypeChangedUpdated(string type)
-    property real transitionDuration: 1.1
-    signal transitionDurationChangedUpdated(real duration)
 
     ColumnLayout {
         anchors.fill: parent
@@ -46,7 +26,7 @@ Rectangle {
                 color: Theme.accentPrimary
             }
             Text {
-                text: "Wallpaper Folder"
+                text: "Wallpaper Settings"
                 font.family: Theme.fontFamily
                 font.pixelSize: 16
                 font.bold: true
@@ -55,39 +35,53 @@ Rectangle {
             }
         }
 
-        // Folder Path Input
-        Rectangle {
+        ColumnLayout {
+            spacing: 8
             Layout.fillWidth: true
-            Layout.preferredHeight: 40
-            radius: 8
-            color: Theme.surfaceVariant
-            border.color: folderInput.activeFocus ? Theme.accentPrimary : Theme.outline
-            border.width: 1
-            TextInput {
-                id: folderInput
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.leftMargin: 12
-                anchors.rightMargin: 12
-                anchors.topMargin: 6
-                anchors.bottomMargin: 6
-                text: wallpaperFolder
+
+            Text {
+                text: "Wallpaper Path"
                 font.family: Theme.fontFamily
                 font.pixelSize: 13
+                font.bold: true
                 color: Theme.textPrimary
-                verticalAlignment: TextInput.AlignVCenter
-                clip: true
-                selectByMouse: true
-                activeFocusOnTab: true
-                inputMethodHints: Qt.ImhUrlCharactersOnly
-                onTextChanged: {
-                    wallpaperFolderEdited(text)
-                }
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: folderInput.forceActiveFocus()
+            }
+
+            // Folder Path Input
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 40
+                radius: 8
+                color: Theme.surfaceVariant
+                border.color: folderInput.activeFocus ? Theme.accentPrimary : Theme.outline
+                border.width: 1
+                TextInput {
+                    id: folderInput
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.leftMargin: 12
+                    anchors.rightMargin: 12
+                    anchors.topMargin: 6
+                    anchors.bottomMargin: 6
+                    text: Settings.settings.wallpaperFolder
+                    font.family: Theme.fontFamily
+                    font.pixelSize: 13
+                    color: Theme.textPrimary
+                    verticalAlignment: TextInput.AlignVCenter
+                    clip: true
+                    selectByMouse: true
+                    activeFocusOnTab: true
+                    inputMethodHints: Qt.ImhUrlCharactersOnly
+                    onTextChanged: {
+                        Settings.settings.wallpaperFolder = text;
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.IBeamCursor
+                        onClicked: folderInput.forceActiveFocus()
+                    }
                 }
             }
         }
@@ -115,10 +109,10 @@ Rectangle {
                 width: 52
                 height: 32
                 radius: 16
-                color: useSWWW ? Theme.accentPrimary : Theme.surfaceVariant
-                border.color: useSWWW ? Theme.accentPrimary : Theme.outline
+                color: Settings.settings.useSWWW ? Theme.accentPrimary : Theme.surfaceVariant
+                border.color: Settings.settings.useSWWW ? Theme.accentPrimary : Theme.outline
                 border.width: 2
-                
+
                 Rectangle {
                     id: swwwThumb
                     width: 28
@@ -128,17 +122,21 @@ Rectangle {
                     border.color: Theme.outline
                     border.width: 1
                     y: 2
-                    x: useSWWW ? swwwSwitch.width - width - 2 : 2
-                    
+                    x: Settings.settings.useSWWW ? swwwSwitch.width - width - 2 : 2
+
                     Behavior on x {
-                        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.OutCubic
+                        }
                     }
                 }
-                
+
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        useSWWWChangedUpdated(!useSWWW)
+                        Settings.settings.useSWWW = !Settings.settings.useSWWW;
                     }
                 }
             }
@@ -167,10 +165,10 @@ Rectangle {
                 width: 52
                 height: 32
                 radius: 16
-                color: randomWallpaper ? Theme.accentPrimary : Theme.surfaceVariant
-                border.color: randomWallpaper ? Theme.accentPrimary : Theme.outline
+                color: Settings.settings.randomWallpaper ? Theme.accentPrimary : Theme.surfaceVariant
+                border.color: Settings.settings.randomWallpaper ? Theme.accentPrimary : Theme.outline
                 border.width: 2
-                
+
                 Rectangle {
                     id: randomWallpaperThumb
                     width: 28
@@ -180,17 +178,21 @@ Rectangle {
                     border.color: Theme.outline
                     border.width: 1
                     y: 2
-                    x: randomWallpaper ? randomWallpaperSwitch.width - width - 2 : 2
-                    
+                    x: Settings.settings.randomWallpaper ? randomWallpaperSwitch.width - width - 2 : 2
+
                     Behavior on x {
-                        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.OutCubic
+                        }
                     }
                 }
-                
+
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        randomWallpaperChangedUpdated(!randomWallpaper)
+                        Settings.settings.randomWallpaper = !Settings.settings.randomWallpaper;
                     }
                 }
             }
@@ -219,10 +221,10 @@ Rectangle {
                 width: 52
                 height: 32
                 radius: 16
-                color: useWallpaperTheme ? Theme.accentPrimary : Theme.surfaceVariant
-                border.color: useWallpaperTheme ? Theme.accentPrimary : Theme.outline
+                color: Settings.settings.useWallpaperTheme ? Theme.accentPrimary : Theme.surfaceVariant
+                border.color: Settings.settings.useWallpaperTheme ? Theme.accentPrimary : Theme.outline
                 border.width: 2
-                
+
                 Rectangle {
                     id: wallpaperThemeThumb
                     width: 28
@@ -232,17 +234,21 @@ Rectangle {
                     border.color: Theme.outline
                     border.width: 1
                     y: 2
-                    x: useWallpaperTheme ? wallpaperThemeSwitch.width - width - 2 : 2
-                    
+                    x: Settings.settings.useWallpaperTheme ? wallpaperThemeSwitch.width - width - 2 : 2
+
                     Behavior on x {
-                        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.OutCubic
+                        }
                     }
                 }
-                
+
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        useWallpaperThemeChangedUpdated(!useWallpaperTheme)
+                        Settings.settings.useWallpaperTheme = !Settings.settings.useWallpaperTheme;
                     }
                 }
             }
@@ -262,27 +268,27 @@ Rectangle {
                     font.bold: true
                     color: Theme.textPrimary
                 }
-                
+
                 Item {
                     Layout.fillWidth: true
                 }
-                
+
                 Text {
-                    text: wallpaperInterval
+                    text: Settings.settings.wallpaperInterval
                     font.pixelSize: 13
                     color: Theme.textPrimary
                 }
             }
-            
+
             Slider {
                 id: intervalSlider
                 Layout.fillWidth: true
                 from: 10
                 to: 900
                 stepSize: 10
-                value: wallpaperInterval
+                value: Settings.settings.wallpaperInterval
                 snapMode: Slider.SnapAlways
-                
+
                 background: Rectangle {
                     x: intervalSlider.leftPadding
                     y: intervalSlider.topPadding + intervalSlider.availableHeight / 2 - height / 2
@@ -292,7 +298,7 @@ Rectangle {
                     height: implicitHeight
                     radius: 2
                     color: Theme.surfaceVariant
-                    
+
                     Rectangle {
                         width: intervalSlider.visualPosition * parent.width
                         height: parent.height
@@ -300,7 +306,7 @@ Rectangle {
                         radius: 2
                     }
                 }
-                
+
                 handle: Rectangle {
                     x: intervalSlider.leftPadding + intervalSlider.visualPosition * (intervalSlider.availableWidth - width)
                     y: intervalSlider.topPadding + intervalSlider.availableHeight / 2 - height / 2
@@ -313,11 +319,11 @@ Rectangle {
                 }
 
                 onMoved: {
-                    wallpaperIntervalChangedUpdated(Math.round(value))
+                    Settings.settings.wallpaperInterval = Math.round(value);
                 }
             }
         }
-        
+
         // Resize Mode Setting
         ColumnLayout {
             spacing: 12
@@ -330,14 +336,14 @@ Rectangle {
                 font.bold: true
                 color: Theme.textPrimary
             }
-            
+
             ComboBox {
                 id: resizeComboBox
                 Layout.fillWidth: true
                 Layout.preferredHeight: 40
                 model: ["no", "crop", "fit", "stretch"]
-                currentIndex: model.indexOf(wallpaperResize)
-                
+                currentIndex: model.indexOf(Settings.settings.wallpaperResize)
+
                 background: Rectangle {
                     implicitWidth: 120
                     implicitHeight: 40
@@ -346,7 +352,7 @@ Rectangle {
                     border.width: 1
                     radius: 8
                 }
-                
+
                 contentItem: Text {
                     leftPadding: 12
                     rightPadding: resizeComboBox.indicator.width + resizeComboBox.spacing
@@ -357,7 +363,7 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     elide: Text.ElideRight
                 }
-                
+
                 indicator: Text {
                     x: resizeComboBox.width - width - 12
                     y: resizeComboBox.topPadding + (resizeComboBox.availableHeight - height) / 2
@@ -366,22 +372,22 @@ Rectangle {
                     font.pixelSize: 24
                     color: Theme.textPrimary
                 }
-                
+
                 popup: Popup {
                     y: resizeComboBox.height
                     width: resizeComboBox.width
                     implicitHeight: contentItem.implicitHeight
                     padding: 1
-                    
+
                     contentItem: ListView {
                         clip: true
                         implicitHeight: contentHeight
                         model: resizeComboBox.popup.visible ? resizeComboBox.delegateModel : null
                         currentIndex: resizeComboBox.highlightedIndex
-                        
-                        ScrollIndicator.vertical: ScrollIndicator { }
+
+                        ScrollIndicator.vertical: ScrollIndicator {}
                     }
-                    
+
                     background: Rectangle {
                         color: Theme.surfaceVariant
                         border.color: Theme.outline
@@ -389,7 +395,7 @@ Rectangle {
                         radius: 8
                     }
                 }
-                
+
                 delegate: ItemDelegate {
                     width: resizeComboBox.width
                     contentItem: Text {
@@ -401,18 +407,18 @@ Rectangle {
                         elide: Text.ElideRight
                     }
                     highlighted: resizeComboBox.highlightedIndex === index
-                    
+
                     background: Rectangle {
                         color: highlighted ? Theme.accentPrimary.toString().replace(/#/, "#1A") : "transparent"
                     }
                 }
-                
+
                 onActivated: {
-                    wallpaperResizeChangedUpdated(model[index])
+                    Settings.settings.wallpaperResize = model[index];
                 }
             }
         }
-        
+
         // Transition Type Setting
         ColumnLayout {
             spacing: 12
@@ -425,14 +431,14 @@ Rectangle {
                 font.bold: true
                 color: Theme.textPrimary
             }
-            
+
             ComboBox {
                 id: transitionTypeComboBox
                 Layout.fillWidth: true
                 Layout.preferredHeight: 40
                 model: ["none", "simple", "fade", "left", "right", "top", "bottom", "wipe", "wave", "grow", "center", "any", "outer", "random"]
-                currentIndex: model.indexOf(transitionType)
-                
+                currentIndex: model.indexOf(Settings.settings.transitionType)
+
                 background: Rectangle {
                     implicitWidth: 120
                     implicitHeight: 40
@@ -441,7 +447,7 @@ Rectangle {
                     border.width: 1
                     radius: 8
                 }
-                
+
                 contentItem: Text {
                     leftPadding: 12
                     rightPadding: transitionTypeComboBox.indicator.width + transitionTypeComboBox.spacing
@@ -452,7 +458,7 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     elide: Text.ElideRight
                 }
-                
+
                 indicator: Text {
                     x: transitionTypeComboBox.width - width - 12
                     y: transitionTypeComboBox.topPadding + (transitionTypeComboBox.availableHeight - height) / 2
@@ -461,22 +467,22 @@ Rectangle {
                     font.pixelSize: 24
                     color: Theme.textPrimary
                 }
-                
+
                 popup: Popup {
                     y: transitionTypeComboBox.height
                     width: transitionTypeComboBox.width
                     implicitHeight: contentItem.implicitHeight
                     padding: 1
-                    
+
                     contentItem: ListView {
                         clip: true
                         implicitHeight: contentHeight
                         model: transitionTypeComboBox.popup.visible ? transitionTypeComboBox.delegateModel : null
                         currentIndex: transitionTypeComboBox.highlightedIndex
-                        
-                        ScrollIndicator.vertical: ScrollIndicator { }
+
+                        ScrollIndicator.vertical: ScrollIndicator {}
                     }
-                    
+
                     background: Rectangle {
                         color: Theme.surfaceVariant
                         border.color: Theme.outline
@@ -484,7 +490,7 @@ Rectangle {
                         radius: 8
                     }
                 }
-                
+
                 delegate: ItemDelegate {
                     width: transitionTypeComboBox.width
                     contentItem: Text {
@@ -496,18 +502,18 @@ Rectangle {
                         elide: Text.ElideRight
                     }
                     highlighted: transitionTypeComboBox.highlightedIndex === index
-                    
+
                     background: Rectangle {
                         color: highlighted ? Theme.accentPrimary.toString().replace(/#/, "#1A") : "transparent"
                     }
                 }
-                
+
                 onActivated: {
-                    transitionTypeChangedUpdated(model[index])
+                    Settings.settings.transitionType = model[index];
                 }
             }
         }
-        
+
         // Transition FPS Setting
         ColumnLayout {
             spacing: 12
@@ -522,27 +528,27 @@ Rectangle {
                     font.bold: true
                     color: Theme.textPrimary
                 }
-                
+
                 Item {
                     Layout.fillWidth: true
                 }
-                
+
                 Text {
-                    text: transitionFps
+                    text: Settings.settings.transitionFps
                     font.pixelSize: 13
                     color: Theme.textPrimary
                 }
             }
-            
+
             Slider {
                 id: fpsSlider
                 Layout.fillWidth: true
                 from: 30
                 to: 500
                 stepSize: 5
-                value: transitionFps
+                value: Settings.settings.transitionFps
                 snapMode: Slider.SnapAlways
-                
+
                 background: Rectangle {
                     x: fpsSlider.leftPadding
                     y: fpsSlider.topPadding + fpsSlider.availableHeight / 2 - height / 2
@@ -552,7 +558,7 @@ Rectangle {
                     height: implicitHeight
                     radius: 2
                     color: Theme.surfaceVariant
-                    
+
                     Rectangle {
                         width: fpsSlider.visualPosition * parent.width
                         height: parent.height
@@ -560,7 +566,7 @@ Rectangle {
                         radius: 2
                     }
                 }
-                
+
                 handle: Rectangle {
                     x: fpsSlider.leftPadding + fpsSlider.visualPosition * (fpsSlider.availableWidth - width)
                     y: fpsSlider.topPadding + fpsSlider.availableHeight / 2 - height / 2
@@ -573,11 +579,11 @@ Rectangle {
                 }
 
                 onMoved: {
-                    transitionFpsChangedUpdated(Math.round(value))
+                    Settings.settings.transitionFps = Math.round(value);
                 }
             }
         }
-        
+
         // Transition Duration Setting
         ColumnLayout {
             spacing: 12
@@ -592,27 +598,27 @@ Rectangle {
                     font.bold: true
                     color: Theme.textPrimary
                 }
-                
+
                 Item {
                     Layout.fillWidth: true
                 }
-                
+
                 Text {
-                    text: transitionDuration.toFixed(3)
+                    text: Settings.settings.transitionDuration.toFixed(3)
                     font.pixelSize: 13
                     color: Theme.textPrimary
                 }
             }
-            
+
             Slider {
                 id: durationSlider
                 Layout.fillWidth: true
                 from: 0.250
                 to: 10.0
                 stepSize: 0.050
-                value: transitionDuration
+                value: Settings.settings.transitionDuration
                 snapMode: Slider.SnapAlways
-                
+
                 background: Rectangle {
                     x: durationSlider.leftPadding
                     y: durationSlider.topPadding + durationSlider.availableHeight / 2 - height / 2
@@ -622,7 +628,7 @@ Rectangle {
                     height: implicitHeight
                     radius: 2
                     color: Theme.surfaceVariant
-                    
+
                     Rectangle {
                         width: durationSlider.visualPosition * parent.width
                         height: parent.height
@@ -630,7 +636,7 @@ Rectangle {
                         radius: 2
                     }
                 }
-                
+
                 handle: Rectangle {
                     x: durationSlider.leftPadding + durationSlider.visualPosition * (durationSlider.availableWidth - width)
                     y: durationSlider.topPadding + durationSlider.availableHeight / 2 - height / 2
@@ -643,9 +649,9 @@ Rectangle {
                 }
 
                 onMoved: {
-                    transitionDurationChangedUpdated(value)
+                    Settings.settings.transitionDuration = value;
                 }
             }
         }
     }
-} 
+}

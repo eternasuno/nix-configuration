@@ -6,6 +6,7 @@ import Qt5Compat.GraphicalEffects
 import Quickshell.Services.SystemTray
 import Quickshell.Widgets
 import qs.Settings
+import qs.Components
 
 Row {
     property var bar
@@ -89,6 +90,7 @@ Row {
                 id: trayMouseArea
                 anchors.fill: parent
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
                 onClicked: (mouse) => {
                     if (!modelData) return;
@@ -110,8 +112,8 @@ Row {
                         
                         modelData.secondaryActivate && modelData.secondaryActivate()
                     } else if (mouse.button === Qt.RightButton) {
+                        trayTooltip.tooltipVisible = false
                         console.log("Right click on", modelData.id, "hasMenu:", modelData.hasMenu, "menu:", modelData.menu)
-                        
                         // If menu is already visible, close it
                         if (trayMenu && trayMenu.visible) {
                             trayMenu.hideMenu()
@@ -129,6 +131,16 @@ Row {
                         }
                     }
                 }
+                onEntered: trayTooltip.tooltipVisible = true
+                onExited: trayTooltip.tooltipVisible = false
+            }
+            
+            StyledTooltip {
+                id: trayTooltip
+                text: modelData.tooltipTitle || modelData.name || modelData.id || "Tray Item"
+                tooltipVisible: false
+                targetItem: trayIcon
+                delay: 200
             }
             
             Component.onDestruction: {

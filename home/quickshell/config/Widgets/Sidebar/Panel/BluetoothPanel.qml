@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick 
+import QtQuick.Layouts
+import QtQuick.Controls
 import Quickshell.Wayland
 import Quickshell
 import Quickshell.Bluetooth
@@ -79,8 +79,8 @@ Item {
         anchors.top: true
         anchors.right: true
         margins.right: 0
-        margins.top: -24
-        WlrLayershell.keyboardFocus: visible ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+        margins.top: 0
+        WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
         onVisibleChanged: {
             if (!visible && Bluetooth.defaultAdapter && Bluetooth.defaultAdapter.discovering)
@@ -148,7 +148,7 @@ Item {
                 // Content area (centered, in a card)
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 520
+                    Layout.preferredHeight: 640
                     Layout.alignment: Qt.AlignHCenter
                     Layout.margins: 0
                     color: Theme.surfaceVariant

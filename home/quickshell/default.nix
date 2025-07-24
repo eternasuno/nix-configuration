@@ -2,14 +2,18 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   home.file.".config/quickshell" = {
     source = ./config;
     recursive = true;
   };
 
-  home.packages = [
+  home.packages = with pkgs; [
     inputs.quickshell.packages.${pkgs.system}.default
-    pkgs.qt6Packages.qt5compat
+    cava
+    gpu-screen-recorder
+    material-symbols
+    qt6Packages.qt5compat
   ];
 }
