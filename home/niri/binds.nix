@@ -36,20 +36,8 @@
 
       "Mod+Ctrl+S".action = switch-preset-column-width;
 
-      # "Mod+F".action = maximize-column;
-      # "Mod+Shift+F".action = expand-column-to-available-width;
-      # "Mod+F".action = toggle-window-floating;
-      # "Mod+W".action = toggle-column-tabbed-display;
-
-      # "Mod+Comma".action = consume-window-into-column;
-      # "Mod+Period".action = expel-window-from-column;
-      # "Mod+C".action = center-visible-columns;
-      "Mod+F".action = switch-focus-between-floating-and-tiling;
-
-      # "Mod+Minus".action = set-column-width "-10%";
-      # "Mod+Plus".action = set-column-width "+10%";
-      # "Mod+Shift+Minus".action = set-window-height "-10%";
-      # "Mod+Shift+Plus".action = set-window-height "+10%";
+      "Mod+F".action = toggle-window-floating;
+      "Mod+M".action = fullscreen-window;
 
       "Mod+H".action = focus-column-left;
       "Mod+L".action = focus-column-right;
