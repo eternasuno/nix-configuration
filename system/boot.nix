@@ -32,7 +32,7 @@
     };
     plymouth = {
       enable = true;
-      theme = "glitch";
+      theme = lib.mkForce "glitch";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
           selected_themes = [ "glitch" ];
