@@ -1,122 +1,165 @@
+//@ pragma UseQApplication
+
+import QtQuick
 import Quickshell
 import Quickshell.Io
-import Quickshell.Services.Pipewire
-import Quickshell.Services.Notifications
-import QtQuick
-import QtCore
-import qs.Bar
-import qs.Bar.Modules
-import qs.Widgets
-import qs.Widgets.Notification
-import qs.Settings
-import qs.Helpers
+import qs.Modules
+import qs.Modules.TopBar
+import qs.Modules.AppDrawer
+import qs.Modules.CentcomCenter
+import qs.Modules.ControlCenter
+import qs.Modules.Settings
+import qs.Modules.ProcessList
+import qs.Modules.ControlCenter.Network
+import qs.Modules.Lock
+import qs.Modules.Notifications.Center
+import qs.Modules.Notifications.Popup
+import qs.Modals
+import qs.Services
 
-Scope {
+ShellRoot {
     id: root
 
-    property alias appLauncherPanel: appLauncherPanel
-    property var notificationHistoryWin: notificationHistoryWin
-    property bool pendingReload: false
+    WallpaperBackground {}
+    
+    Lock {
+        id: lock
+        anchors.fill: parent
+    }
+    
+    // Multi-monitor support using Variants
+    Variants {
+        model: Quickshell.screens
 
-    function updateVolume(vol) {
-        volume = vol;
-        if (defaultAudioSink && defaultAudioSink.audio) {
-            defaultAudioSink.audio.volume = vol / 100;
+        delegate: TopBar {
+            modelData: item
         }
     }
 
-    Component.onCompleted: {
-        Quickshell.shell = root;
+    CentcomPopout {
+        id: centcomPopout
     }
 
-    Bar {
-        id: bar
-        shell: root
-        property var notificationHistoryWin: notificationHistoryWin
+
+    SystemTrayContextMenu {
+        id: systemTrayContextMenu
     }
 
-    Applauncher {
-        id: appLauncherPanel
-        visible: false
+
+    NotificationCenterPopout {
+        id: notificationCenter
     }
 
-    LockScreen {
-        id: lockScreen
-        onLockedChanged: {
-            if (!locked && root.pendingReload) {
-                reloadTimer.restart();
-                root.pendingReload = false;
+    Variants {
+        model: Quickshell.screens
+
+        delegate: NotificationPopupManager {
+            modelData: item
+        }
+    }
+
+    ControlCenterPopout {
+        id: controlCenterPopout
+        onPowerActionRequested: (action, title, message) => {
+            powerConfirmModal.powerConfirmAction = action;
+            powerConfirmModal.powerConfirmTitle = title;
+            powerConfirmModal.powerConfirmMessage = message;
+            powerConfirmModal.powerConfirmVisible = true;
+        }
+        onLockRequested: {
+            lock.activate();
+        }
+    }
+
+    WifiPasswordModal {
+        id: wifiPasswordModal
+    }
+
+    NetworkInfoModal {
+        id: networkInfoModal
+    }
+
+    BatteryPopout {
+        id: batteryPopout
+    }
+
+    PowerMenu {
+        id: powerMenu
+    }
+
+    PowerConfirmModal {
+        id: powerConfirmModal
+    }
+
+    ProcessListPopout {
+        id: processListPopout
+    }
+
+    SettingsModal {
+        id: settingsModal
+    }
+
+    // Application and clipboard components
+    AppDrawerPopout {
+        id: appDrawerPopout
+    }
+
+    SpotlightModal {
+        id: spotlightModal
+    }
+
+    ClipboardHistoryModal {
+        id: clipboardHistoryModalPopup
+    }
+
+    LazyLoader {
+        id: processListModalLoader
+        active: false
+        
+        ProcessListModal {
+            id: processListModal
+        }
+    }
+    IpcHandler {
+        function open() {
+            processListModalLoader.active = true;
+            if (processListModalLoader.item) {
+                processListModalLoader.item.show();
             }
+            return "PROCESSLIST_OPEN_SUCCESS";
         }
-    }
 
-    NotificationServer {
-        id: notificationServer
-        onNotification: function (notification) {
-            console.log("Notification received:", notification.appName);
-            notification.tracked = true;
-            notificationPopup.addNotification(notification);
-            if (notificationHistoryWin) {
-                notificationHistoryWin.addToHistory({
-                    id: notification.id,
-                    appName: notification.appName || "Notification",
-                    summary: notification.summary || "",
-                    body: notification.body || "",
-                    timestamp: Date.now()
-                });
+        function close() {
+            if (processListModalLoader.item) {
+                processListModalLoader.item.hide();
             }
-        }
-    }
-
-    NotificationPopup {
-        id: notificationPopup
-        barVisible: bar.visible
-    }
-
-    // Notification History Window
-    NotificationHistory {
-        id: notificationHistoryWin
-    }
-
-    property var defaultAudioSink: Pipewire.defaultAudioSink
-    property int volume: defaultAudioSink && defaultAudioSink.audio && defaultAudioSink.audio.volume && !defaultAudioSink.audio.muted ? Math.round(defaultAudioSink.audio.volume * 100) : 0
-
-    PwObjectTracker {
-        objects: [Pipewire.defaultAudioSink]
-    }
-
-    IPCHandlers {
-        appLauncherPanel: appLauncherPanel
-        lockScreen: lockScreen
-    }
-
-    Connections {
-        function onReloadCompleted() {
-            Quickshell.inhibitReloadPopup();
+            return "PROCESSLIST_CLOSE_SUCCESS";
         }
 
-        function onReloadFailed() {
-            Quickshell.inhibitReloadPopup();
-        }
-
-        target: Quickshell
-    }
-
-    Timer {
-        id: reloadTimer
-        interval: 500 // ms
-        repeat: false
-        onTriggered: Quickshell.reload(true)
-    }
-
-    Connections {
-        target: Quickshell
-        function onScreensChanged() {
-            if (lockScreen.locked) {
-                pendingReload = true;
-            } else {
-                reloadTimer.restart();
+        function toggle() {
+            processListModalLoader.active = true;
+            if (processListModalLoader.item) {
+                processListModalLoader.item.toggle();
             }
+            return "PROCESSLIST_TOGGLE_SUCCESS";
+        }
+
+        target: "processlist"
+    }
+
+    Variants {
+        model: Quickshell.screens
+
+        delegate: Toast {
+            modelData: item
+        }
+    }
+
+    Variants {
+        model: Quickshell.screens
+
+        delegate: VolumePopup {
+            modelData: item
         }
     }
 }
