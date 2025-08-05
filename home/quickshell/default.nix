@@ -4,16 +4,26 @@
   ...
 }:
 {
-  home.file.".config/quickshell" = {
-    source = ./config;
-    recursive = true;
+  programs.quickshell = {
+    enable = true;
+    configs = {
+      DankMaterialShell = ./DankMaterialShell;
+    };
+    activeConfig = "DankMaterialShell";
+    systemd = {
+      enable = false;
+    };
   };
 
   home.packages = with pkgs; [
-    inputs.quickshell.packages.${pkgs.system}.default
+    brightnessctl
     cava
-    gpu-screen-recorder
+    cliphist
+    ddcutil
+    kdePackages.qt6ct
+    libsForQt5.qt5ct
     material-symbols
-    qt6Packages.qt5compat
+    matugen
+    wl-clipboard
   ];
 }

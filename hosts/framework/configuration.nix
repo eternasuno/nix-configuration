@@ -21,7 +21,6 @@ in
     ../../system/nix.nix
     ../../system/security.nix
     ../../system/services.nix
-    ../../system/stylix.nix
     ../../system/user.nix
     home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.${model}
@@ -44,7 +43,6 @@ in
         ../../home/nushell.nix
         ../../home/quickshell
         ../../home/starship.nix
-        ../../home/swaybg.nix
         ../../home/vim.nix
         ../../home/xdg.nix
         ../../home/zoxide.nix
