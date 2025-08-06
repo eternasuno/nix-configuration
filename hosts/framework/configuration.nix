@@ -21,6 +21,7 @@ in
     ../../system/nix.nix
     ../../system/security.nix
     ../../system/services.nix
+    ../../system/stylix.nix
     ../../system/user.nix
     home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.${model}
