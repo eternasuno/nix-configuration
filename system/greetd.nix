@@ -5,7 +5,7 @@ in
 {
   services.greetd = {
     enable = true;
-    vt = 3;
+    # vt = 3;
     settings = {
       default_session = {
         command = "${pkgs.niri}/bin/niri-session";
@@ -14,9 +14,9 @@ in
     };
   };
 
-  systemd = {
+  #systemd = {
     # To prevent getting stuck at shutdown
-    extraConfig = "DefaultTimeoutStopSec=10s";
+    #extraConfig = "DefaultTimeoutStopSec=10s";
     # services.greetd.serviceConfig = {
     #   Type = "idle";
     #   StandardInput = "tty";
@@ -26,5 +26,5 @@ in
     #   TTYVHangup = true;
     #   TTYVTDisallocate = true;
     # };
-  };
+  #};
 }

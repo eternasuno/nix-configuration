@@ -11,7 +11,7 @@
     };
     activeConfig = "DankMaterialShell";
     systemd = {
-      enable = false;
+      enable = true;
     };
   };
 
