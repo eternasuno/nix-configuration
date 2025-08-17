@@ -13,12 +13,12 @@ in
     ../../system/boot.nix
     ../../system/fprint.nix
     ../../system/gnome.nix
+    ../../system/greetd.nix
     ../../system/hardware.nix
     ../../system/lanzaboote.nix
     ../../system/locale.nix
     ../../system/network.nix
     ../../system/nix.nix
-    ../../system/sddm.nix
     ../../system/security.nix
     ../../system/services.nix
     ../../system/user.nix
