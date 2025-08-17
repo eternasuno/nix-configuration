@@ -11,6 +11,4 @@
     languagePacks = [ "zh-CN" ];
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
   };
-
-  stylix.targets.firefox.enable = false;
 }
