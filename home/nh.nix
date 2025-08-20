@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ vars, pkgs, ... }:
 {
   programs.nh = {
     enable = true;
@@ -6,7 +6,7 @@
       enable = true;
       extraArgs = "--keep-since 3d --keep 3";
     };
-    flake = "${config.xdg.configHome}/nixos";
+    flake = "/home/${vars.username}/.config/nixos";
   };
 
   home.packages = with pkgs; [

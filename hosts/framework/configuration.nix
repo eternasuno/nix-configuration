@@ -40,6 +40,7 @@ in
         ../../home/firefox
         ../../home/foot.nix
         ../../home/git.nix
+        ../../home/nh.nix
         ../../home/niri
         ../../home/nushell.nix
         ../../home/starship.nix
