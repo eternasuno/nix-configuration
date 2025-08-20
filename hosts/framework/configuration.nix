@@ -21,6 +21,7 @@ in
     ../../system/nix.nix
     ../../system/security.nix
     ../../system/services.nix
+    ../../system/stylix.nix
     ../../system/user.nix
     home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.${model}
@@ -34,14 +35,13 @@ in
     users.${username} = {
       imports = [
         ../../home/bat.nix
+        ../../home/dankMaterialShell.nix
         ../../home/fcitx5.nix
         ../../home/firefox
         ../../home/foot.nix
         ../../home/git.nix
-        ../../home/nh.nix
         ../../home/niri
         ../../home/nushell.nix
-        ../../home/quickshell
         ../../home/starship.nix
         ../../home/vim.nix
         ../../home/xdg.nix

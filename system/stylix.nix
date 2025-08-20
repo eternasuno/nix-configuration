@@ -37,5 +37,8 @@
         popups = 12;
       };
     };
+    targets = {
+      niri.enable = false;
+    };
   };
 }

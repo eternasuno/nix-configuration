@@ -29,8 +29,8 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    silentSDDM = {
-      url = "github:uiriansan/SilentSDDM";
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
