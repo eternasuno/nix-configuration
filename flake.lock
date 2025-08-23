@@ -82,6 +82,27 @@
         "type": "github"
       }
     },
+    "dankMaterialShell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1755730226,
+        "narHash": "sha256-foUTvJnxJyC67KIMaZTK1VWZ3wR6YlyJkbEsVKsH/Kk=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "daaf1ae74c5e1273250d9f2ddf8906df1578e2b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -413,8 +434,30 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "dankMaterialShell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753595452,
+        "narHash": "sha256-vqkSDvh7hWhPvNjMjEDV4KbSCv2jyl2Arh73ZXe274k=",
+        "ref": "refs/heads/master",
+        "rev": "a5431dd02dc23d9ef1680e67777fed00fe5f7cda",
+        "revCount": 665,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      }
+    },
     "root": {
       "inputs": {
+        "dankMaterialShell": "dankMaterialShell",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "niri": "niri",

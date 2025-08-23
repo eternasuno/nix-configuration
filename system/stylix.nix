@@ -38,7 +38,7 @@
       };
     };
     targets = {
-      niri.enable = false;
+      # niri.enable = false;
     };
   };
 }

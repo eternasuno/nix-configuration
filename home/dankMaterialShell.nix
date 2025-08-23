@@ -4,7 +4,6 @@
 
   programs.dankMaterialShell = {
     enable = true;
-    enableKeybinds = true;
     enableSystemd = true;
   };
 }
