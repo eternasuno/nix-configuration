@@ -1,36 +1,94 @@
-{ config, pkgs, ... }:
-{
-  programs.niri.settings.binds =
-    with config.lib.niri.actions;
-    let
-      set-volume = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@";
-      brillo = spawn "${pkgs.brillo}/bin/brillo" "-q" "-u" "300000";
-      playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
-    in
-    {
-      "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-      "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
-
-      "XF86AudioPlay".action = playerctl "play-pause";
-      "XF86AudioStop".action = playerctl "pause";
-      "XF86AudioPrev".action = playerctl "previous";
-      "XF86AudioNext".action = playerctl "next";
-
-      "XF86AudioRaiseVolume".action = set-volume "5%+";
-      "XF86AudioLowerVolume".action = set-volume "5%-";
-
-      "XF86MonBrightnessUp".action = brillo "-A" "5";
-      "XF86MonBrightnessDown".action = brillo "-U" "5";
-
-      "Mod+Alt+Print".action.screenshot-screen = {
-        write-to-disk = true;
+{ config, pkgs, ... }: {
+  programs.niri.settings.binds = with config.lib.niri.actions;
+    let playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
+    in {
+      "XF86AudioMute" = {
+        allow-when-locked = true;
+        action.spawn =
+          [ "qs" "-c" "DankMaterialShell" "ipc" "call" "audio" "mute" ];
       };
-      "Mod+Print".action.screenshot-window = {
-        write-to-disk = true;
+      "XF86AudioRaiseVolume" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "qs"
+          "-c"
+          "DankMaterialShell"
+          "ipc"
+          "call"
+          "audio"
+          "increment"
+          "3"
+        ];
       };
-      "Print".action.screenshot = {
-        show-pointer = false;
+      "XF86AudioLowerVolume" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "qs"
+          "-c"
+          "DankMaterialShell"
+          "ipc"
+          "call"
+          "audio"
+          "decrement"
+          "3"
+        ];
       };
+      "XF86AudioPrev" = {
+        allow-when-locked = true;
+        action.spawn =
+          [ "qs" "-c" "DankMaterialShell" "ipc" "call" "mpris" "previous" ];
+      };
+      "XF86AudioPlay" = {
+        allow-when-locked = true;
+        action.spawn =
+          [ "qs" "-c" "DankMaterialShell" "ipc" "call" "mpris" "playpause" ];
+      };
+      "XF86AudioNext" = {
+        allow-when-locked = true;
+        action.spawn =
+          [ "qs" "-c" "DankMaterialShell" "ipc" "call" "mpris" "next" ];
+      };
+      "XF86MonitorBrightnessDown" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "qs"
+          "-c"
+          "DankMaterialShell"
+          "ipc"
+          "call"
+          "brightness"
+          "decrement"
+          "10"
+        ];
+      };
+      "XF86MonitorBrightnessUp" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "qs"
+          "-c"
+          "DankMaterialShell"
+          "ipc"
+          "call"
+          "brightness"
+          "increment"
+          "10"
+        ];
+      };
+
+      "Mod+Space".action.spawn =
+        [ "qs" "-c" "DankMaterialShell" "ipc" "call" "spotlight" "toggle" ];
+      "Mod+V".action.spawn =
+        [ "qs" "-c" "DankMaterialShell" "ipc" "call" "clipboard" "toggle" ];
+      "Mod+P".action.spawn =
+        [ "qs" "-c" "DankMaterialShell" "ipc" "call" "processlist" "toggle" ];
+      "Mod+Comma".action.spawn =
+        [ "qs" "-c" "DankMaterialShell" "ipc" "call" "settings" "toggle" ];
+      "Super+Alt+L".action.spawn =
+        [ "qs" "-c" "DankMaterialShell" "ipc" "call" "lock" "lock" ];
+
+      "Mod+Alt+Print".action.screenshot-screen = { write-to-disk = true; };
+      "Mod+Print".action.screenshot-window = { write-to-disk = true; };
+      "Print".action.screenshot = { show-pointer = false; };
 
       "Mod+Q".action = close-window;
 

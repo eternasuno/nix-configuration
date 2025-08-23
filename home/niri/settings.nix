@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.niri.settings = {
     environment = {
       CLUTTER_BACKEND = "wayland";
@@ -28,7 +27,8 @@
       warp-mouse-to-focus.enable = true;
       workspace-auto-back-and-forth = true;
     };
-    screenshot-path = "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
+    screenshot-path =
+      "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
     outputs = {
       "eDP-1" = {
         scale = 1.25;
@@ -39,9 +39,7 @@
       };
     };
 
-    overview = {
-      backdrop-color = "transparent";
-    };
+    overview = { backdrop-color = "transparent"; };
     layout = {
       focus-ring.enable = false;
       border = {
@@ -50,17 +48,10 @@
         active.color = "#7fb4ca";
         inactive.color = "#090e13";
       };
-      shadow = {
-        enable = true;
-      };
-      preset-column-widths = [
-        { proportion = 0.35; }
-        { proportion = 0.65; }
-        { proportion = 1.0; }
-      ];
-      default-column-width = {
-        proportion = 0.65;
-      };
+      shadow = { enable = true; };
+      preset-column-widths =
+        [ { proportion = 0.35; } { proportion = 0.65; } { proportion = 1.0; } ];
+      default-column-width = { proportion = 1.0; };
 
       gaps = 6;
       struts = {

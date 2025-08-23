@@ -9,5 +9,13 @@ _: {
       enable = true;
       fprintAuth = true;
     };
+    greetd = {
+      enable = true;
+      fprintAuth = true;
+    };
+    quickshell = {
+      enable = true;
+      fprintAuth = true;
+    };
   };
 }
