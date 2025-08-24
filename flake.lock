@@ -103,6 +103,26 @@
         "type": "github"
       }
     },
+    "dgop": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755895216,
+        "narHash": "sha256-TIeTDwDIH6g974NCX2K0Vmzxb0ZPnPo5CdYcEgvyYJw=",
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "rev": "04789e31f841cdb08161a93cfd81ec8b1223f7ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -458,6 +478,7 @@
     "root": {
       "inputs": {
         "dankMaterialShell": "dankMaterialShell",
+        "dgop": "dgop",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "niri": "niri",

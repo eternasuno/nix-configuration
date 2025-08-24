@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [ inputs.dankMaterialShell.homeModules.dankMaterialShell ];
 
@@ -6,4 +6,9 @@
     enable = true;
     enableSystemd = true;
   };
+  
+  home.packages = with pkgs; [
+    inputs.dgop.packages.${pkgs.system}.default
+    brightnessctl
+  ];
 }

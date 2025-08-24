@@ -27,6 +27,9 @@
       warp-mouse-to-focus.enable = true;
       workspace-auto-back-and-forth = true;
     };
+    gestures = {
+      hot-corners.enable = false;
+    };
     screenshot-path =
       "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
     outputs = {

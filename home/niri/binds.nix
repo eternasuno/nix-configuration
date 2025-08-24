@@ -48,7 +48,7 @@
         action.spawn =
           [ "qs" "-c" "DankMaterialShell" "ipc" "call" "mpris" "next" ];
       };
-      "XF86MonitorBrightnessDown" = {
+      "XF86MonBrightnessDown" = {
         allow-when-locked = true;
         action.spawn = [
           "qs"
@@ -59,9 +59,10 @@
           "brightness"
           "decrement"
           "10"
+	  ""
         ];
       };
-      "XF86MonitorBrightnessUp" = {
+      "XF86MonBrightnessUp" = {
         allow-when-locked = true;
         action.spawn = [
           "qs"
@@ -72,6 +73,7 @@
           "brightness"
           "increment"
           "10"
+	  ""
         ];
       };
 
