@@ -29,17 +29,14 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dgop = {
-      url = "github:AvengeMedia/dgop";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
   };
 }

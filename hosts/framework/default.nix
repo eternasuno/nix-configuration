@@ -1,12 +1,17 @@
 host:
-{ nixpkgs, ... }@inputs:
+{
+  nixpkgs,
+  home-manager,
+  lanzaboote,
+  nixos-hardware,
+  ...
+}@inputs:
 let
   vars = {
     inherit host;
     username = "eternasuno";
     email = "22316214+eternasuno@users.noreply.github.com";
     keyboardLayout = "us";
-    model = "framework-13-7040-amd";
     timeZone = "Asia/Tokyo";
     version = "25.05";
   };
@@ -17,5 +22,8 @@ nixpkgs.lib.nixosSystem {
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
+    home-manager.nixosModules.home-manager
+    lanzaboote.nixosModules.lanzaboote
+    nixos-hardware.nixosModules.framework-13-7040-amd
   ];
 }

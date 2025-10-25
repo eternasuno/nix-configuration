@@ -1,60 +1,103 @@
 {
   inputs,
+  config,
   pkgs,
   vars,
+  lib,
   ...
 }:
-let
-  inherit (vars) username model version;
-  inherit (inputs) home-manager nixos-hardware;
-in
 {
-  imports = [
-    ../../system/boot.nix
-    ../../system/fprint.nix
-    ../../system/gnome.nix
-    ../../system/greetd.nix
-    ../../system/hardware.nix
-    ../../system/lanzaboote.nix
-    ../../system/locale.nix
-    ../../system/network.nix
-    ../../system/nix.nix
-    ../../system/security.nix
-    ../../system/services.nix
-    ../../system/stylix.nix
-    ../../system/user.nix
-    home-manager.nixosModules.home-manager
-    nixos-hardware.nixosModules.${model}
-  ];
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = lib.mkForce false;
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
+  };
+
+  networking = {
+    hostName = vars.host;
+    networkmanager.enable = true;
+  };
+
+  time.timeZone = vars.timeZone;
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [
+      "https://cache.nixos.org?priority=10"
+      "https://niri.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
+  };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
+
+  console.keyMap = vars.keyboardLayout;
+
+  security.rtkit.enable = true;
+
+  services = {
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --asterisks --greeting Hello --cmd ${pkgs.niri}/bin/niri-session";
+          user = vars.username;
+        };
+      };
+    };
+  };
+
+  users = {
+    mutableUsers = true;
+    users.${vars.username} = {
+      isNormalUser = true;
+      extraGroups = [
+        "networkmanager"
+        "video"
+        "wheel"
+      ];
+      shell = pkgs.bash;
+    };
+  };
+
+  services.openssh.enable = true;
 
   home-manager = {
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs vars; };
-    users.${username} = {
+    users.${vars.username} = {
       imports = [
-        ../../home/bat.nix
-        ../../home/dankMaterialShell.nix
-        ../../home/fcitx5.nix
-        ../../home/firefox
-        ../../home/foot.nix
-        ../../home/git.nix
-        ../../home/nh.nix
-        ../../home/niri
-        ../../home/nushell.nix
-        ../../home/starship.nix
-        ../../home/vim.nix
-        ../../home/xdg.nix
-        ../../home/zoxide.nix
+        ./home.nix
       ];
       home = {
-        inherit username;
-        homeDirectory = "/home/${username}";
-        stateVersion = version;
+        username = vars.username;
+        homeDirectory = "/home/${vars.username}";
+        stateVersion = vars.version;
       };
     };
   };
 
-  system.stateVersion = version;
+  system.stateVersion = vars.version;
 }
