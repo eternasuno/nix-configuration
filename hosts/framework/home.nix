@@ -31,6 +31,8 @@ in
       enable = true;
       package = pkgs.niri;
       settings = {
+        spawn-at-startup = [ { command = [ "noctalia-shell" ]; } ];
+
         binds = with config.lib.niri.actions; {
           "Mod+Space".action.spawn = noctalia "launcher toggle";
           "Mod+S".action.spawn = noctalia "controlCenter toggle";
@@ -45,6 +47,8 @@ in
           "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
           "XF86MonBrightnessUp".action.spawn = noctalia "brightness increase";
           "XF86MonBrightnessDown".action.spawn = noctalia "brightness decrease";
+
+          "Mod+T".action.spawn = "foot";
         };
       };
     };
