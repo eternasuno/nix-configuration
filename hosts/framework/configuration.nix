@@ -82,6 +82,10 @@
 
   services.openssh.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    inputs.noctalia.packages.${system}.default
+  ];
+
   home-manager = {
     backupFileExtension = "backup";
     useGlobalPkgs = true;
