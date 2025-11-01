@@ -21,6 +21,23 @@ in
     inputs.noctalia.homeModules.default
   ];
 
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "gtk3";
+    QS_ICON_THEME = "Adwaita";
+  };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+    theme = {
+      name = "Adwaita";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
+
   programs = {
     firefox = {
       enable = true;
