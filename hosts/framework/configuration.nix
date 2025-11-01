@@ -89,6 +89,38 @@
 
   programs.dconf.enable = true;
 
+  # Enable noctalia battery manager (native NixOS module from PR #606)
+  services.noctalia-shell.batteryManager = {
+    enable = true;
+    # group = "wheel"; # Users in the wheel group can set battery threshold
+    # paths = [
+    #   "/sys/class/power_supply/BAT0/charge_control_end_threshold"
+    #   "/sys/class/power_supply/BAT1/charge_control_end_threshold"
+    #   "/sys/class/power_supply/BAT0/charge_stop_threshold"
+    #   "/sys/class/power_supply/BAT1/charge_stop_threshold"
+    # ];
+  };
+
+  # Enable xdg-desktop-portal at system level (required for screen recording)
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    config = {
+      common = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+        "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
+      };
+    };
+  };
+
   services.openssh.enable = true;
 
   home-manager = {

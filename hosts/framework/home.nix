@@ -51,7 +51,11 @@ in
       enable = true;
       package = pkgs.niri;
       settings = {
-        spawn-at-startup = [ { command = [ "noctalia-shell" ]; } ];
+        spawn-at-startup = [
+          { command = [ "noctalia-shell" ]; }
+          # { command = [ "${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal" ]; }
+          # { command = [ "${pkgs.xdg-desktop-portal-gnome}/libexec/xdg-desktop-portal-gnome" ]; }
+        ];
 
         binds = with config.lib.niri.actions; {
           "Mod+Space".action.spawn = noctalia "launcher toggle";
@@ -128,23 +132,7 @@ in
       videos = "${config.home.homeDirectory}/Videos";
     };
     portal = {
-      enable = true;
-      config = {
-        common = {
-          default = [
-            "gnome"
-            "gtk"
-          ];
-          "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-          "org.freedesktop.impl.portal.Screenshot" = "gnome";
-          "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
-        };
-      };
       xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-gtk
-      ];
     };
   };
 }
