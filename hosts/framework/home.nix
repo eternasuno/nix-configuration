@@ -23,7 +23,8 @@ in
 
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "gtk3";
-    QS_ICON_THEME = "Adwaita";
+    QT_ICON_THEME = "Adwaita";
+    XDG_DATA_DIRS = "$XDG_DATA_DIRS:${pkgs.adwaita-icon-theme}/share";
   };
 
   gtk = {
@@ -35,6 +36,15 @@ in
     theme = {
       name = "Adwaita";
       package = pkgs.gnome-themes-extra;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
+    style = {
+      name = "adwaita";
+      package = pkgs.adwaita-qt;
     };
   };
 
