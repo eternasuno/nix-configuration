@@ -24,7 +24,6 @@ in
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "gtk3";
     QT_ICON_THEME = "Adwaita";
-    XDG_DATA_DIRS = "$XDG_DATA_DIRS:${pkgs.adwaita-icon-theme}/share";
   };
 
   gtk = {
@@ -39,14 +38,14 @@ in
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style = {
-      name = "adwaita";
-      package = pkgs.adwaita-qt;
-    };
-  };
+  #qt = {
+  #  enable = true;
+  #  platformTheme.name = "gtk3";
+  #  style = {
+  #    name = "adwaita";
+  #    package = pkgs.adwaita-qt;
+  #  };
+  #};
 
   programs = {
     firefox = {
