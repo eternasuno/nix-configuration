@@ -80,11 +80,9 @@
     };
   };
 
-  services.openssh.enable = true;
+  programs.dconf.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    inputs.noctalia.packages.${system}.default
-  ];
+  services.openssh.enable = true;
 
   home-manager = {
     backupFileExtension = "backup";

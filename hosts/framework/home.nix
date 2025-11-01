@@ -21,10 +21,9 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "gtk3";
-    QT_ICON_THEME = "Adwaita";
-  };
+  home.packages = with pkgs; [
+    inputs.noctalia.packages.${pkgs.system}.default
+  ];
 
   gtk = {
     enable = true;
@@ -37,15 +36,6 @@ in
       package = pkgs.gnome-themes-extra;
     };
   };
-
-  #qt = {
-  #  enable = true;
-  #  platformTheme.name = "gtk3";
-  #  style = {
-  #    name = "adwaita";
-  #    package = pkgs.adwaita-qt;
-  #  };
-  #};
 
   programs = {
     firefox = {
@@ -81,6 +71,7 @@ in
           QT_QPA_PLATFORM = "wayland;xcb";
           QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
           QT_QPA_PLATFORMTHEME = "gtk3";
+          QT_ICON_THEME = "Adwaita";
         };
       };
     };
@@ -131,6 +122,14 @@ in
       publicShare = "${config.home.homeDirectory}/Public";
       templates = "${config.home.homeDirectory}/Templates";
       videos = "${config.home.homeDirectory}/Videos";
+    };
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
+      ];
     };
   };
 }
