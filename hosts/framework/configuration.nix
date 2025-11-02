@@ -48,21 +48,22 @@
 
   fonts = {
     packages = with pkgs; [
+      jetbrains-mono
       maple-mono-NF
-      google-fonts
+      noto-fonts-emoji
     ];
     fontconfig = {
       defaultFonts = {
         sansSerif = [
-          "Google Sans Code"
+          "JetBrains Mono"
           "Maple Mono NL NF CN"
         ];
         serif = [
-          "Google Sans Code"
+          "JetBrains Mono"
           "Maple Mono NL NF CN"
         ];
         monospace = [
-          "Google Sans Code"
+          "JetBrains Mono"
           "Maple Mono NL NF CN"
         ];
         emoji = [
