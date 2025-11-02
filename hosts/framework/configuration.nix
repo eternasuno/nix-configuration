@@ -46,7 +46,40 @@
 
   console.keyMap = vars.keyboardLayout;
 
-  security.rtkit.enable = true;
+  fonts = {
+    packages = with pkgs; [
+      maple-mono-NF
+      google-fonts
+    ];
+    fontconfig = {
+      defaultFonts = {
+        sansSerif = [
+          "Google Sans Code"
+          "Maple Mono NL NF CN"
+        ];
+        serif = [
+          "Google Sans Code"
+          "Maple Mono NL NF CN"
+        ];
+        monospace = [
+          "Google Sans Code"
+          "Maple Mono NL NF CN"
+        ];
+        emoji = [
+          "Noto Color Emoji"
+        ];
+      };
+    };
+  };
+
+  security = {
+    rtkit.enable = true;
+    pam.services = {
+      greetd.fprintAuth = true;
+      sudo.fprintAuth = true;
+      login.fprintAuth = true;
+    };
+  };
 
   services = {
     pulseaudio.enable = false;
