@@ -8,7 +8,7 @@ let
   inherit (vars) username;
 in
 {
-  # programs.dconf.enable = true;
+  programs.dconf.enable = true;
 
   imports = [
     inputs.dankMaterialShell.nixosModules.greeter
