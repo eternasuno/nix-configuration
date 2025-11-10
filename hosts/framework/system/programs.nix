@@ -24,6 +24,11 @@ in
   #   };
   # };
 
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
+
   programs.dankMaterialShell.greeter = {
     enable = true;
     compositor.name = "${pkgs.niri}/bin/niri-session";
