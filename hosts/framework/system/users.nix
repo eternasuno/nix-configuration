@@ -1,10 +1,13 @@
 { pkgs, vars, ... }:
+let
+  inherit (vars) username keyboardLayout;
+in
 {
-  console.keyMap = vars.keyboardLayout;
+  console.keyMap = keyboardLayout;
 
   users = {
     mutableUsers = true;
-    users.${vars.username} = {
+    users.${username} = {
       isNormalUser = true;
       extraGroups = [
         "networkmanager"

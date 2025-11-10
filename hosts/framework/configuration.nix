@@ -1,5 +1,6 @@
+{ vars, inputs, ... }:
 let
-  { username, version } = vars;
+  inherit (vars) username version;
 in
 {
   imports = [

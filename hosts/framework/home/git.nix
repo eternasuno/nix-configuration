@@ -1,8 +1,11 @@
 { vars, ... }:
+let
+  inherit (vars) username email;
+in
 {
   programs.git = {
     enable = true;
-    userName = "${vars.username}";
-    userEmail = "${vars.email}";
+    userName = "${username}";
+    userEmail = "${email}";
   };
 }
