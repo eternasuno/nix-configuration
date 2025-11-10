@@ -14,10 +14,9 @@ in
     inputs.dankMaterialShell.nixosModules.greeter
   ];
 
-  environment.systemPackages = [ pkgs.niri ];
-
-  # 必须先设置 greetd 用户，dankMaterialShell.greeter 模块需要这个
-  services.greetd.settings.default_session.user = username;
+  greetd = {
+    enable = true;
+  };
 
   programs.dankMaterialShell.greeter = {
     enable = true;
