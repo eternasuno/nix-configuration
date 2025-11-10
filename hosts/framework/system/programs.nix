@@ -14,7 +14,7 @@ in
     inputs.dankMaterialShell.nixosModules.greeter
   ];
 
-  greetd = {
+  services.greetd = {
     enable = true;
   };
 
