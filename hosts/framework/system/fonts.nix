@@ -4,7 +4,7 @@
     packages = with pkgs; [
       maple-mono.NL-TTF-AutoHint
       maple-mono.NL-NF-CN
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
     fontconfig = {
       defaultFonts = {
