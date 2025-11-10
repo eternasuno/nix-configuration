@@ -22,7 +22,8 @@ in
     extraSpecialArgs = { inherit inputs vars; };
     users.${username} = {
       imports = [
-        ./home/desktop
+        # ./home/desktop
+        ./home/dms.nix
         ./home/firefox.nix
         ./home/foot.nix
         ./home/git.nix
