@@ -31,7 +31,7 @@ in
 
   programs.dankMaterialShell.greeter = {
     enable = true;
-    compositor.name = "${pkgs.niri}/bin/niri-session";
+    compositor.name = "niri";
     configHome = "/home/${username}";
     logs.save = true;
   };
