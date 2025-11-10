@@ -22,5 +22,6 @@ in
     enable = true;
     compositor.name = "niri";
     configHome = "/home/${username}";
+    logs.save = true;
   };
 }
