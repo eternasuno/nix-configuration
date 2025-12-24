@@ -4,15 +4,15 @@ let
 in
 {
   imports = [
-    ./system/boot.nix
-    ./system/networking.nix
-    ./system/nix.nix
-    ./system/fonts.nix
-    ./system/security.nix
-    ./system/services.nix
-    ./system/users.nix
-    ./system/programs.nix
-    ./system/xdg.nix
+    ../../system/boot.nix
+    ../../system/networking.nix
+    ../../system/nix.nix
+    ../../system/fonts.nix
+    ../../system/security.nix
+    ../../system/services.nix
+    ../../system/users.nix
+    ../../system/programs.nix
+    ../../system/xdg.nix
   ];
 
   home-manager = {
@@ -22,15 +22,14 @@ in
     extraSpecialArgs = { inherit inputs vars; };
     users.${username} = {
       imports = [
-        # ./home/desktop
-        ./home/dms.nix
-        ./home/firefox.nix
-        ./home/foot.nix
-        ./home/git.nix
-        ./home/neovim.nix
-        ./home/gtk.nix
-        ./home/input-method.nix
-        ./home/xdg.nix
+        ../../home/dms.nix
+        ../../home/firefox.nix
+        ../../home/foot.nix
+        ../../home/git.nix
+        ../../home/neovim.nix
+        ../../home/gtk.nix
+        ../../home/input-method.nix
+        ../../home/xdg.nix
       ];
       home = {
         username = username;
