@@ -11,7 +11,7 @@ in
     ../../system/security.nix
     ../../system/services.nix
     ../../system/users.nix
-    ../../system/desktop.nix
+    ../../system/greeter.nix
     ../../system/xdg.nix
   ];
 
@@ -30,6 +30,7 @@ in
         ../../home/input-method.nix
         ../../home/xdg.nix
         ../../home/vscode.nix
+        ../../home/desktop.nix
       ];
       home = {
         username = username;
