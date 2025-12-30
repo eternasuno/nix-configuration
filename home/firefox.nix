@@ -5,6 +5,9 @@
   textfox = {
     enable = true;
     profile = "default";
+     tabs = {
+        vertical.enable = false;
+      };
   };
 
   programs.firefox = {

@@ -11,7 +11,7 @@ in
     ../../system/security.nix
     ../../system/services.nix
     ../../system/users.nix
-    ../../system/programs.nix
+    ../../system/desktop.nix
     ../../system/xdg.nix
   ];
 
@@ -22,7 +22,6 @@ in
     extraSpecialArgs = { inherit inputs vars; };
     users.${username} = {
       imports = [
-        ../../home/dms.nix
         ../../home/firefox.nix
         ../../home/foot.nix
         ../../home/git.nix

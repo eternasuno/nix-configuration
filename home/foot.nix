@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       colors = {
-        alpha = 0.8;
+        alpha = 0.5;
       };
       csd = {
         preferred = "none";
