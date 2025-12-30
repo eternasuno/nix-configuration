@@ -30,6 +30,7 @@ in
         ../../home/gtk.nix
         ../../home/input-method.nix
         ../../home/xdg.nix
+        ../../home/vscode.nix
       ];
       home = {
         username = username;
