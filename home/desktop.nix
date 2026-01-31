@@ -15,6 +15,17 @@
     enable = true;
     niri = {
       enableSpawn = true;
+      includes = {
+        enable = true;
+        override = true;
+        originalFileName = "hm";
+        filesToInclude = [
+          "alttab"
+          "colors"
+          "layout"
+          "wpblur"
+        ];
+      };
     };
   };
 
@@ -26,8 +37,8 @@
         touchpad = {
           natural-scroll = false;
           dwt = true;
-          accel-speed = 0.5;
-          scroll-factor = 1.5;
+          accel-speed = 0.25;
+          scroll-factor = 1.25;
         };
         mouse.natural-scroll = false;
       };
