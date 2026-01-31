@@ -4,34 +4,35 @@ let
 in
 {
   imports = [
-    ../../system/boot.nix
-    ../../system/networking.nix
-    ../../system/nix.nix
-    ../../system/fonts.nix
-    ../../system/security.nix
-    ../../system/services.nix
-    ../../system/users.nix
-    ../../system/greeter.nix
-    ../../system/xdg.nix
+    # Core modules
+    ../../module/core/boot.nix
+    ../../module/core/fonts.nix
+    ../../module/core/networking.nix
+    ../../module/core/nix.nix
+    ../../module/core/security.nix
+    ../../module/core/services.nix
+    ../../module/core/users.nix
+
+    # Desktop modules
+    ../../module/desktop/gtk.nix
+    ../../module/desktop/input-method.nix
+    ../../module/desktop/niri.nix
+    ../../module/desktop/xdg.nix
+
+    # Application modules
+    ../../module/application/firefox.nix
+    ../../module/application/foot.nix
+    ../../module/application/git.nix
+    ../../module/application/neovim.nix
+    ../../module/application/vscode.nix
   ];
 
   home-manager = {
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs vars; };
+    extraSpecialArgs = { inherit vars inputs; };
     users.${username} = {
-      imports = [
-        ../../home/firefox.nix
-        ../../home/foot.nix
-        ../../home/git.nix
-        ../../home/neovim.nix
-        ../../home/gtk.nix
-        ../../home/input-method.nix
-        ../../home/xdg.nix
-        ../../home/vscode.nix
-        ../../home/desktop.nix
-      ];
       home = {
         username = username;
         homeDirectory = "/home/${username}";
