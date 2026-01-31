@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, vars, ... }:
+let
+  inherit (vars) username timeZone;
+in
 {
-  time.timeZone = "Asia/Tokyo";
+  time.timeZone = timeZone;
 
   nix.settings = {
     experimental-features = [
@@ -19,9 +22,14 @@
 
   programs.nh = {
     enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 3d --keep 5";
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 3d --keep 3";
+    };
+    flake = "/home/eternasuno/.nixos";
   };
+
+  environment.systemPackages = with pkgs; [ nix-output-monitor nvd ];
 
   nixpkgs = {
     config.allowUnfree = true;
