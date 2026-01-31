@@ -4,7 +4,6 @@ let
 in
 {
   imports = [
-    # Core modules
     ../../module/core/boot.nix
     ../../module/core/fonts.nix
     ../../module/core/networking.nix
@@ -12,14 +11,10 @@ in
     ../../module/core/security.nix
     ../../module/core/services.nix
     ../../module/core/users.nix
-
-    # Desktop modules
     ../../module/desktop/gtk.nix
     ../../module/desktop/input-method.nix
     ../../module/desktop/niri.nix
     ../../module/desktop/xdg.nix
-
-    # Application modules
     ../../module/application/firefox.nix
     ../../module/application/foot.nix
     ../../module/application/git.nix

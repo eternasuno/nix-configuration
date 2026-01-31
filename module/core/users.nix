@@ -3,9 +3,6 @@ let
   inherit (vars) username keyboardLayout;
 in
 {
-  # ====================================================
-  # System Level
-  # ====================================================
   console.keyMap = keyboardLayout;
 
   users = {

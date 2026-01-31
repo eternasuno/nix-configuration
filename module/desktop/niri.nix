@@ -8,9 +8,6 @@ let
   inherit (vars) username;
 in
 {
-  # ====================================================
-  # System Level
-  # ====================================================
   imports = [
     inputs.dankMaterialShell.nixosModules.greeter
   ];
@@ -25,9 +22,6 @@ in
 
   programs.niri.enable = true;
 
-  # ====================================================
-  # Home Manager Level
-  # ====================================================
   home-manager.users.${username} = { config, ... }: {
     imports = [
       inputs.niri.homeModules.niri
@@ -62,7 +56,7 @@ in
             natural-scroll = false;
             dwt = true;
             accel-speed = 0.25;
-            scroll-factor = 1.25;
+            scroll-factor = 1.0;
           };
           mouse.natural-scroll = false;
         };
@@ -83,12 +77,10 @@ in
           }
         ];
         binds = with config.lib.niri.actions; {
-          # Window management
           "Mod+Q".action = close-window;
           "Mod+F".action = maximize-column;
           "Mod+Shift+F".action = fullscreen-window;
 
-          # Navigation
           "Mod+Left".action = focus-column-left;
           "Mod+Right".action = focus-column-right;
           "Mod+Up".action = focus-window-up;
@@ -98,7 +90,6 @@ in
           "Mod+K".action = focus-window-up;
           "Mod+J".action = focus-window-down;
 
-          # Moving
           "Mod+Ctrl+Left".action = move-column-left;
           "Mod+Ctrl+Right".action = move-column-right;
           "Mod+Ctrl+Up".action = move-window-up;
@@ -108,7 +99,6 @@ in
           "Mod+Ctrl+K".action = move-window-up;
           "Mod+Ctrl+J".action = move-window-down;
 
-          # Workspaces
           "Mod+1".action = focus-workspace 1;
           "Mod+2".action = focus-workspace 2;
           "Mod+3".action = focus-workspace 3;
@@ -119,22 +109,18 @@ in
           "Mod+8".action = focus-workspace 8;
           "Mod+9".action = focus-workspace 9;
 
-          # Sizing
           "Mod+R".action = switch-preset-column-width;
           "Mod+Shift+R".action = switch-preset-window-height;
           "Mod+Minus".action = set-column-width "-10%";
           "Mod+Equal".action = set-column-width "+10%";
 
-          # Apps & System
           "Mod+T".action = spawn "foot";
           "Mod+B".action = spawn "firefox";
           
-          # Screenshots
           "Print".action = spawn ["dms" "ipc" "call" "niri" "screenshot"];
           "Ctrl+Print".action = spawn ["dms" "ipc" "call" "niri" "screenshotScreen"];
           "Alt+Print".action = spawn ["dms" "ipc" "call" "niri" "screenshotWindow"];
 
-          # DankMaterialShell Bindings
           "Mod+Space" = {
             action = spawn ["dms" "ipc" "call" "spotlight" "toggle"];
             hotkey-overlay.title = "Toggle Application Launcher";
@@ -173,7 +159,6 @@ in
             hotkey-overlay.title = "Toggle Process List";
           };
 
-          # Audio
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action = spawn ["dms" "ipc" "call" "audio" "increment" "3"];
@@ -203,7 +188,6 @@ in
             action = spawn ["dms" "ipc" "call" "mpris" "next"];
           };
 
-          # Brightness
           "XF86MonBrightnessUp" = {
             allow-when-locked = true;
             action = spawn ["dms" "ipc" "call" "brightness" "increment" "5" ""];

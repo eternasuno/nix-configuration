@@ -3,9 +3,6 @@ let
   inherit (vars) username;
 in
 {
-  # ====================================================
-  # System Level
-  # ====================================================
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -25,9 +22,6 @@ in
     };
   };
 
-  # ====================================================
-  # Home Manager Level
-  # ====================================================
   home-manager.users.${username} = { config, ... }: {
     xdg = {
       enable = true;

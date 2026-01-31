@@ -1,8 +1,5 @@
 { lib, ... }:
 {
-  # ====================================================
-  # System Level
-  # ====================================================
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
@@ -12,5 +9,8 @@
       enable = true;
       pkiBundle = "/var/lib/sbctl";
     };
+    kernelParams = [ "quiet" ];
+    initrd.verbose = false;
+    consoleLogLevel = 3;
   };
 }

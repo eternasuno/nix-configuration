@@ -3,9 +3,6 @@ let
   inherit (vars) username email;
 in
 {
-  # ====================================================
-  # Home Manager Level
-  # ====================================================
   home-manager.users.${username} = {
     programs.git = {
       enable = true;

@@ -3,9 +3,6 @@ let
   inherit (vars) username;
 in
 {
-  # ====================================================
-  # Home Manager Level
-  # ====================================================
   home-manager.users.${username} = {
     programs.foot = {
       enable = true;
