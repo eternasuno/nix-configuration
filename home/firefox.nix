@@ -4,7 +4,7 @@
 
   textfox = {
     enable = true;
-    profile = "default";
+    profiles = ["default"];
     config = {
      tabs = {
         vertical.enable = false;
