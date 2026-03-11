@@ -36,6 +36,9 @@ in
           "intl.locale.requested" = "zh-CN";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "svg.context-properties.content.enabled" = true;
+          "font.size.variable.x-western" = 18;
+          "font.size.monospace.x-western" = 16;
+          "font.minimum-size.x-western" = 14;
         };
       };
     };

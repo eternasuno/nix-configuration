@@ -9,16 +9,8 @@ let
 in
 {
   imports = [
-    inputs.dankMaterialShell.nixosModules.greeter
+    ./greeter.nix
   ];
-
-  programs.dconf.enable = true;
-
-  programs.dank-material-shell.greeter = {
-    enable = true;
-    compositor.name = "niri";
-    configHome = "/home/${username}";
-  };
 
   programs.niri.enable = true;
 
