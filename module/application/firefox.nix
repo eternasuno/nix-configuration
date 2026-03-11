@@ -13,6 +13,7 @@ in
         tabs = {
           vertical.enable = false;
         };
+        displayTitles = false;
       };
     };
 

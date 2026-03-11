@@ -8,10 +8,6 @@ let
   inherit (vars) username;
 in
 {
-  imports = [
-    ./greeter.nix
-  ];
-
   programs.niri.enable = true;
 
   home-manager.users.${username} = { config, ... }: {
@@ -47,7 +43,7 @@ in
           touchpad = {
             natural-scroll = false;
             dwt = true;
-            accel-speed = 0.25;
+            accel-speed = 0.2;
             scroll-factor = 1.0;
           };
           mouse.natural-scroll = false;

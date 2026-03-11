@@ -4,6 +4,11 @@ let
 in
 {
   imports = [
+    ../../module/application/firefox.nix
+    ../../module/application/foot.nix
+    ../../module/application/git.nix
+    ../../module/application/neovim.nix
+    ../../module/application/vscode.nix
     ../../module/core/boot.nix
     ../../module/core/fonts.nix
     ../../module/core/networking.nix
@@ -11,15 +16,11 @@ in
     ../../module/core/security.nix
     ../../module/core/services.nix
     ../../module/core/users.nix
+    ../../module/desktop/greeter.nix
     ../../module/desktop/gtk.nix
     ../../module/desktop/input-method.nix
     ../../module/desktop/niri.nix
     ../../module/desktop/xdg.nix
-    ../../module/application/firefox.nix
-    ../../module/application/foot.nix
-    ../../module/application/git.nix
-    ../../module/application/neovim.nix
-    ../../module/application/vscode.nix
   ];
 
   home-manager = {

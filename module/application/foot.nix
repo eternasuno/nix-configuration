@@ -10,7 +10,7 @@ in
         main = {
           font = "monospace:size=14";
         };
-        colors = {
+        colors-dark = {
           alpha = 0.9;
         };
         csd = {
