@@ -7,7 +7,7 @@ in
     gtk = {
       enable = true;
       font = {
-        name = "Sans";
+        name = "Maple Mono NL";
         size = 12;
       };
       iconTheme = {

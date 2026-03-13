@@ -4,10 +4,12 @@ let
 in
 {
   imports = [
+    ../../module/application/cli-tools.nix
     ../../module/application/firefox.nix
     ../../module/application/foot.nix
     ../../module/application/git.nix
     ../../module/application/neovim.nix
+    ../../module/application/nushell.nix
     ../../module/application/vscode.nix
     ../../module/core/boot.nix
     ../../module/core/fonts.nix
