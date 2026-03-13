@@ -14,7 +14,7 @@ in
         "video"
         "wheel"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.bash;
     };
   };
 }

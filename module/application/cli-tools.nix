@@ -9,10 +9,7 @@ in
         enable = true;
         enableNushellIntegration = true;
       };
-      fzf = {
-        enable = true;
-        enableNushellIntegration = true;
-      };
+      fzf.enable = true;
       bat.enable = true;
       eza = {
         enable = true;
@@ -27,7 +24,7 @@ in
       ffmpegthumbnailer
       unar
       jq
-      poppler_utils
+      poppler-utils
       fd
       ripgrep
       imagemagick
