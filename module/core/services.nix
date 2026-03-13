@@ -1,6 +1,13 @@
 { ... }:
 {
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+
   services = {
+    blueman.enable = true;
+    fwupd.enable = true;
     pulseaudio.enable = false;
     pipewire = {
       enable = true;

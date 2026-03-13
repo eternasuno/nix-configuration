@@ -18,6 +18,7 @@ in
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
+    trusted-users = [ "root" "@wheel" ];
   };
 
   programs.nh = {
@@ -26,7 +27,7 @@ in
       enable = true;
       extraArgs = "--keep-since 3d --keep 3";
     };
-    flake = "/home/eternasuno/.nixos";
+    flake = "/home/${username}/.nixos";
   };
 
   environment.systemPackages = with pkgs; [ nix-output-monitor nvd ];
