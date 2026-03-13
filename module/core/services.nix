@@ -15,6 +15,13 @@
       percentageAction = 3;
       criticalPowerAction = "PowerOff";
     };
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      openFirewall = false;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
   };
 }
