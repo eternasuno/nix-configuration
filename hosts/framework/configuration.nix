@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ../../module/application/cli-tools.nix
+    ../../module/application/cli
     ../../module/application/firefox.nix
     ../../module/application/foot.nix
     ../../module/application/git.nix

@@ -3,6 +3,10 @@ let
   inherit (vars) username;
 in
 {
+  environment.sessionVariables = {
+    TERMINAL = "${pkgs.foot}/bin/foot";
+  };
+
   home-manager.users.${username} = {
     programs.foot = {
       enable = true;

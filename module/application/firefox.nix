@@ -3,6 +3,10 @@ let
   inherit (vars) username;
 in
 {
+  environment.sessionVariables = {
+    BROWSER = "${pkgs.firefox}/bin/firefox";
+  };
+
   home-manager.users.${username} = {
     imports = [ inputs.textfox.homeManagerModules.default ];
 
