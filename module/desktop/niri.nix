@@ -187,12 +187,5 @@ in
         };
       };
     };
-
-    home.sessionVariables = {
-      QT_QPA_PLATFORM = "wayland;xcb";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      QT_QPA_PLATFORMTHEME = "gtk3";
-      QT_ICON_THEME = "Adwaita";
-    };
   };
 }

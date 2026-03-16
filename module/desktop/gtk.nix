@@ -11,8 +11,8 @@ in
         size = 12;
       };
       iconTheme = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
+        name = "Papirus";
+        package = pkgs.papirus-icon-theme;
       };
       theme = {
         name = "Adwaita";
