@@ -18,6 +18,7 @@ in
           vertical.enable = false;
         };
         displayTitles = false;
+        displayUrlbarIcons = true;
       };
     };
 
