@@ -1,6 +1,6 @@
 { vars, ... }:
 let
-  inherit (vars) username host;
+  inherit (vars) username;
 in
 {
   home-manager.users.${username} = {
@@ -9,11 +9,6 @@ in
       settings = {
         show_banner = false;
       };
-    };
-
-    programs.starship = {
-      enable = true;
-      enableNushellIntegration = true;
     };
   };
 }
