@@ -1,20 +1,22 @@
-{ vars, inputs, ... }:
+{ pkgs, vars, inputs, ... }:
 let
-  inherit (vars) host username version timeZone;
+  inherit (vars) host username version;
 in
 {
   imports = [
-    ../../module/application/cli
+    ../../module/application/alacritty.nix
+    ../../module/application/bat.nix
     ../../module/application/git.nix
     ../../module/application/neovim.nix
+    ../../module/application/nh.nix
     ../../module/application/nushell.nix
     ../../module/application/starship.nix
     ../../module/application/vscode.nix
+    ../../module/application/yazi
+    ../../module/core/nix.nix
   ];
 
   networking.hostName = host;
-  time.timeZone = timeZone;
-
   users.users.${username} = {
     home = "/Users/${username}";
   };
@@ -33,19 +35,13 @@ in
     };
   };
 
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
-    };
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   security.pam.services.sudo_local.touchIdAuth = true;
+
+  fonts.packages = with pkgs; [
+    maple-mono.NL-TTF-AutoHint
+    maple-mono.NL-NF-CN
+    noto-fonts-color-emoji
+  ];
 
   programs.zsh.enable = true;
 

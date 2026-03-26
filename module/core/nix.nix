@@ -1,6 +1,6 @@
 { pkgs, vars, ... }:
 let
-  inherit (vars) username timeZone;
+  inherit (vars) timeZone;
 in
 {
   time.timeZone = timeZone;
@@ -21,15 +21,6 @@ in
       ];
       auto-optimise-store = true;
     };
-  };
-
-  programs.nh = {
-    enable = true;
-    clean = {
-      enable = true;
-      extraArgs = "--keep-since 3d --keep 3";
-    };
-    flake = "/home/${username}/.nixos";
   };
 
   environment.systemPackages = with pkgs; [ nix-output-monitor nvd ];

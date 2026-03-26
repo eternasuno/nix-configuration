@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ pkgs, vars, ... }:
 let
   inherit (vars) username;
 in
@@ -28,5 +28,9 @@ in
     home.shellAliases = {
       lg = "lazygit";
     };
+
+    home.packages = with pkgs; [
+      delta
+    ];
   };
 }

@@ -4,13 +4,18 @@ let
 in
 {
   imports = [
-    ../../module/application/cli
+    ../../module/application/bat.nix
     ../../module/application/firefox.nix
+    ../../module/application/fzf.nix
     ../../module/application/foot.nix
     ../../module/application/git.nix
+    ../../module/application/lazygit.nix
     ../../module/application/neovim.nix
+    ../../module/application/nh.nix
     ../../module/application/nushell.nix
     ../../module/application/vscode.nix
+    ../../module/application/yazi
+    ../../module/application/zoxide.nix
     ../../module/core/boot.nix
     ../../module/core/fonts.nix
     ../../module/core/networking.nix

@@ -35,5 +35,15 @@ in
     home.shellAliases = {
       y = "yazi";
     };
+
+    home.packages = with pkgs; [
+      ffmpegthumbnailer
+      unar
+      jq
+      poppler-utils
+      fd
+      ripgrep
+      imagemagick
+    ];
   };
 }

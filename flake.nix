@@ -2,27 +2,23 @@
   description = "Nixos configuration.";
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { ... }@inputs:
     let
-      inherit (nixpkgs.lib) filterAttrs;
-      inherit (builtins) mapAttrs pathExists readDir;
-      hosts = filterAttrs (_: type: type == "directory") (readDir ./hosts);
-      toConfiguration = host: _: import ./hosts/${host} host inputs;
-      isNixosHost = host: pathExists ./hosts/${host}/hardware-configuration.nix;
-      nixosHosts = filterAttrs (host: _: isNixosHost host) hosts;
-      darwinHosts = filterAttrs (host: _: !(isNixosHost host)) hosts;
-      nixosConfigurations = mapAttrs toConfiguration nixosHosts;
-      darwinConfigurations = mapAttrs toConfiguration darwinHosts;
+      mergeHostConfigs = builtins.foldl' (acc: path: acc // (import path inputs)) { } ;
     in
     {
-      inherit nixosConfigurations;
-      inherit darwinConfigurations;
+      nixosConfigurations = mergeHostConfigs [
+        ./hosts/framework
+      ];
+      darwinConfigurations = mergeHostConfigs [
+        ./hosts/MacBook-Air
+      ];
     };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
