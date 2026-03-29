@@ -12,6 +12,7 @@ in
     ../../module/application/nushell.nix
     ../../module/application/starship.nix
     ../../module/application/vscode.nix
+    ../../module/application/zsh.nix
     ../../module/application/yazi
     ../../module/core/nix.nix
   ];
@@ -26,13 +27,11 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit vars inputs; };
-    users.${username} = {
-      home = {
+    users.${username}.home = {
         username = username;
         homeDirectory = "/Users/${username}";
         stateVersion = version;
       };
-    };
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -42,8 +41,6 @@ in
     maple-mono.NL-NF-CN
     noto-fonts-color-emoji
   ];
-
-  programs.zsh.enable = true;
 
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   system.stateVersion = 6;

@@ -3,13 +3,16 @@ let
   inherit (vars) username flakePath;
 in
 {
-  home-manager.users.${username}.programs.nh = {
-    enable = true;
-    clean = {
+  home-manager.users.${username} = {
+    programs.nh = {
       enable = true;
-      extraArgs = "--keep-since 3d --keep 3";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 3d --keep 3";
+      };
+      flake = flakePath;
+      darwinFlake = flakePath;
+      homeFlake = flakePath;
     };
-    flake = flakePath;
-    darwinFlake = flakePath;
   };
 }
