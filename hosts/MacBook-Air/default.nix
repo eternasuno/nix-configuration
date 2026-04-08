@@ -7,9 +7,8 @@ let
   vars = {
     host = "MacBook-Air";
     username = "eternasuno";
-    flakePath = "/Users/eternasuno/.nix_config";
+    flakePath = "/Users/eternasuno/.nix";
     email = "22316214+eternasuno@users.noreply.github.com";
-    keyboardLayout = "us";
     timeZone = "Asia/Tokyo";
     version = "25.05";
   };

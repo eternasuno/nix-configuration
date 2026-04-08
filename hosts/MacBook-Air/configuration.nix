@@ -4,12 +4,10 @@ let
 in
 {
   imports = [
-    ../../module/application/alacritty.nix
     ../../module/application/bat.nix
     ../../module/application/git.nix
     ../../module/application/neovim.nix
     ../../module/application/nh.nix
-    ../../module/application/nushell.nix
     ../../module/application/starship.nix
     ../../module/application/vscode.nix
     ../../module/application/zsh.nix

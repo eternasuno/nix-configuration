@@ -46,7 +46,6 @@ in
         "git.confirmSync" = false;
         "git.ignoreRebaseWarning" = true;
         "github.copilot.nextEditSuggestions.enabled" = true;
-        "githubPullRequests.pullBranch" = "never";
         "telemetry.feedback.enabled" = false;
         "telemetry.telemetryLevel" = "off";
         "terminal.integrated.fontFamily" = "Google Sans Code";
