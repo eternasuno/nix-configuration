@@ -1,25 +1,26 @@
 {
   description = "Nixos configuration.";
 
-  outputs =
-    { ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
-      mergeHostConfigs = builtins.foldl' (acc: path: acc // (import path inputs)) { } ;
+      inherit (nixpkgs) lib;
+
+      hostConfigs = [
+        (import ./hosts/framework inputs)
+        (import ./hosts/MacBook-Air inputs)
+      ];
     in
-    {
-      nixosConfigurations = mergeHostConfigs [
-        ./hosts/framework
-      ];
-      darwinConfigurations = mergeHostConfigs [
-        ./hosts/MacBook-Air
-      ];
-    };
+    lib.foldl lib.recursiveUpdate {} hostConfigs;
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     darwin = {
       url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {

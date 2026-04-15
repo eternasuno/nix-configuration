@@ -16,7 +16,10 @@ in
           };
           size = 14;
         };
-        terminal.shell = "${pkgs.nushell}/bin/nu";
+        terminal.shell = {
+          program = "${pkgs.zsh}/bin/zsh";
+          args = [ "-l" "-c" "exec ${pkgs.nushell}/bin/nu" ];
+        };
       };
     };
   };

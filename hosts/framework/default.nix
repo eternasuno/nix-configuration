@@ -3,6 +3,7 @@
   home-manager,
   lanzaboote,
   nixos-hardware,
+  nixpkgs-unfree,
   ...
 }@inputs:
 let
@@ -17,12 +18,13 @@ let
   };
 in
 {
-  ${vars.host} = nixpkgs.lib.nixosSystem {
+  nixosConfigurations.${vars.host} = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = { inherit inputs vars; };
     modules = [
       ./configuration.nix
       ./hardware-configuration.nix
+      nixpkgs-unfree.nixosModules.unfree
       home-manager.nixosModules.home-manager
       lanzaboote.nixosModules.lanzaboote
       nixos-hardware.nixosModules.framework-13-7040-amd

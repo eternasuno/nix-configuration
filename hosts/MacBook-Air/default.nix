@@ -1,6 +1,7 @@
 {
   darwin,
   home-manager,
+  nixpkgs-unfree,
   ...
 }@inputs:
 let
@@ -11,14 +12,16 @@ let
     email = "22316214+eternasuno@users.noreply.github.com";
     timeZone = "Asia/Tokyo";
     version = "25.05";
+    darwinStateVersion = 6;
   };
 in
 {
-  ${vars.host} = darwin.lib.darwinSystem {
+  darwinConfigurations.${vars.host} = darwin.lib.darwinSystem {
     system = "aarch64-darwin";
     specialArgs = { inherit inputs vars; };
     modules = [
       ./configuration.nix
+      nixpkgs-unfree.darwinModules.unfree
       home-manager.darwinModules.home-manager
     ];
   };
