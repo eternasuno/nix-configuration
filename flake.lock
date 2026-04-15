@@ -254,6 +254,27 @@
         "type": "github"
       }
     },
+    "nixpkgs-unfree": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775831722,
+        "narHash": "sha256-E9pbZ/+ijZFlZvnYib+BoH+9DStIdsfZd8Vr4Nw7FYQ=",
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "rev": "26a4424da880607c3462037530454f7bc15d9ffe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs-unfree",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1728492678,
@@ -324,6 +345,7 @@
         "niri": "niri",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unfree": "nixpkgs-unfree",
         "textfox": "textfox"
       }
     },

@@ -10,6 +10,7 @@ in
     ../../module/application/git.nix
     ../../module/application/neovim.nix
     ../../module/application/nh.nix
+    ../../module/application/nushell.nix
     ../../module/application/starship.nix
     ../../module/application/vscode.nix
     ../../module/application/yazi

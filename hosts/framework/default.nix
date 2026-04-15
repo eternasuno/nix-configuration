@@ -24,7 +24,6 @@ in
     modules = [
       ./configuration.nix
       ./hardware-configuration.nix
-      nixpkgs-unfree.nixosModules.unfree
       home-manager.nixosModules.home-manager
       lanzaboote.nixosModules.lanzaboote
       nixos-hardware.nixosModules.framework-13-7040-amd

@@ -21,7 +21,6 @@ in
     specialArgs = { inherit inputs vars; };
     modules = [
       ./configuration.nix
-      nixpkgs-unfree.darwinModules.unfree
       home-manager.darwinModules.home-manager
     ];
   };
