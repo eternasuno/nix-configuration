@@ -1,8 +1,11 @@
-{ pkgs, vars, inputs, ... }:
-let
-  inherit (vars) username;
-in
 {
+  pkgs,
+  vars,
+  inputs,
+  ...
+}: let
+  inherit (vars) username;
+in {
   imports = [
     ./git.nix
     ./llm.nix
@@ -12,7 +15,7 @@ in
   ];
 
   home-manager.users.${username} = {
-    imports = [ inputs.nvf.homeManagerModules.default ];
+    imports = [inputs.nvf.homeManagerModules.default];
 
     home.packages = with pkgs; [
       ripgrep
