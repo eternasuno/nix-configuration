@@ -8,7 +8,7 @@ in
     ../../module/application/bat.nix
     ../../module/application/devenv.nix
     ../../module/application/git.nix
-    ../../module/application/neovim.nix
+    ../../module/application/neovim
     ../../module/application/nh.nix
     ../../module/application/nushell.nix
     ../../module/application/starship.nix

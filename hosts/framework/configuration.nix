@@ -10,7 +10,7 @@ in
     ../../module/application/foot.nix
     ../../module/application/git.nix
     ../../module/application/lazygit.nix
-    ../../module/application/neovim.nix
+    ../../module/application/neovim
     ../../module/application/nh.nix
     ../../module/application/nushell.nix
     ../../module/application/vscode.nix
