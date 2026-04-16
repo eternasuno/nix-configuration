@@ -1,11 +1,9 @@
-{ vars, ... }:
-let
+{vars, ...}: let
   inherit (vars) username;
-in
-{
+in {
   home-manager.users.${username}.programs.nvf.settings.vim = {
+    lsp.enable = true;
     languages = {
-      enableLSP = true;
       enableTreesitter = true;
       enableFormat = true;
 

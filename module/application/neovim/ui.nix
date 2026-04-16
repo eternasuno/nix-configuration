@@ -1,8 +1,6 @@
-{ vars, ... }:
-let
+{vars, ...}: let
   inherit (vars) username;
-in
-{
+in {
   home-manager.users.${username}.programs.nvf.settings.vim = {
     theme = {
       enable = true;
@@ -18,13 +16,7 @@ in
     dashboard.alpha.enable = true;
 
     visuals = {
-      enable = true;
-      nvimWebDevicons.enable = true;
-      lineNumbers = {
-        enable = true;
-        relativenumber = true;
-      };
-      cursorline.enable = true;
+      nvim-web-devicons.enable = true;
     };
 
     options = {
@@ -32,6 +24,9 @@ in
       shiftwidth = 2;
       expandtab = true;
       mouse = "a";
+      number = true;
+      relativenumber = true;
+      cursorline = true;
     };
 
     autopairs.nvim-autopairs.enable = true;

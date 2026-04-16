@@ -10,11 +10,11 @@ in
         enable = true;
         codeActions.enable = true;
       };
-      lazygit.enable = true;
     };
 
     terminal.toggleterm = {
       enable = true;
+      lazygit.enable = true;
       setupOpts = {
         direction = "float";
         open_mapping = "[[<c-t>]]";
