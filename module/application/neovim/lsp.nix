@@ -12,12 +12,19 @@ in {
       ts.enable = true;
       css.enable = true;
       html.enable = true;
+      yaml.enable = true;
+      markdown.enable = true;
     };
 
     lsp.formatOnSave = true;
 
     autocomplete.nvim-cmp = {
       enable = true;
+      mappings = {
+        next = "<C-n>";
+        previous = "<C-p>";
+        confirm = "<CR>";
+      };
     };
   };
 }

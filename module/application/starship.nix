@@ -1,8 +1,6 @@
-{ vars, ... }:
-let
+{vars, ...}: let
   inherit (vars) username;
-in
-{
+in {
   home-manager.users.${username} = {
     programs.starship = {
       enable = true;

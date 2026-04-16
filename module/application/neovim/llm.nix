@@ -1,10 +1,12 @@
-{ pkgs, vars, ... }:
-let
-  inherit (vars) username;
-in
 {
+  pkgs,
+  vars,
+  ...
+}: let
+  inherit (vars) username;
+in {
   home-manager.users.${username} = {
-    home.packages = with pkgs; [ github-copilot-cli ];
+    home.packages = with pkgs; [github-copilot-cli];
 
     programs.nvf.settings.vim.extraPlugins = with pkgs.vimPlugins; {
       supermaven = {
@@ -24,16 +26,19 @@ in
         package = codecompanion-nvim;
         setup = ''
           require("codecompanion").setup({
-            strategies = {
-              chat = { adapter = "copilot_cli" },
-              inline = { adapter = "copilot_cli" },
-              agent = { adapter = "copilot_cli" },
+            interactions = {
+              chat = {
+                adapter = {
+                  name = "copilot_acp",
+                  model = "gpt-5-mini",
+                },
+              },
             },
             display = {
               chat = {
                 window = {
                   layout = "vertical",
-                  width = 40,
+                  width = 80,
                 },
               },
             },
