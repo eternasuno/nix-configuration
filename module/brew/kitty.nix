@@ -53,7 +53,7 @@ in {
       color7 = "#abb2bf";
       color15 = "#ffffff";
 
-      shell = "${pkgs.zsh}/bin/zsh -l -c 'exec ${pkgs.nushell}/bin/nu'";
+      # shell = "${pkgs.zsh}/bin/zsh -l -c 'exec ${pkgs.nushell}/bin/nu'";
     };
 
     extraConfig = ''

@@ -1,8 +1,6 @@
-{ vars, config, lib, ... }:
-let
+{vars, ...}: let
   inherit (vars) username;
-in
-{
+in {
   home-manager.users.${username} = {
     programs.nushell = {
       enable = true;

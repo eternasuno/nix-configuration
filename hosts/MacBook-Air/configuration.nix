@@ -6,12 +6,12 @@
   inherit (vars) username version darwinStateVersion;
 in {
   imports = [
-    ../../module/application/bat.nix
+    #../../module/application/bat.nix
     ../../module/application/devenv.nix
     ../../module/application/git.nix
     ../../module/application/neovim
     ../../module/application/nh.nix
-    ../../module/application/nushell.nix
+    # ../../module/application/nushell.nix
     ../../module/application/starship.nix
     ../../module/application/yazi
     ../../module/application/zsh.nix
