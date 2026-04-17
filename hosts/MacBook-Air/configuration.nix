@@ -1,10 +1,9 @@
 {
-  pkgs,
   vars,
   inputs,
   ...
 }: let
-  inherit (vars) host username version darwinStateVersion;
+  inherit (vars) username version darwinStateVersion;
 in {
   imports = [
     ../../module/application/bat.nix
@@ -16,6 +15,7 @@ in {
     ../../module/application/starship.nix
     ../../module/application/yazi
     ../../module/application/zsh.nix
+    ../../module/brew/apfel.nix
     ../../module/brew/appstore.nix
     ../../module/brew/kitty.nix
     ../../module/core/darwin.nix
