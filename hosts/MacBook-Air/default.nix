@@ -1,7 +1,6 @@
 {
   darwin,
   home-manager,
-  nixpkgs-unfree,
   ...
 }@inputs:
 let

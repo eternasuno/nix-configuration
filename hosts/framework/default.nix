@@ -3,7 +3,6 @@
   home-manager,
   lanzaboote,
   nixos-hardware,
-  nixpkgs-unfree,
   ...
 }@inputs:
 let

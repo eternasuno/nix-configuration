@@ -1,7 +1,7 @@
 {
   description = "Nixos configuration.";
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
       inherit (nixpkgs) lib;
 
@@ -17,10 +17,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     darwin = {
       url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
@@ -44,6 +40,9 @@
       url = "github:AvengeMedia/DankMaterialShell/v1.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    textfox.url = "github:adriankarlen/textfox";
+    textfox = {
+      url = "github:adriankarlen/textfox";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
