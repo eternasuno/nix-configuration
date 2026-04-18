@@ -1,20 +1,12 @@
 {
-  pkgs,
-  lib,
   vars,
   ...
 }: let
   inherit (vars) username;
 in {
-  homebrew.casks = lib.mkIf pkgs.stdenv.isDarwin ["kitty"];
-
   home-manager.users.${username} = {
     programs.kitty = {
       enable = true;
-      package =
-        if pkgs.stdenv.isDarwin
-        then pkgs.emptyDirectory
-        else pkgs.kitty;
 
       settings = {
         font_family = "Maple Mono NL NF CN";
@@ -28,12 +20,9 @@ in {
         window_padding_width = 4;
         hide_window_decorations = "yes";
 
-
         scrollback_indicator_opacity = "0.0";
 
         sync_to_monitor = "yes";
-        macos_option_as_alt = "yes";
-        macos_quit_when_last_window_closed = "yes";
 
         background = "#282c34";
         foreground = "#abb2bf";

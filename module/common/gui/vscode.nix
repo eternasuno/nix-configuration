@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ vars, ... }:
 let
   inherit (vars) username;
 in
@@ -6,7 +6,6 @@ in
   home-manager.users.${username} = {
     programs.vscode = {
       enable = true;
-      package = if pkgs.stdenv.isDarwin then pkgs.emptyDirectory else pkgs.vscode;
       profiles.default.userSettings = {
         "chat.viewSessions.orientation" = "stacked";
         "diffEditor.experimental.showMoves" = true;
@@ -64,6 +63,4 @@ in
       };
     };
   };
-
-  homebrew.casks = if pkgs.stdenv.isDarwin then [ "visual-studio-code" ] else [];
 }

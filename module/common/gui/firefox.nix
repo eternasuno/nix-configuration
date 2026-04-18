@@ -1,18 +1,10 @@
 {
-  pkgs,
   vars,
   inputs,
   ...
 }: let
   inherit (vars) username;
 in {
-  environment.sessionVariables = {
-    BROWSER =
-      if pkgs.stdenv.isDarwin
-      then "open -a Firefox"
-      else "${pkgs.firefox}/bin/firefox";
-  };
-
   home-manager.users.${username} = {
     imports = [inputs.textfox.homeManagerModules.default];
 
@@ -30,10 +22,6 @@ in {
 
     programs.firefox = {
       enable = true;
-      package =
-        if pkgs.stdenv.isDarwin
-        then pkgs.emptyDirectory
-        else pkgs.firefox;
 
       policies = {
         AutofillAddressEnabled = false;
@@ -73,9 +61,4 @@ in {
       };
     };
   };
-
-  homebrew.casks =
-    if pkgs.stdenv.isDarwin
-    then ["firefox"]
-    else [];
 }
