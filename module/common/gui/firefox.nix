@@ -1,14 +1,20 @@
-{ pkgs, vars, inputs, ... }:
-let
-  inherit (vars) username;
-in
 {
+  pkgs,
+  vars,
+  inputs,
+  ...
+}: let
+  inherit (vars) username;
+in {
   environment.sessionVariables = {
-    BROWSER = "${pkgs.firefox}/bin/firefox";
+    BROWSER =
+      if pkgs.stdenv.isDarwin
+      then "open -a Firefox"
+      else "${pkgs.firefox}/bin/firefox";
   };
 
   home-manager.users.${username} = {
-    imports = [ inputs.textfox.homeManagerModules.default ];
+    imports = [inputs.textfox.homeManagerModules.default];
 
     textfox = {
       enable = true;
@@ -24,7 +30,11 @@ in
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox;
+      package =
+        if pkgs.stdenv.isDarwin
+        then pkgs.emptyDirectory
+        else pkgs.firefox;
+
       policies = {
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
@@ -42,7 +52,7 @@ in
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/uBlock0@raymondhill.net/latest.xpi";
           };
         };
-        RequestedLocales = [ "zh-CN" ];
+        RequestedLocales = ["zh-CN"];
       };
       profiles.default = {
         id = 0;
@@ -63,4 +73,9 @@ in
       };
     };
   };
+
+  homebrew.casks =
+    if pkgs.stdenv.isDarwin
+    then ["firefox"]
+    else [];
 }

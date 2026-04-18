@@ -1,7 +1,5 @@
-{ pkgs, ... }:
+{ lib, ... }:
 {
-  imports = [ ./fonts-packages.nix ];
-
   fonts.fontconfig = {
     defaultFonts = {
       sansSerif = [
@@ -21,4 +19,4 @@
       ];
     };
   };
-};
+}

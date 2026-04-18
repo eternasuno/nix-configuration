@@ -1,10 +1,5 @@
-{ pkgs, vars, ... }:
-let
-  inherit (vars) timeZone;
-in
+{ pkgs, ... }:
 {
-  time.timeZone = timeZone;
-
   nix = {
     settings = {
       experimental-features = [

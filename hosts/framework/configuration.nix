@@ -4,30 +4,31 @@ let
 in
 {
   imports = [
-    ../../module/application/bat.nix
-    ../../module/application/firefox.nix
-    ../../module/application/fzf.nix
-    ../../module/application/foot.nix
-    ../../module/application/git.nix
-    ../../module/application/lazygit.nix
-    ../../module/application/neovim
-    ../../module/application/nh.nix
-    ../../module/application/nushell.nix
-    ../../module/application/vscode.nix
-    ../../module/application/yazi
-    ../../module/application/zoxide.nix
-    ../../module/core/boot.nix
-    ../../module/core/fonts.nix
-    ../../module/core/networking.nix
-    ../../module/core/nix.nix
-    ../../module/core/security.nix
-    ../../module/core/services.nix
-    ../../module/core/users.nix
-    ../../module/desktop/greeter.nix
-    ../../module/desktop/gtk.nix
-    ../../module/desktop/input-method.nix
-    ../../module/desktop/niri.nix
-    ../../module/desktop/xdg.nix
+    ../../module/common/cli/bat.nix
+    ../../module/common/gui/firefox.nix
+    ../../module/common/cli/fzf.nix
+    ../../module/nixos/gui/foot.nix
+    ../../module/common/cli/git.nix
+    ../../module/common/cli/lazygit.nix
+    ../../module/common/cli/neovim
+    ../../module/common/cli/nh.nix
+    ../../module/common/cli/nushell.nix
+    ../../module/common/gui/vscode.nix
+    ../../module/common/cli/yazi
+    ../../module/common/cli/zoxide.nix
+    ../../module/nixos/core/boot.nix
+    ../../module/nixos/core/fonts.nix
+    ../../module/common/core/fonts.nix
+    ../../module/nixos/core/networking.nix
+    ../../module/common/core/nix.nix
+    ../../module/nixos/core/security.nix
+    ../../module/nixos/services/pipewire.nix
+    ../../module/nixos/core/users.nix
+    ../../module/nixos/gui/niri/greeter.nix
+    ../../module/nixos/gui/gtk.nix
+    ../../module/nixos/gui/fcitx5.nix
+    ../../module/nixos/gui/niri
+    ../../module/nixos/gui/xdg.nix
   ];
 
   home-manager = {

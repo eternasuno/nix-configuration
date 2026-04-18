@@ -104,7 +104,7 @@ in
 
           "Mod+T".action = spawn "foot";
           "Mod+B".action = spawn "firefox";
-          
+
           "Print".action = spawn ["dms" "ipc" "call" "niri" "screenshot"];
           "Ctrl+Print".action = spawn ["dms" "ipc" "call" "niri" "screenshotScreen"];
           "Alt+Print".action = spawn ["dms" "ipc" "call" "niri" "screenshotWindow"];

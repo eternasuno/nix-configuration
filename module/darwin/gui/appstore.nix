@@ -1,5 +1,7 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.mas];
+{ pkgs, ... }: {
+
+  environment.systemPackages = [ pkgs.mas ];
+
 
   homebrew = {
     masApps = {

@@ -6,22 +6,22 @@
   inherit (vars) username version darwinStateVersion;
 in {
   imports = [
-    #../../module/application/bat.nix
-    ../../module/application/devenv.nix
-    ../../module/application/gemini.nix
-    ../../module/application/git.nix
-    ../../module/application/neovim
-    ../../module/application/nh.nix
-    # ../../module/application/nushell.nix
-    ../../module/application/starship.nix
-    ../../module/application/yazi
-    ../../module/application/zsh.nix
-    ../../module/brew/apfel.nix
-    ../../module/brew/appstore.nix
-    ../../module/brew/kitty.nix
-    ../../module/core/darwin.nix
-    ../../module/core/fonts-packages.nix
-    ../../module/core/nix.nix
+    # ../../module/common/cli/bat.nix
+    ../../module/common/cli/devenv.nix
+    ../../module/common/cli/gemini.nix
+    ../../module/common/cli/git.nix
+    ../../module/common/cli/neovim
+    ../../module/common/cli/nh.nix
+    ../../module/common/cli/starship.nix
+    ../../module/common/cli/yazi
+    ../../module/common/cli/zsh.nix
+    ../../module/common/cli/lazygit.nix
+    ../../module/darwin/cli/apfel.nix
+    ../../module/darwin/gui/appstore.nix
+    ../../module/common/gui/kitty.nix
+    ../../module/darwin/core/system.nix
+    ../../module/common/core/fonts.nix
+    ../../module/common/core/nix.nix
   ];
 
   homebrew = {

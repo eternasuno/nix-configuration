@@ -14,8 +14,8 @@
       enable = true;
       pkiBundle = "/var/lib/sbctl";
     };
-    kernelParams = [ 
-      "quiet" 
+    kernelParams = [
+      "quiet"
       "splash"
       "vga=current"
       "rd.systemd.show_status=false"
