@@ -1,15 +1,13 @@
 {
   description = "Nixos configuration.";
 
-  outputs = { nixpkgs, ... }@inputs:
-    let
-      inherit (nixpkgs) lib;
-
-      hostConfigs = [
-        (import ./hosts/framework inputs)
-        (import ./hosts/MacBook-Air inputs)
-      ];
-    in
+  outputs = {nixpkgs, ...} @ inputs: let
+    inherit (nixpkgs) lib;
+    hostConfigs = [
+      (import ./hosts/framework inputs)
+      (import ./hosts/MacBook-Air inputs)
+    ];
+  in
     lib.foldl lib.recursiveUpdate {} hostConfigs;
 
   inputs = {

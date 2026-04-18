@@ -1,8 +1,10 @@
-{ vars, ... }:
-let
-  inherit (vars) username flakePath;
-in
 {
+  vars,
+  inputs,
+  ...
+}: let
+  inherit (vars) username;
+in {
   home-manager.users.${username} = {
     programs.nh = {
       enable = true;
@@ -10,9 +12,7 @@ in
         enable = true;
         extraArgs = "--keep-since 3d --keep 3";
       };
-      flake = flakePath;
-      darwinFlake = flakePath;
-      homeFlake = flakePath;
+      flake = inputs.self;
     };
   };
 }

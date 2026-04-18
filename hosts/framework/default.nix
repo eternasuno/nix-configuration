@@ -4,22 +4,19 @@
   lanzaboote,
   nixos-hardware,
   ...
-}@inputs:
-let
+} @ inputs: let
   vars = {
     host = "framework";
     username = "eternasuno";
-    flakePath = "/home/eternasuno/.nixos";
     email = "22316214+eternasuno@users.noreply.github.com";
     keyboardLayout = "us";
     timeZone = "Asia/Tokyo";
     version = "25.05";
   };
-in
-{
+in {
   nixosConfigurations.${vars.host} = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = { inherit inputs vars; };
+    specialArgs = {inherit inputs vars;};
     modules = [
       ./configuration.nix
       ./hardware-configuration.nix
