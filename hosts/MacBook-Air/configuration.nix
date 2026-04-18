@@ -8,6 +8,7 @@ in {
   imports = [
     #../../module/application/bat.nix
     ../../module/application/devenv.nix
+    ../../module/application/gemini.nix
     ../../module/application/git.nix
     ../../module/application/neovim
     ../../module/application/nh.nix
