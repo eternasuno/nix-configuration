@@ -7,6 +7,7 @@
     host = "MacBook-Air";
     username = "eternasuno";
     email = "22316214+eternasuno@users.noreply.github.com";
+    flakePath = "/Users/eternasuno/.nix";
     timeZone = "Asia/Tokyo";
     version = "25.05";
     darwinStateVersion = 6;

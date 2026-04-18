@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (vars) username;
+  inherit (vars) username flakePath;
 in {
   home-manager.users.${username} = {
     programs.nh = {
@@ -12,7 +12,7 @@ in {
         enable = true;
         extraArgs = "--keep-since 3d --keep 3";
       };
-      flake = inputs.self;
+      flake = flakePath;
     };
   };
 }

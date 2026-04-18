@@ -9,6 +9,7 @@
     host = "framework";
     username = "eternasuno";
     email = "22316214+eternasuno@users.noreply.github.com";
+    flakePath = "/home/eternasuno/.nix";
     keyboardLayout = "us";
     timeZone = "Asia/Tokyo";
     version = "25.05";
