@@ -31,22 +31,5 @@ in {
 
     autopairs.nvim-autopairs.enable = true;
     utility.multicursors.enable = true;
-
-    keymaps = [
-      {
-        key = "<C-n>";
-        mode = ["n" "v"];
-        action = "<cmd>MCstart<cr>";
-        silent = true;
-        desc = "Create a selection for selected text or word under the cursor";
-      }
-      {
-        key = "<leader>m";
-        mode = "n";
-        action = "<cmd>MCpattern<cr>";
-        silent = true;
-        desc = "Create a selection for the current word using the pattern";
-      }
-    ];
   };
 }

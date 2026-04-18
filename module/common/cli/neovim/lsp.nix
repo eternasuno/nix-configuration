@@ -8,12 +8,13 @@ in {
       enableFormat = true;
 
       nix.enable = true;
-      rust.enable = true;
+      #rust.enable = true;
       ts.enable = true;
       css.enable = true;
       html.enable = true;
       yaml.enable = true;
       markdown.enable = true;
+      typst.enable = true;
     };
 
     lsp.formatOnSave = true;
