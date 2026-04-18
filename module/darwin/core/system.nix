@@ -19,14 +19,12 @@ in {
       KeyRepeat = 2;
     };
 
-
     dock = {
       autohide = true;
       show-recents = false;
       mru-spaces = false;
       orientation = "bottom";
     };
-
 
     finder = {
       AppleShowAllFiles = true;
@@ -36,17 +34,14 @@ in {
       ShowStatusBar = true;
     };
 
-
     trackpad = {
       Clicking = true;
       TrackpadRightClick = true;
       TrackpadThreeFingerDrag = true;
     };
 
-
     loginwindow = {
       GuestEnabled = false;
-      SHOWFULLNAME = true;
     };
   };
 }
