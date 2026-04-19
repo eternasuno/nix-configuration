@@ -19,7 +19,7 @@ in {
     ../../module/common/core/fonts.nix
     ../../module/common/core/nix.nix
     ../../module/common/gui/kitty.nix
-    ../../module/darwin/cli/apfel.nix
+    #../../module/darwin/cli/apfel.nix
     ../../module/darwin/core/system.nix
     ../../module/darwin/gui/appstore.nix
     ../../module/darwin/gui/kitty.nix
