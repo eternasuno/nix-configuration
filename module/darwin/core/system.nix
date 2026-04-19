@@ -24,6 +24,7 @@ in {
       show-recents = false;
       mru-spaces = false;
       orientation = "bottom";
+      show-process-indicators = false;
     };
 
     finder = {
