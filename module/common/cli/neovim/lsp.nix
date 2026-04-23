@@ -9,7 +9,7 @@ in {
 
       nix.enable = true;
       #rust.enable = true;
-      ts.enable = true;
+      typescript.enable = true;
       css.enable = true;
       html.enable = true;
       yaml.enable = true;

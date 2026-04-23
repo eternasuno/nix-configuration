@@ -1,9 +1,11 @@
-{  vars, ... }:
-let
-  inherit (vars) username;
-in
 {
-  environment.sessionVariables = {
-    BROWSER = "${pkgs.firefox}/bin/firefox";
+  pkgs,
+  vars,
+  ...
+}: let
+  inherit (vars) username;
+in {
+  home-manager.users.${username}.home.sessionVariables = {
+    BROWSER = "firefox";
   };
 }

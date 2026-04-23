@@ -102,8 +102,8 @@ in
           "Mod+Minus".action = set-column-width "-10%";
           "Mod+Equal".action = set-column-width "+10%";
 
-          "Mod+T".action = spawn "foot";
-          "Mod+B".action = spawn "firefox";
+          "Mod+T".action = spawn config.home.sessionVariables.TERMINAL;
+          "Mod+B".action = spawn config.home.sessionVariables.BROWSER;
 
           "Print".action = spawn ["dms" "ipc" "call" "niri" "screenshot"];
           "Ctrl+Print".action = spawn ["dms" "ipc" "call" "niri" "screenshotScreen"];

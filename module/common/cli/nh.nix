@@ -1,8 +1,4 @@
-{
-  vars,
-  inputs,
-  ...
-}: let
+{vars, ...}: let
   inherit (vars) username flakePath;
 in {
   home-manager.users.${username} = {
