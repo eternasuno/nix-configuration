@@ -8,5 +8,7 @@ in {
         show_banner = false;
       };
     };
+
+    home.shell.enableNushellIntegration = true;
   };
 }
