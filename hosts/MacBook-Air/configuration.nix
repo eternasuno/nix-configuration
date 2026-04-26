@@ -6,10 +6,11 @@
   inherit (vars) username version darwinStateVersion;
 in {
   imports = [
-    # ../../module/common/cli/bat.nix
+    ../../module/common/cli/bat.nix
     ../../module/common/cli/devenv.nix
-    ../../module/common/cli/gemini.nix
+    ../../module/common/cli/gemini-cli.nix
     ../../module/common/cli/git.nix
+    ../../module/common/cli/github-copilot-cli.nix
     ../../module/common/cli/lazygit.nix
     ../../module/common/cli/neovim
     ../../module/common/cli/nh.nix

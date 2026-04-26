@@ -6,10 +6,12 @@
   inherit (vars) username version;
 in {
   imports = [
+    ../../module/common/cli/bash.nix
     ../../module/common/cli/bat.nix
-    ../../module/common/cli/fzf.nix
-    ../../module/common/cli/gemini.nix
+    ../../module/common/cli/devenv.nix
+    ../../module/common/cli/gemini-cli.nix
     ../../module/common/cli/git.nix
+    ../../module/common/cli/github-copilot-cli.nix
     ../../module/common/cli/lazygit.nix
     ../../module/common/cli/neovim
     ../../module/common/cli/nh.nix
@@ -25,6 +27,7 @@ in {
     ../../module/nixos/core/fonts.nix
     ../../module/nixos/core/networking.nix
     ../../module/nixos/core/security.nix
+    ../../module/nixos/core/time.nix
     ../../module/nixos/core/users.nix
     ../../module/nixos/gui/fcitx5.nix
     ../../module/nixos/gui/firefox.nix

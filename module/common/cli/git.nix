@@ -1,8 +1,6 @@
-{ vars, ... }:
-let
+{vars, ...}: let
   inherit (vars) username email;
-in
-{
+in {
   home-manager.users.${username} = {
     programs.git = {
       enable = true;

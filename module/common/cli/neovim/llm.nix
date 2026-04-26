@@ -6,8 +6,6 @@
   inherit (vars) username;
 in {
   home-manager.users.${username} = {
-    home.packages = with pkgs; [github-copilot-cli];
-
     programs.nvf.settings.vim.extraPlugins = with pkgs.vimPlugins; {
       supermaven = {
         package = supermaven-nvim;

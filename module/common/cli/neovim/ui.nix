@@ -6,6 +6,7 @@ in {
       enable = true;
       name = "onedark";
       style = "deep";
+      transparent = true;
     };
 
     statusline.lualine = {
