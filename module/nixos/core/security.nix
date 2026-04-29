@@ -3,9 +3,7 @@
   pkgs,
   vars,
   ...
-}: let
-  inherit (vars) username;
-in {
+}: {
   security = {
     polkit.enable = true;
     rtkit.enable = true;
@@ -22,13 +20,4 @@ in {
   programs.seahorse.enable = true;
   services.dbus.packages = with pkgs; [gcr];
   environment.systemPackages = with pkgs; [libsecret];
-
-  home-manager.users.${username} = {
-    services.gnome-keyring.enable = true;
-
-    systemd.user.services.gnome-keyring = {
-      Unit.PartOf = lib.mkForce ["default.target"];
-      Install.WantedBy = lib.mkForce ["default.target"];
-    };
-  };
 }

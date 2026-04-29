@@ -21,7 +21,6 @@ in {
         restartIfChanged = true;
       };
       niri = {
-        #enableKeybinds = true;
         includes = {
           enable = true;
           override = true;
