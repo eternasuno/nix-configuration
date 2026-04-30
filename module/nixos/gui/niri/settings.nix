@@ -3,8 +3,6 @@ let
   inherit (vars) username;
 in
 {
-  programs.niri.enable = true;
-
   home-manager.users.${username} = {
     imports = [
       inputs.niri.homeModules.niri
@@ -20,19 +18,21 @@ in
             dwt = true;
             accel-speed = 0.2;
             scroll-factor = 1.0;
+            accel-profile = "adaptive";
           };
           mouse.natural-scroll = false;
         };
         hotkey-overlay.skip-at-startup = true;
+        prefer-no-csd = true;
         layout = {
-          background-color = "#00000000";
+          gaps = 8;
+          default-column-width = { proportion = 0.6; };
+          preset-column-widths = [
+            { proportion = 0.4; }
+            { proportion = 0.6; }
+            { proportion = 1.0; }
+          ];
         };
-        layer-rules = [
-          {
-            matches = [{ namespace = "^quickshell$"; }];
-            place-within-backdrop = true;
-          }
-        ];
       };
     };
   };

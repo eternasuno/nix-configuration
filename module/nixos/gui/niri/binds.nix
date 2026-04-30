@@ -11,21 +11,21 @@ in
 
       "Mod+Left".action = focus-column-left;
       "Mod+Right".action = focus-column-right;
-      "Mod+Up".action = focus-window-up;
-      "Mod+Down".action = focus-window-down;
+      "Mod+Up".action = focus-workspace-up;
+      "Mod+Down".action = focus-workspace-down;
       "Mod+H".action = focus-column-left;
       "Mod+L".action = focus-column-right;
-      "Mod+K".action = focus-window-up;
-      "Mod+J".action = focus-window-down;
+      "Mod+K".action = focus-workspace-up;
+      "Mod+J".action = focus-workspace-down;
 
       "Mod+Ctrl+Left".action = move-column-left;
       "Mod+Ctrl+Right".action = move-column-right;
-      "Mod+Ctrl+Up".action = move-window-up;
-      "Mod+Ctrl+Down".action = move-window-down;
+      "Mod+Ctrl+Up".action = move-column-to-workspace-up;
+      "Mod+Ctrl+Down".action = move-column-to-workspace-down;
       "Mod+Ctrl+H".action = move-column-left;
       "Mod+Ctrl+L".action = move-column-right;
-      "Mod+Ctrl+K".action = move-window-up;
-      "Mod+Ctrl+J".action = move-window-down;
+      "Mod+Ctrl+K".action = move-column-to-workspace-up;
+      "Mod+Ctrl+J".action = move-column-to-workspace-down;
 
       "Mod+1".action = focus-workspace 1;
       "Mod+2".action = focus-workspace 2;

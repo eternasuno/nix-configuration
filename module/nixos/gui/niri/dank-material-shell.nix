@@ -5,8 +5,6 @@
 }: let
   inherit (vars) username;
 in {
-  programs.niri.enable = true;
-
   home-manager.users.${username} = {
     imports = [
       inputs.dankMaterialShell.homeModules.dank-material-shell

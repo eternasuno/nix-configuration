@@ -11,8 +11,20 @@ in
         addons = with pkgs; [
           fcitx5-rime
         ];
+        settings = {
+          addons = {
+            classicui.globalSection = {
+              "Vertical Candidate List" = true;
+            };
+          };
+        };
         waylandFrontend = true;
       };
     };
+
+    xdg.configFile."fcitx5/rime/default.custom.yaml".text = ''
+      patch:
+        ascii_composer/switch_key/Caps_Lock: noop
+    '';
   };
 }
