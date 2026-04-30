@@ -1,8 +1,6 @@
 {vars, ...}: let
   inherit (vars) username;
 in {
-  programs.zsh.enable = true;
-
   users.users.${username} = {
     home = "/Users/${username}";
   };
