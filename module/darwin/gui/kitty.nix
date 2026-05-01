@@ -10,7 +10,7 @@ in {
     settings = {
       macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
-      shell = "${pkgs.nushell}/bin/nu";
+      shell = "${pkgs.zsh}/bin/zsh --login -c ${pkgs.nushell}/bin/nu";
     };
   };
 
