@@ -13,6 +13,7 @@ in {
     ];
 
     xdg.configFile = {
+      "maki/AGENTS.md".source = ./AGENTS.md;
       "maki/init.lua".source = ./init.lua;
       "maki/lua".source = ./lua;
       "maki/mcp.toml".source = ./mcp.toml;

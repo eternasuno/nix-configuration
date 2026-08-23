@@ -4,7 +4,13 @@ default = "allow"
 [webfetch]
 default = "allow"
 
-[mcp]
+[mcp.deepwiki]
+default = "allow"
+
+[mcp.gh-grep]
+default = "allow"
+
+[mcp.context7]
 default = "allow"
 
 [bash]
