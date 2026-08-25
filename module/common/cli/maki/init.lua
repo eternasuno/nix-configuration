@@ -4,6 +4,7 @@ maki.setup({
   always_thinking = "high",
   provider = {
     allowed_models = {
+      "amd/DeepSeek-V4-Flash",
       "google/gemini-3.7-flash",
       "openai/gpt-5.6*",
       "opencode/*-free",

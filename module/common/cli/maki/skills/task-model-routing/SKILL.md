@@ -1,9 +1,13 @@
 ---
 name: task-model-routing
-description: Route delegated tasks to the required model and subagent type. Use whenever dispatching work with the task tool.
+description: Delegate and route non-trivial software-engineering work. Load before exploration, research, multi-file changes, debugging, review, architecture, or UI work.
 ---
 
 # Task model routing
+
+## Delegation gate
+
+For every non-trivial request, dispatch at least one meaningful subtask. Delegate codebase exploration, external research, multi-file implementation, debugging, review, architecture, and UI work. Direct handling is reserved for conversational answers and localized, obvious operations requiring no investigation.
 
 Select the exact model and subagent type according to the task:
 
@@ -31,5 +35,7 @@ Select the exact model and subagent type according to the task:
 - Use `batch` for independent tasks.
 - Run dependent stages sequentially: research before implementation, and implementation before review.
 - Never run parallel write tasks that may modify overlapping files.
-- If no route clearly matches or the task is trivial, handle it directly with the main agent.
-- Inspect and reconcile subagent results before responding to the user.
+- If several routes apply, split the work into meaningful stages and route each stage separately.
+- If no route clearly matches, use the closest route rather than silently skipping delegation.
+- Do not delegate token tasks merely to satisfy the gate; each subtask must produce useful research, implementation, or review output.
+- Inspect, reconcile, and verify subagent results before responding to the user.
