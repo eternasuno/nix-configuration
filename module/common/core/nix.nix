@@ -34,7 +34,7 @@
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      # obscura from NixOS/nixpkgs#555157 (darwin support PR), pinned as flake input
+      # obscura from NixOS/nixpkgs#556450 (render support PR), pinned as flake input
       (final: prev: {
         obscura = (prev.callPackage "${inputs.obscura-pr}/pkgs/by-name/ob/obscura/package.nix" {}).overrideAttrs (old: {
           cargoBuildFlags = ["--features" "render"];

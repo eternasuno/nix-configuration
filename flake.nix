@@ -46,9 +46,9 @@
       url = "github:tontinton/maki";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # obscura darwin support PR (NixOS/nixpkgs#555157), head commit
+    # obscura render support PR (NixOS/nixpkgs#556450), head commit
     obscura-pr = {
-      url = "github:dhogenson/nixpkgs/27e30e6529f48655b7f1a79e4cd6052dec2ef243";
+      url = "github:dhogenson/nixpkgs/dd77ae6efbe584ca0946ea4cdbe855a89722c074";
       flake = false;
     };
   };

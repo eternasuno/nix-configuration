@@ -345,17 +345,17 @@
     "obscura-pr": {
       "flake": false,
       "locked": {
-        "lastModified": 1787332445,
-        "narHash": "sha256-HVlWikltEQd52QOBqZLOSrcp79l3O+B8G/q3iyy1Az0=",
+        "lastModified": 1787675548,
+        "narHash": "sha256-Ne1drnk8XAVqB3+6GSiqCoMcgFxTTwCtScCvnoKN72g=",
         "owner": "dhogenson",
         "repo": "nixpkgs",
-        "rev": "27e30e6529f48655b7f1a79e4cd6052dec2ef243",
+        "rev": "dd77ae6efbe584ca0946ea4cdbe855a89722c074",
         "type": "github"
       },
       "original": {
         "owner": "dhogenson",
         "repo": "nixpkgs",
-        "rev": "27e30e6529f48655b7f1a79e4cd6052dec2ef243",
+        "rev": "dd77ae6efbe584ca0946ea4cdbe855a89722c074",
         "type": "github"
       }
     },
