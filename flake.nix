@@ -46,10 +46,5 @@
       url = "github:tontinton/maki";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # obscura render support PR (NixOS/nixpkgs#556450), head commit
-    obscura-pr = {
-      url = "github:dhogenson/nixpkgs/dd77ae6efbe584ca0946ea4cdbe855a89722c074";
-      flake = false;
-    };
   };
 }

@@ -1,6 +1,6 @@
 ---
 name: writing-for-agents
-description: Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.
+description: Predictable, concise documents and context pointers for agent consumption. Use when creating or editing skills, AGENTS.md, CLAUDE.md, or other instructions agents must follow.
 ---
 
 Reference for writing any document an agent consumes: a skill, an `AGENTS.md` / `CLAUDE.md`, a doc reached by a pointer. The packaging differs; the writing does not: the same levers make each one predictable, since the agent takes the same _process_ every run rather than producing the same output.
@@ -51,6 +51,19 @@ Every step ends on a **completion criterion**, the condition that tells the agen
 
 The strongest criteria are both checkable and exhaustive.
 
+## Match precision to fragility
+
+Match guidance strength to the failure and risk:
+
+- For judgment-heavy work with several valid answers, give principles and checkable outcomes.
+- For a preferred pattern with controlled variation, give a recipe or parameterized template.
+- For fragile, irreversible, or order-sensitive work, give exact steps and verification points.
+- Use the smallest constraint that reliably prevents the observed failure.
+
+## Behavior validation
+
+Before revising behavior-shaping guidance, construct a task that can expose the target failure and establish the baseline in a fresh context without the new guidance. Record the failure, omissions, and rationalizations. Write the smallest change that addresses observed behavior, then repeat the scenario. For important wording, compare multiple fresh samples with a no-guidance control and manually inspect results; variance indicates that the wording needs tightening. Micro-tests validate wording, while end-to-end scenarios validate the document.
+
 ## When to split
 
 Splitting one document into two spends one of the two loads, so split only when the cut earns it:
@@ -78,4 +91,7 @@ You win twice: fewer tokens, and a sharper hook for the agent to hang its thinki
 - Keep each meaning in a **single source of truth**: one authoritative place, so changing the behaviour is a one-place edit. **Duplication** (the same meaning in more than one place) costs maintenance and tokens, and inflates a meaning's prominence on the ladder past its real rank. (The accidental inverse of a leading word, which repeats a token on purpose, never the meaning.)
 - The **environment** is a source of truth too (`package.json` scripts, config files, the directory layout, `--help` output), and a document that restates it is a **cache**: a copy of a lookup, earning its load only when the lookup is expensive. Cache what the agent cannot find by looking: the unwritten convention, the reason behind a choice, the gotcha no config confesses. Leave the one-file, one-command lookups to the environment, where they cannot go stale.
 - Check every line for **relevance**: does it still bear on what the document does? A line loses relevance by never bearing on the task (mere exposition, or a branch that should be disclosed) or by going stale as the behaviour or world it describes changes. Shorter documents are easier to keep relevant. Without a pruning discipline the default fate is **sediment**: stale layers that settle because adding feels safe and removing feels risky, until you must core down through them to find what is still live.
+- Prefer automation for mechanically enforceable constraints; reserve prose for judgment and rationale.
+- Keep project-specific conventions in project instructions rather than reusable guidance.
+- Use one strong example instead of several equivalent examples, and add rules only for observed failures.
 - Hunt **no-ops** sentence by sentence: an instruction the model already obeys by default pays load to say nothing. The test (does it change behaviour versus the default?) is model-relative, not reader-relative: two people disagreeing about a no-op disagree about the default, and settle it by running the document, not by debate. When a sentence fails, delete the whole sentence rather than trim words from it. The test also grades leading words: a word too weak to beat the default (_be thorough_ when the agent is already thorough-ish) is a no-op, and the fix is a stronger word (_relentless_), not a different technique.

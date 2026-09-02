@@ -1,11 +1,11 @@
 ---
 name: clone-reference-repositories
-description: Clone important external library or framework repositories into a project's ignored `.slim/` workspace so coding agents can inspect real source code, tests, examples, and implementation patterns. Use when documentation or installed type declarations are insufficient, an external API is complex or version-sensitive, the agent repeatedly guesses library usage, or upstream implementation details are needed for debugging. Also use to inspect or update existing reference clones. Do not use for ordinary package installation or indiscriminately clone every dependency.
+description: Local reference clones of external libraries and frameworks for inspecting source code, tests, examples, and upstream behavior. Use when documentation or installed types are insufficient, an API is complex or version-sensitive, upstream details are needed for investigation, or an existing reference clone must be inspected or updated.
 ---
 
 # Clone Reference Repositories
 
-Keep selected upstream repositories locally available as read-only reference material without adding them to the application's version history.
+Keep selected upstream repositories locally available as read-only reference material without adding them to the application's version history. Default to read-only inspection of existing clones; cloning, fetching, updating, creating `.slim/`, or changing ignore configuration requires explicit preparation mode and write/network permission.
 
 ## Use the local workspace
 
@@ -27,13 +27,13 @@ Use this directory structure:
         └── <framework-name>/
 ```
 
-Use `.slim/repositories/` for cloned third-party source repositories. Create only the directories required by the current task. If `.slim/` does not exist, create it and add this entry to the root `.gitignore`:
+Use `.slim/repositories/` for cloned third-party source repositories. Before any write, verify the target is inside the repository root, is not a symlink or tracked path, and is ignored by the parent repository. Create directories only in explicit preparation mode. Prefer adding `/.slim/` to `.git/info/exclude`; changing the shared root `.gitignore` requires explicit confirmation:
 
 ```gitignore
 /.slim/
 ```
 
-If `.slim/` already exists, do not change ignore configuration. Treat everything under `.slim/` as local, disposable reference material.
+If `.slim/` already exists, verify its ignore rule instead of assuming it is safe. Stop if `.slim/` or its contents are tracked, are symlinks, or are not ignored. Reject repository names containing separators, `..`, absolute paths, or a leading `-`.
 
 ## Select repositories carefully
 
@@ -75,7 +75,7 @@ Use this destination:
 Inspect the destination before cloning:
 
 - Reuse it when it is already the expected Git repository.
-- Report its remote URL and current revision before using it.
+- Report its redacted remote URL and current revision before using it.
 - Stop and ask before replacing it if it contains another repository or unrelated files.
 - Never delete or overwrite an existing directory merely to make cloning succeed.
 
@@ -183,9 +183,12 @@ Confirm that:
 
 Report:
 
-- Repository name and remote URL.
-- Requested tag, branch, or commit.
-- Resolved commit SHA.
-- Local clone path.
-- Ignore mechanism used.
-- Any tracked project guidance changed.
+- Operation and mode.
+- Repository name and redacted remote URL.
+- Requested and resolved revision/commit SHA.
+- Previous revision/commit when updating.
+- Local clone path and working-tree state.
+- Ignore mechanism, rule, and verification result.
+- Tracked `.slim` paths (must be none).
+- Project files changed, or `none`.
+- Warnings and skipped actions.

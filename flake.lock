@@ -342,23 +342,6 @@
         "type": "github"
       }
     },
-    "obscura-pr": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1787675548,
-        "narHash": "sha256-Ne1drnk8XAVqB3+6GSiqCoMcgFxTTwCtScCvnoKN72g=",
-        "owner": "dhogenson",
-        "repo": "nixpkgs",
-        "rev": "dd77ae6efbe584ca0946ea4cdbe855a89722c074",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dhogenson",
-        "repo": "nixpkgs",
-        "rev": "dd77ae6efbe584ca0946ea4cdbe855a89722c074",
-        "type": "github"
-      }
-    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -393,7 +376,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
-        "obscura-pr": "obscura-pr",
         "textfox": "textfox"
       }
     },

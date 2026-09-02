@@ -1,6 +1,6 @@
 ---
 name: drawio
-description: Generate draw.io diagrams by hand-authoring .drawio XML and converting it to a shareable app.diagrams.net editor URL. Use when the user wants a flowchart, architecture diagram, ERD, UML, sequence diagram, C4 model, BPMN, network topology, mind map, or any diagram, and you need to deliver it as XML source or a browser URL. Author XML per the references in this skill, then run scripts/encode_url.mjs (Node, zero deps) to produce the URL. Do NOT use for image export (PNG/SVG/PDF) — this skill only produces XML and URLs, never shell out to external diagram tools.
+description: Draw.io XML authoring and diagrams.net editor URLs. Use when the requested deliverable must be editable draw.io source or an app.diagrams.net editor link.
 ---
 
 # Drawio — XML & URL generation
@@ -11,11 +11,10 @@ no other software involved.
 
 ## When to use / when not
 
-- Use when: user asks for any kind of diagram and expects it as XML source or
-  a clickable URL to open in the diagrams.net editor.
-- Do NOT use for: exporting PNG/SVG/PDF images, or anything requiring
-  rendering locally. If the user needs an image file, say the URL opens in the
-  editor where they can export — do not attempt it here.
+- Use when: the user requests draw.io XML, a `.drawio` file, or an
+  app.diagrams.net editor URL.
+- Do NOT use for: live-canvas editing, iterative element-level refinement, or
+  PNG/SVG/PDF image delivery. Use Excalidraw for those workflows.
 
 ## Workflow
 
@@ -46,7 +45,7 @@ hand. Use `references/shapes.md` for any specific shape — never guess an
 - Every edge must be an expanded form with a
   `<mxGeometry relative="1" as="geometry" />` child — never a self-closing
   `edge="1"` cell
-- Never write XML comments (`<!-- -->`) — they render oddly; omit them
+- Generated XML files must not contain XML comments (`<!-- -->`). Keep explanations outside XML code blocks.
 - All text-bearing cells use `html=1` in style
 - Escape special characters in attributes: `&amp;` `&lt;` `&gt;` `&quot;`
 - Line breaks inside `value` use `&#xa;`, never literal `\n`

@@ -1,4 +1,4 @@
-# Excalidraw Skill Cheatsheet
+# Excalidraw Cheatsheet
 
 ## Defaults
 
