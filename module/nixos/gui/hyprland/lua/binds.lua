@@ -7,8 +7,7 @@ hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mod .. " + ALT + F", hl.dsp.window.float({ action = "toggle" }))
 
 -- Applications
-hl.bind(mod .. " + T", hl.dsp.exec_cmd("kitty"))
-hl.bind(mod .. " + Return", hl.dsp.workspace.toggle_special())
+hl.bind(mod .. " + T", hl.dsp.exec_cmd("$TERMINAL"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("$BROWSER"))
 
 -- Application launcher
@@ -46,7 +45,7 @@ hl.bind(mod .. " + ALT + CTRL + Down", hl.dsp.window.move({ workspace = "+1" }))
 hl.bind(mod .. " + ALT + CTRL + K", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind(mod .. " + ALT + CTRL + J", hl.dsp.window.move({ workspace = "+1" }))
 
--- Resize window (100px steps, hold to repeat)
+-- Resize window (50px steps, hold to repeat)
 -- Grow toward direction
 hl.bind(mod .. " + SHIFT + Left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
 hl.bind(mod .. " + SHIFT + Right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
@@ -58,24 +57,26 @@ hl.bind(mod .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -50, relative =
 hl.bind(mod .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 
 -- Shrink toward direction
-hl.bind(mod .. " + ALT + SHIFT + Left", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + ALT + SHIFT + Left", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
 hl.bind(
   mod .. " + ALT + SHIFT + Right",
-  hl.dsp.window.resize({ x = -100, y = 0, relative = true }),
+  hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
   { repeating = true }
 )
-hl.bind(mod .. " + ALT + SHIFT + Up", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
+hl.bind(mod .. " + ALT + SHIFT + Up", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 hl.bind(
   mod .. " + ALT + SHIFT + Down",
-  hl.dsp.window.resize({ x = 0, y = -100, relative = true }),
+  hl.dsp.window.resize({ x = 0, y = -50, relative = true }),
   { repeating = true }
 )
-hl.bind(mod .. " + ALT + SHIFT + H", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
-hl.bind(mod .. " + ALT + SHIFT + L", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
-hl.bind(mod .. " + ALT + SHIFT + K", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
-hl.bind(mod .. " + ALT + SHIFT + J", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
+hl.bind(mod .. " + ALT + SHIFT + H", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + ALT + SHIFT + L", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + ALT + SHIFT + K", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
+hl.bind(mod .. " + ALT + SHIFT + J", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
 
 -- Workspace switching
+hl.bind(mod .. " + Return", hl.dsp.workspace.toggle_special())
+
 for i = 1, 9 do
   hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }))
 end
@@ -110,8 +111,7 @@ hl.gesture({
   end,
 })
 
--- Resize window
--- Column width presets (scrolling layout, cycles explicit_column_widths)
+-- Scrolling layout column width presets
 hl.bind(mod .. " + R", hl.dsp.layout("colresize +conf"))
 
 -- Screen capture toolbar
