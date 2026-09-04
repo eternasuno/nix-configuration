@@ -1,5 +1,0 @@
-[gpt-load]
-protocol = "openai"
-base_url = "https://gpt-load.eternasuno.ddns.net/v1"
-api_key_env = "GPT_LOAD_API_KEY"
-discover_models = true

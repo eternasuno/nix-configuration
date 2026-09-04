@@ -12,19 +12,19 @@ For every non-trivial request, dispatch at least one meaningful subtask. Delegat
 Select the exact model and subagent type according to the task:
 
 - **Research and code exploration**
-  - Models, in order:`gpt-load/qwen3.8-flash` -> `gpt-load/deepseek-v4-flash`
+  - Model:`opencode-go/qwen3.8-flash`
   - Type: `research`
   - Use for documentation lookup, external research, codebase search, locating files or symbols, understanding existing code, and read-only investigation.
 - **Code changes**
-  - Models, in order: `gpt-load/qwen3.8-flash` -> `gpt-load/deepseek-v4-flash`
+  - Models, in order: `opencode-go/qwen3.8-flash`
   - Type: `general`
   - Use for well-defined implementation, bug fixes, refactoring, tests, configuration changes, and other non-visual code modifications.
 - **Review**
-  - Models, in order: `gpt-load/gpt-5.6-sol` -> `gpt-load/kimi-k2.7-code`
+  - Models: `openai/gpt-5.6-sol`
   - Type: `research`
   - Use for code review, security analysis, architecture assessment, difficult debugging, regression detection, and maintainability review. Report concrete findings with severity and file/line references. Do not modify files.
 - **UI design and implementation**
-  - Model: `gpt-load/gemini-3.7-flash`
+  - Model: `opencode-go/kimi-k2.7-code`
   - Type: `general`
   - Use for UI/UX, layout, styling, responsive behavior, accessibility, interactions, animations, visual polish, and user-facing frontend implementation.
 
