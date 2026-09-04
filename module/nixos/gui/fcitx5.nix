@@ -29,6 +29,11 @@ in {
             classicui.globalSection = {
               "Vertical Candidate List" = true;
             };
+
+            pinyin.globalSection = {
+              FirstRun = false;
+              CloudPinyinEnabled = false;
+            };
           };
         };
         waylandFrontend = true;
