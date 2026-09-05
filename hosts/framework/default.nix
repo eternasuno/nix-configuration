@@ -10,6 +10,7 @@
     email = "22316214+eternasuno@users.noreply.github.com";
     flakePath = "/home/eternasuno/.nix";
     keyboardLayout = "us";
+    resumeDevice = "/dev/disk/by-uuid/ba50d7d6-da94-4d40-af3e-bd1e6879fa64";
     timeZone = "Asia/Tokyo";
     version = "26.05";
   };
