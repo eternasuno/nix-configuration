@@ -16,7 +16,7 @@
 
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-  services.dbus.packages = with pkgs; [gcr accountsservice];
+  services.dbus.packages = with pkgs; [gcr_3 accountsservice];
   systemd.packages = [pkgs.accountsservice];
   environment.systemPackages = with pkgs; [libsecret];
 }

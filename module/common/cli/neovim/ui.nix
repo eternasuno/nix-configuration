@@ -20,7 +20,7 @@ in {
 
     statusline.lualine = {
       enable = true;
-      theme = "onedark";
+      setupOpts.options.theme = "onedark";
     };
 
     dashboard.alpha.enable = true;
