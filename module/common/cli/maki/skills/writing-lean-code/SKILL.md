@@ -43,10 +43,15 @@ See `architecture.md` for the boundary rules.
 - Control flow, naming, and comments: `readability.md`
 - Test layout and test boundaries: `testing.md`
 - TypeScript, TSX, and TypeScript-governed JavaScript: `typescript.md`
+- Effect-TS code using the `effect` package: `effect-ts.md`
 
 ## Workflow
 
-Before modifying code, load and apply this skill. Apply these conventions to production code, tests, and configuration changes. Before finishing, inspect the diff and run the project's formatter, linter, type checker, and tests when available.
+Before any operation that can overwrite or remove index or working-tree content, inspect staged, unstaged, and untracked changes. Scope destructive operations to current-task paths. Treat pre-existing or unclassified changes as user-owned and preserve them. If the user authorizes a broader destructive operation, first create and verify a reversible snapshot covering the affected index, working-tree, and untracked content.
+
+Before modifying code, understand the relevant code and trace the real execution flow. Surface material assumptions, ambiguities, and trade-offs rather than silently choosing among materially different interpretations. For bugs, fix the shared root cause rather than only the reported symptom.
+
+Apply these conventions to production code, tests, and configuration changes. Prefer deletion or simplification when it fully solves the task, and keep changes focused on the requested behavior. Before finishing, inspect the diff and verify it against explicit success criteria with the project's formatter, linter, type checker, and tests when available.
 
 ## Guardrails
 

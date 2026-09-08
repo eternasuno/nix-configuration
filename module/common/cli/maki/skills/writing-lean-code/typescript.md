@@ -1,6 +1,6 @@
 # TypeScript Rules
 
-Apply these rules in addition to the language-independent guidance in `SKILL.md` and its focused references when authoring TypeScript, TSX, or JavaScript governed by TypeScript tooling.
+Apply these rules in addition to the language-independent guidance in `SKILL.md` and its focused references when authoring TypeScript, TSX, or JavaScript governed by TypeScript tooling. For the `effect` package, also apply `effect-ts.md`.
 
 ## Types
 

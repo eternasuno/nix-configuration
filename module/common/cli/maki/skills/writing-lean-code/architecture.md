@@ -24,13 +24,14 @@ The outer layer contains entry points and interactions with the outside world:
 - framework bootstrap, configuration, serialization, and concrete implementations;
 - translation between external representations and inner-layer values.
 
-The outer layer invokes inner functions and performs the required effects. Keep adapters thin: perform only the mechanism conversion needed between an external capability and inner code. Keep business policy and decisions in the inner layer.
+The outer layer invokes inner functions and performs the required effects. Keep adapters thin: perform only the mechanism conversion needed between an external capability and inner code. When a port uses a typed effect, adapters capture native throws and translate external failures into its error channel; inner code composes that channel rather than re-wrapping port calls. Keep business policy and decisions in the inner layer.
 
 ## Interfaces
 
 Use an interface only when the design explicitly requires one for a stable boundary, dependency inversion, multiple implementations, or a deliberate test seam.
 
 - Define the interface at the inner boundary when inner code must depend on an outer capability.
+- Match effectful port result and error types to what the consumer actually composes; translate SDK-specific errors at the adapter boundary.
 - Implement it in the outer layer.
 - Do not introduce an interface or inject a stable platform function solely for mocking or hypothetical replacement.
 - Use a capability interface when the same operation requires materially different implementations across target runtimes.

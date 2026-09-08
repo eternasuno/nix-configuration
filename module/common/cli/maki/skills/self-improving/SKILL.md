@@ -1,6 +1,6 @@
 ---
 name: self-improving
-description: Capture reusable lessons from explicit user corrections, mistaken assumptions behind tool or API failures, repeated successful workflows, and requests to create or improve agent skills. Use when feedback or execution evidence reveals a durable project lesson, or when accumulated evidence may justify a skill change.
+description: Capture reusable lessons after code commits, explicit user corrections, mistaken assumptions behind tool or API failures, repeated successful workflows, and requests to create or improve agent skills. Use after each code commit, when feedback or execution evidence reveals a durable project lesson, or when accumulated evidence may justify a skill change.
 ---
 
 # Self-Improving
@@ -11,6 +11,7 @@ Turn trustworthy evidence from the current work into concise project memory and,
 
 Process a signal when one of these occurs:
 
+- code changes are committed; summarize the completed change and capture only durable, reusable lessons;
 - the user explicitly corrects a factual claim, preference, or working method;
 - a tool, command, API, test, or implementation fails because of a mistaken reusable assumption;
 - a better workflow succeeds repeatedly;
@@ -71,13 +72,12 @@ Ask for approval only when a concrete proposal is ready. Approval covers the des
 
 ## Apply an approved change
 
-1. Load `writing-for-agents` and follow its skill mechanics.
-2. Read the target skill and directly linked references needed for the affected behavior.
-3. Establish a baseline with a scenario that exposes the observed failure when practical. For important changes, use a fresh subagent context.
-4. Make the smallest approved edit. Preserve one source of truth and avoid project-specific guidance in global skills.
-5. Repeat the scenario and inspect whether the target behavior changed without weakening security or unrelated behavior.
-6. Report changed paths, validation evidence, and remaining uncertainty. If validation fails, revert the ineffective change or ask before trying a materially different approach.
-7. Update the corresponding memory candidate to confirmed, rejected, or superseded.
+1. Read the target skill and directly linked references needed for the affected behavior.
+2. Establish a baseline with a scenario that exposes the observed failure when practical. For important changes, use a fresh subagent context.
+3. Make the smallest approved edit. Preserve one source of truth and avoid project-specific guidance in global skills.
+4. Repeat the scenario and inspect whether the target behavior changed without weakening security or unrelated behavior.
+5. Report changed paths, validation evidence, and remaining uncertainty. If validation fails, revert the ineffective change or ask before trying a materially different approach.
+6. Update the corresponding memory candidate to confirmed, rejected, or superseded.
 
 ## Guardrails
 
