@@ -7,7 +7,6 @@ in {
       enable = true;
     };
     settings = {
-      git_protocol = "ssh";
       aliases = {
         co = "pr checkout";
         create = "pr create";
